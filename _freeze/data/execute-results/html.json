@@ -1,0 +1,17 @@
+{
+  "hash": "60ff17d1d5a3ad78b11ff0767a2cb422",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Data {#sec-data}\n\n\n\nYes - this really is that important to deserve its own chapter. \n\n## Getting Data \n\nwhat are some relevant data-sets. \n[ ] work in progress\n\n\n## Formatting\n\nClean tabular format etc. \n\n\nUse excel like a boss, if you're going to: More excel data https://cghlewis.com/blog/excel_entry/\n \n\n\nFlat files: Flat files: https://evidence.dev/blog/what-is-a-flat-file?utm_campaign=Data_Elixir&utm_source=Data_Elixir_526 \n\n\n\n## Data types\n\n\n\n",
+    "supporting": [
+      "data_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

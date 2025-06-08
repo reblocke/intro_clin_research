@@ -1,0 +1,15 @@
+{
+  "hash": "b17125070c693324ad728a4df296ce60",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Basics of Study Design {#sec-study_design}\n\n\n\nIn this section, we'll cover the basics of study design. \n\n## Exposures\n\nWhat does this mean\n\n## Outcome\n\nThe thing you're interesting in measuring. \n\nEffect measures: \n\nRisk ratio\n\nOdds ratio : https://onlinelibrary.wiley.com/doi/10.1111/test.12391 \n\n\n\n### Considerations in choosing an outcome\n\n\nEndpoint considerations: \nhttps://hbiostat.org/endpoint/ \n\n\n\n## Confounding\nWhats a confounder? \n\n\n## Effect Modification and Interactions\n\n\n## Risk factor\n\n\n## Counterfactual reasoning\n\nAdvanced topics (maybe a little bit)\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "46cb792ee205a52ccefcd29c48f4288c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# How to get your project done {#sec-project_management}\n\n\n\nIn this section, we'll discuss how to actually make the research happen: what should your workflow be, what are some hints for how to do things quickly and robustly. \n\n\n## Key Figures\n\nStart by making your key figures. \n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,21 @@
+# Overview {.unnumbered}
+
+This workbook is intended to function as a guide to get students, residents, or fellows started on the right foot on a research project. 
+
+There are many guides and publications covering this topic. The reason I made yet another is to better target the unique constraints and backgrounds of clinical trainees, and also to cover content relevant to my field - Internal Medicine (specifically, Pulmonary and Critical Care)
+
+This guide is intended to act as a supplement to an involved mentor, who can answer context-specific questions and clarify things in a more interactive way. However, as discussed more in mentors - there are a spectrum of arrangements that work, and self-directed researchers may find more use for materials like this. 
+
+[ ] Reframe this as a guide for trainees (whether working with me or whoever you’re working with)
+
+Also - the nerds have a concept called 'Tacit Knowledge' that I think is extremely useful: how do people who actually do this well operate? 
+
+
+
+
+See @sec-instructions for more details on ...  etc
+
+
+## About {.unnumbered}
+
+I am an Assistant Professor of Research in the Department of Critical Care at Intermountain Medical Center. I am core faculty in the University of Utah Pulmonary and Critical Care Medicine Fellowship Program and Internal Medicine Residency. Academically, I focus on hypercapnic respiratory failure epidemiology, clinical reasoning, and research informatics. More information and current projects at ([reblocke.github.io](https://reblocke.github.io/))

@@ -1,0 +1,47 @@
+# Basics of Study Design {#sec-study_design}
+
+```{r, include = FALSE}
+source("R/booktem_setup.R")
+source("R/my_setup.R")
+```
+
+In this section, we'll cover the basics of study design. 
+
+## Exposures
+
+What does this mean
+
+## Outcome
+
+The thing you're interesting in measuring. 
+
+Effect measures: 
+
+Risk ratio
+
+Odds ratio : https://onlinelibrary.wiley.com/doi/10.1111/test.12391 
+
+
+
+### Considerations in choosing an outcome
+
+
+Endpoint considerations: 
+https://hbiostat.org/endpoint/ 
+
+
+
+## Confounding
+Whats a confounder? 
+
+
+## Effect Modification and Interactions
+
+
+## Risk factor
+
+
+## Counterfactual reasoning
+
+Advanced topics (maybe a little bit)
+

@@ -1,0 +1,48 @@
+# Statistical Software {#sec-stat_software}
+
+```{r, include = FALSE}
+source("R/booktem_setup.R")
+source("R/my_setup.R")
+```
+
+You'll need to at least understand some statistics to be effective as a researcher. 
+
+In fact, I'd recommend just learning to do your own statistics, though this isn't strictly necessary for everyone. 
+
+The reasons are multiple. 
+
+The goal of this section is to assist in choosing the right statistical software. 
+
+
+
+## Statistical software options:
+
+- which to use
+
+
+### How to install 
+
+Instructions for how to do the multiple tabs: https://x.com/rlmcelreath/status/1793641224941007261?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg
+
+In quarto just use 
+
+::: {.panel-tabset}
+
+## tab 1
+Content
+## tab 2
+Content
+
+:::
+
+https://quarto.org/docs/interactive/layout.html 
+
+
+## Reproducible Research 
+- basic usage - notebooks - reproducible research pipelines. 
+
+
+
+## 'Vibe Coding' and related concepts. 
+
+- GPT usage. 

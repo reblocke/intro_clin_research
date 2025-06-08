@@ -1,0 +1,17 @@
+{
+  "hash": "f82622390bf0ea3ba111ead700d82cc5",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Other helpful resources {#sec-resources}\n\n\n\nHere are some other helpful resources:\n\n-   [ ] todo: compile and sort these.\n\n\n## Statiatical Programming: \n\nResources…. Here are a few references that might be helpful for learning R:\nUniversity of Utah Resource https://uofudelphi-r-23-08-21.netlify.app/\nMore in depth resource/book https://r4ds.hadley.nz/\nand slightly more advanced: https://rap4mads.eu/03-functional-programming.html\nstyle guide for how to name things https://style.tidyverse.org/syntax.html\n\n\n\n\n\n## Project Management\n\n### Figures\n\n- https://nrennie.rbind.io/blog/chart-makeover/ \n\n\n\n\n## Take your knowledge to the next level\n\n\n### Bayesian Analysis: \n\n\n\nBayes factors - https://statsedge.org/shiny/LearnBF/ \n",
+    "supporting": [
+      "resources_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

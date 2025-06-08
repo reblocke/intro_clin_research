@@ -1,0 +1,99 @@
+lang: en
+project:
+  type: book
+  output-dir: docs
+  resources: resources
+execute:
+  freeze: auto
+book:
+  title: Introduction to Clinical Research
+  subtitle: A quick start guide for students, residents, and fellows
+  author:
+  - name: Brian Locke
+    degrees:
+      - MD
+      - MSc
+    orcid: 0000-0002-3588-5238
+    affiliations:
+      - name: Department of Pulmonary & Critical Care, Intermountain Medical Center
+      - department: Pulmonary and Critical Care
+        group: Shock Trauma ICU & Schmidt Chest Clinic
+        city: Murray
+        state: UT
+        country: USA
+    roles: []
+  doi: ''
+  license: "CC BY-SA"
+  description: A guide to getting started on a clinical research project
+  cover-image: images/logos/logo.png
+  image: images/logos/logo.png
+  favicon: images/logos/logo.png
+  cookie-consent: false
+  google-analytics: ''
+  page-navigation: true
+  search: true
+  downloads:
+  - pdf
+  - epub
+  sharing:
+  - twitter
+  - facebook
+  - linkedin
+  sidebar:
+    title: 'Intro to Clinical Research'
+    logo: ''
+    search: true
+    contents: ''
+    style: floating
+    background: light
+    foreground: dark
+    border: true
+    alignment: left
+    collapse-level: 3
+    pinned: true
+    header: ''
+    footer: ''
+  margin-header: ''
+  page-footer: CC-BY-SA-4.0 (2025) Brian Locke, MD MSc
+  chapters:
+  - index.qmd
+  - project_selection.qmd
+  - stat_software.qmd
+  - data.qmd
+  - study_design.qmd
+  - intro_stats.qmd
+  - intro_regression.qmd
+  - project_management.qmd
+  appendices:
+  - resources.qmd
+  - webexercises.qmd
+  - references.qmd
+bibliography: include/references.bib
+csl: include/apa.csl
+format:
+  html:
+    theme:
+      light:
+      - flatly
+      - include/light.scss
+      dark:
+      - darkly
+      - include/dark.scss
+    css:
+    - https://use.fontawesome.com/releases/v5.13.0/css/all.css
+    - include/booktem.css
+    - include/webex.css
+    - include/glossary.css
+    - include/style.css
+    df-print: kable
+    code-link: true
+    code-fold: false
+    code-line-numbers: true
+    code-overflow: wrap
+    code-copy: hover
+    highlight-style: a11y
+    mainfont: ''
+    monofont: ''
+    include-after-body:
+    - include/webex.js
+    - include/script.js

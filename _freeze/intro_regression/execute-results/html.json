@@ -1,0 +1,15 @@
+{
+  "hash": "e7560fca66e517c04e54b884d04986ae",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Regressions {#sec-regression}\n\n\n\nStatistical modeling is a bit counter-intuitive, so it makes sense to talk a bit about what we're trying to accomplish.\n\nDistributions:\n\n![](images/clipboard-4048320043.png)\n\nRegressions -\n\nModels - you choose a way to distill the relationships that are contingent on certain assumptions - and if those assumptions hold, your conclusions follow.\n\nDAGs What does it mean to control? https://idlhy0218.github.io/page%20building/blog.html#control\n\nConceptually - you are modeling something… all models are wrong, some models are useful. You just need to know the assumptions you are implying by your choice, so that you can make an argument about whether the assumptions are warranted or not .\n\nFunctional forms \\*\\*\\* dichotomization vs flexible models\n\nWhat type of questions can regression be used? Is caviar a risk factor for \\*\\*\\*\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,41 @@
+# Other helpful resources {#sec-resources}
+
+```{r, include = FALSE}
+source("R/booktem_setup.R")
+source("R/my_setup.R")
+```
+
+Here are some other helpful resources:
+
+-   [ ] todo: compile and sort these.
+
+
+## Statiatical Programming: 
+
+Resources…. Here are a few references that might be helpful for learning R:
+University of Utah Resource https://uofudelphi-r-23-08-21.netlify.app/
+More in depth resource/book https://r4ds.hadley.nz/
+and slightly more advanced: https://rap4mads.eu/03-functional-programming.html
+style guide for how to name things https://style.tidyverse.org/syntax.html
+
+
+
+
+
+## Project Management
+
+### Figures
+
+- https://nrennie.rbind.io/blog/chart-makeover/ 
+
+
+
+
+## Take your knowledge to the next level
+
+
+### Bayesian Analysis: 
+
+
+
+Bayes factors - https://statsedge.org/shiny/LearnBF/ 

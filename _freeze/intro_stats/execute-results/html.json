@@ -1,0 +1,15 @@
+{
+  "hash": "1d908ccf87b74db44fd60e6111854d74",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Statistical Foundations {#sec-intro_stats}\n\n\n\nHere, we talk about some of the introductory concepts that you have t understand to know what statistics is doing, and what the caveats are. \n\n\nFirst, a plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend. \n\n## How to formulate your scientific question as a statistically testable hypothesis? \n\n## How to formulate your actual question as a test: \n\n\n## The logic of a scientific argument:  \n\n\n## P-values\n\nFrequentist P-values  - how suprising would this be if there was nothing going on? \n\n## What's power got to do with it? \n\nEverything is underpowered ***\n\nPower - https://onlinelibrary.wiley.com/doi/full/10.1111/test.12403?campaign=wolearlyview \n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

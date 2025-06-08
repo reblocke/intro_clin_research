@@ -1,0 +1,32 @@
+# Data {#sec-data}
+
+```{r, include = FALSE}
+source("R/booktem_setup.R")
+source("R/my_setup.R")
+```
+
+Yes - this really is that important to deserve its own chapter. 
+
+## Getting Data 
+
+what are some relevant data-sets. 
+[ ] work in progress
+
+
+## Formatting
+
+Clean tabular format etc. 
+
+
+Use excel like a boss, if you're going to: More excel data https://cghlewis.com/blog/excel_entry/
+ 
+
+
+Flat files: Flat files: https://evidence.dev/blog/what-is-a-flat-file?utm_campaign=Data_Elixir&utm_source=Data_Elixir_526 
+
+
+
+## Data types
+
+
+

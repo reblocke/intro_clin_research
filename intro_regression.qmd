@@ -1,0 +1,24 @@
+# Regressions {#sec-regression}
+
+```{r, include = FALSE}
+source("R/booktem_setup.R")
+source("R/my_setup.R")
+```
+
+Statistical modeling is a bit counter-intuitive, so it makes sense to talk a bit about what we're trying to accomplish.
+
+Distributions:
+
+![](images/clipboard-4048320043.png)
+
+Regressions -
+
+Models - you choose a way to distill the relationships that are contingent on certain assumptions - and if those assumptions hold, your conclusions follow.
+
+DAGs What does it mean to control? https://idlhy0218.github.io/page%20building/blog.html#control
+
+Conceptually - you are modeling something… all models are wrong, some models are useful. You just need to know the assumptions you are implying by your choice, so that you can make an argument about whether the assumptions are warranted or not .
+
+Functional forms \*\*\* dichotomization vs flexible models
+
+What type of questions can regression be used? Is caviar a risk factor for \*\*\*
