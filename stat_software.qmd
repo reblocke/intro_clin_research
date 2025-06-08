@@ -5,44 +5,164 @@ source("R/booktem_setup.R")
 source("R/my_setup.R")
 ```
 
-You'll need to at least understand some statistics to be effective as a researcher. 
+You'll need to at least understand some statistics to be effective as a researcher.
 
-In fact, I'd recommend just learning to do your own statistics, though this isn't strictly necessary for everyone. 
+In fact, I'd recommend just learning to do your own statistics, though this isn't strictly necessary for everyone.
 
-The reasons are multiple. 
+The reasons are multiple.
 
-The goal of this section is to assist in choosing the right statistical software. 
-
-
+The goal of this section is to assist in choosing the right statistical software.
 
 ## Statistical software options:
 
-- which to use
+|  |  |  |  |
+|---------------|---------------|--------------------------|---------------|
+|  | R | Stata | Python |
+| Cost | Free | Requires License | Free |
+| IDE | RStudio | Built in editor | Many (Visual Code best) |
+| Strengths | Best epi / trials libraries for helpful functions | Simple functionality; powerful quasi-experimental/Meta-analysis. U of U MSCI uses. | Best NLP, machine learning libraries |
+| Weakness | Clunky syntax; many 'dialects' | Simple syntax | Moderately Complex Syntax |
+| Explainable Programming\* | Quarto | No options | Jupyter |
 
+\*The idea that code should be readable by consumers of science has caught on in more quantitative fields (Math, CS), but will be coming to medicine. Long overdue. Learn now.
 
-### How to install 
+### How to install
 
 Instructions for how to do the multiple tabs: https://x.com/rlmcelreath/status/1793641224941007261?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg
 
-In quarto just use 
+In quarto just use
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## tab 1
-Content
-## tab 2
-Content
 
+Content \## tab 2 Content
 :::
 
-https://quarto.org/docs/interactive/layout.html 
+https://quarto.org/docs/interactive/layout.html
 
+For R
 
-## Reproducible Research 
-- basic usage - notebooks - reproducible research pipelines. 
+|  |  |  |  |
+|--------------|--------------|--------------|------------------------------|
+| Step 1: | Install R Language | <https://cran.r-project.org/> |  |
+| Step 2: | Install RStudio | <https://posit.co/downloads/> | RStudio is an IDE (development environment) |
+| Step 3: | Install Quarto (formerly Markdown) | <https://quarto.org/docs/get-started/> | Facilitates sharing and explaining your code. Will soon be standard in medical science. |
+| Step 4: | Download this document | <https://github.com/reblocke/fellow_stats> | "fellow_stats.qmd" |
 
+This page is made using Quarto.
 
+**Packages**
 
-## 'Vibe Coding' and related concepts. 
+Other people have mostly done all the analyses you'll want to do:
 
-- GPT usage. 
+-   Curated lists of relevant packages: <https://cran.r-project.org/web/views/>
+-   \`install.packages( )\` will install the packages
+-   \`?package\`  or \`?command\` will bring up the documentation
+
+Example: Say you want to do a meta-analysis.
+
+Relevant packages: <https://cran.r-project.org/web/views/MetaAnalysis.html>
+
+The 'meta' package looks good. Try using \`install.packages('meta')\` to install it, then you can you can access the documentation using \`?meta\`
+
+Let's try an example... I extracted data on all of the trials comparing high O2 to low O2 targets and uploaded to github.
+
+```{r}
+#| echo: false
+library(readxl) # a package to read excel files - try ?readxl
+library(dplyr) # a package to process data. - try ?dplyr
+
+# Define the URL of the Excel file on GitHub
+url <- "https://github.com/reblocke/fellow_stats/raw/main/O2%20icu%20target%20MA.xls"
+
+# Download the file temporarily
+temp_file <- tempfile(fileext = ".xls")
+download.file(url, temp_file, mode = "wb")
+
+# Read the Excel file, select columns, and arrange
+data_sheet <- read_excel(temp_file) %>%
+  select(-other_comment) %>%
+  arrange(year)
+
+# Clean up by removing the temporary file
+unlink(temp_file)
+```
+
+```{r}
+head(data_sheet)
+authors <- select(data_sheet, author)
+```
+
+Now, let's meta-analyze it:
+
+```{r}
+library(meta)
+
+#metabin takes events, total (rather than events, nonevents)
+m_ex1 <- meta::metabin(low_o2_died, num_low_o2, high_o2_died, num_high_o2, data = data_sheet, studlab = paste(name, author, year), sm = "OR")
+meta::forest(m_ex1, comb.random = FALSE, lab.c = "High Oxygen", lab.e = "Low Oxygen", label.left = "Favors Low O2", label.right = "Favors High O2")
+```
+
+And if you want to get really cutting edge, you can do a trial sequential analysis (TSA) on it:
+
+```{r}
+#| echo: false
+library(RTSA) # A package for performing TSA
+library(tidyverse) # A package that pulls in many data manipulation programs.
+
+rtsa_df <- data_sheet |> 
+  rename("eI" = high_o2_died, 
+         "eC" = low_o2_died, 
+         "nI" = num_high_o2,
+         "nC" = num_low_o2, 
+         "study" = name)
+
+map(rtsa_df, class)
+sapply(rtsa_df, function(x) which(is.na(x)))
+
+an_rtsa <- RTSA(type="analysis", data =  rtsa_df , outcome = "RR", mc = 0.9, side = 2,  alpha = 0.05, beta = 0.1, es_alpha = "esOF", es_beta = "esOF", futility = "non-binding", random_adj = "D2", D2 = 0.25 )
+```
+
+```{r}
+plot(an_rtsa)
+```
+
+Meaning, we've passed futility (at 90% power) for a 10% relative risk reduction a few trials ago. Cool.
+
+## Reproducible Research
+
+-   basic usage - notebooks - reproducible research pipelines.
+
+## 'Vibe Coding' and related concepts.
+
+-   GPT usage.
+
+**Large Language Models:** Options:
+
+-   OpenAI Chat GPT (requires subscription for best performance; custom GPTs)
+-   Github CoPilot (programming specific)
+-   Microsoft CoPilot - access to GPT4 = free through University of Utah
+
+Copilot:
+
+-   Visit [bing.com/chat](https://bing.com/chat).
+-   Select "sign in with a work or school account" under the Sign in icon in the upper right corner of the page.
+-   Enter your unid\@umail.utah.edu and uNID password.
+-   Complete Duo two-factor authentication.
+-   The conversation is protected when a green shield appears in the upper right corner next to your username. It is critical to verify that the green shield is present for all conversations.
+
+Prompt Engineering:
+
+1.  have the GPT take the persona that you want
+2.  spell out the chain of thougt that you want the GPT to take (either multiple steps in 1 prompt or several prompts building on one another works)
+3.  Give examples or specifications of what you want done. \[this is particularly useful because the documents you give it can form a context and examples\]. 
+
+How I used GPT4 creating this workbook:
+
+![The prompt I used to create the above example.](images/IMG_ADC8B4B4AF1D-1.jpeg){alt="The prompt I used to create the above example." width="462"}
+
+**U of U Resources -** 
+
+-   One Data Science Hub Workshops: <https://utah-data-science-hub.github.io/education_archived.html>  
+-   Request CTSI help: <https://ctsi.utah.edu/cores-and-services/triad> 
+-   Intuitive Biostatistics by Harvey Motulsky - <https://a.co/d/4NCk2bS> 

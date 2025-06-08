@@ -11,6 +11,17 @@ This guide is intended to act as a supplement to an involved mentor, who can ans
 Also - the nerds have a concept called 'Tacit Knowledge' that I think is extremely useful: how do people who actually do this well operate? 
 
 
+## Learning Objectives:
+
+1.  Set Up Statistical Software
+2.  Share "tacit knowledge" (how it's actually done) of how to choose a statistical analyses and perform it.
+3.  Understanding the structure of frequentist statistical tests
+4.  Understand the logic of regression models
+
+**Bad news**: you'll need to learn how to do statistical analyses:
+
+-   realistically, you'll probably have to do your own stats somewhat
+-   if you join a project that has a statistican (or get CTSI assistance), you'll still need to be able to specify, critique, and interpret the analyses. It will help substantially to have (at least) basic working knowledge.
 
 
 See @sec-instructions for more details on ...  etc
@@ -18,4 +29,13 @@ See @sec-instructions for more details on ...  etc
 
 ## About {.unnumbered}
 
-I am an Assistant Professor of Research in the Department of Critical Care at Intermountain Medical Center. I am core faculty in the University of Utah Pulmonary and Critical Care Medicine Fellowship Program and Internal Medicine Residency. Academically, I focus on hypercapnic respiratory failure epidemiology, clinical reasoning, and research informatics. More information and current projects at ([reblocke.github.io](https://reblocke.github.io/))
+I am an Assistant Professor of Research in the Department of Critical Care at Intermountain Medical Center. I am core faculty in the University of Utah Pulmonary and Critical Care Medicine Fellowship Program and Internal Medicine Residency. Academically, I focus on hypercapnic respiratory failure epidemiology, clinical reasoning, and research informatics. More information and current projects at [reblocke.github.io](https://reblocke.github.io/)
+
+
+```{r}
+# TODO:  
+# Shorten a bit for 1h session (I think not)
+# Change structure to intentionally start people off installing, then progress
+# Trouble shoot regression and chi2 equivalence... may be easier with linear regression.
+# Create an example of using chatgpt to troubleshoot an error
+```

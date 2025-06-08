@@ -7,6 +7,14 @@ source("R/my_setup.R")
 
 In this section, we'll cover the basics of study design. 
 
+
+
+Structure of scientific argument: disjunctive syllogism
+
+
+Randomization = takes care of some (but not all) of the other reasons for an association = can convince a skeptic. However, observational research must make arguments (based on assumptions) and they must be explicit. 
+
+
 ## Exposures
 
 What does this mean

@@ -5,26 +5,123 @@ source("R/booktem_setup.R")
 source("R/my_setup.R")
 ```
 
-Here, we talk about some of the introductory concepts that you have t understand to know what statistics is doing, and what the caveats are. 
+Here, we talk about some of the introductory concepts that you have t understand to know what statistics is doing, and what the caveats are.
 
+First, a plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend.
 
-First, a plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend. 
+\[ \] cover signal to noise ratio: history? https://www.sensible-med.com/p/doing-statistics-can-be-difficult
 
-## How to formulate your scientific question as a statistically testable hypothesis? 
+## Objective 3: the Logic of Frequentist Inferential Statistics
 
-## How to formulate your actual question as a test: 
+Hume: we cannot directly observe causation 
 
+![](images/clipboard-1623586370.png)
 
-## The logic of a scientific argument:  
+![David Hume: causation is never directly observed](images/Allan_Ramsay_-_David_Hume,_1711_-_1776._Historian_and_philosopher_-_Google_Art_Project.jpg){fig-alt="David Hume" width="400"}
 
+If there is an association between an 'exposure' and an 'outcome', there are 4 possible explanations
+
+1.  Chance
+2.  Confounding (some other factor influences the exposure and the outcome)
+3.  Bias
+4.  Or, causation (meaning, a real effect)
+
+**Disjunctive syllogism**:
+
+> When you have eliminated the impossible, whatever remains, however improbable, must be the truth. 
+
+\- Sherlock Holmes
+
+\*note: Bayesian analysis follows a different logic. 
+
+**P-values ONLY address possibility 1:** how likely is it that chance alone could explain the observed result If the two variables were not correlated, what the likeliihood that you'd see as extreme results or more - just as a result of chance? 
+
+Consider: if I start flipping a coin, how many consecutives "Heads" need to occur before you'll suspect it's not a fair coin? 
+
+|              |            |             |
+|--------------|------------|-------------|
+| **Sequence** | **Flips**  | **P-value** |
+| HH           | 2 flips    | 0.25        |
+| HHH          | 3 flips    | 0.125       |
+| HHHH         | 4 flips    | 0.0625      |
+|              | 4.32 flips | 0.05        |
+| HHHHH        | 5 flips    | 0.03125     |
+
+More at: <https://stat.lesslikely.com/s-values/>
+
+**IMPORTANT POINT:** the p-value is [NOT]{.underline} the probability that the coin is biased. It is the probability of seeing that result (or more extreme) [ASSUMING]{.underline} the coin is biased. 
+
+Sidebar: understanding multiplicity: If we all flipped a coin 5 times, what is the chance that one of us would get 5 heads in a row? 
+
+-   If 10 people = (1-0.03125)\^10 = 0.727.  23.3% of at least 1 HHHHH -\> we're back to weak evidence of a real effect. 
+-   This is obviously true when multiple tests are reported, but less obviously also true if you try several analyses and choose the "best one" after seeing the result. Hence, prespecification.
+
+**'Signal to noise'**: if the alternative hypothesis is that the coin is subtly imbalanced, it'll be a much harder to detect signal. This is the logic of power analysis - if you're looking for a subtle signal (e.g. small difference, noisy data, rare events), you'll need a bigger study.
+
+However, there is **no free lunch:** a statistical tests makes assumptions about the data, and if those assumptions hold in reality, then the implications from the analysis follow.
+
+Example interpretation:
+
+If the p-value from a Chi2 test is P=0.03 - we say it's as unlikely this would occur from just chance as it would be to flip a fair coin heads 5 times in a row.
+
+IF observations are independent; both variables are categorical; there are enough observations of each, then it is unlikely chance alone explains the difference. 
+
+Using the usual significance threshold (alpha), IF the assumptions hold, we conclude it is unlikely chance alone caused the finding (though it could have been confounding, bias, or a real effect).
+
+**How do you choose the right test?**
+
+What type of variables? How many groups? Are the samples correlated (e.g. observation from the same patient at two different times)?
+
++----------------------------------------------+----------------------------------------------+----------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+
+| **Level of measurement of outcome variable** | **Two Independent Groups**                   | **Three or more Independent Groups**                                 | **Two Correlated\* Samples**  | **Three or more Correlated\* Samples**                           |
++----------------------------------------------+----------------------------------------------+----------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+
+| Dichotomous                                  | **chi-square** or Fisher's exact test        | **chi-square** or Fisher-Freeman-Halton test                         | McNemar test                  | Cochran Q test                                                   |
++----------------------------------------------+----------------------------------------------+----------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+
+| Unordered Categorical                        | **chi-square** or Fisher-Freeman-Halton test | **chi-square** or Fisher-Freeman-Halton test                         | Stuart-Maxwell test           | Multiplicity adjusted Stuart-Maxwell tests^*\#*^                 |
++----------------------------------------------+----------------------------------------------+----------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+
+| Ordered categorical                          | **Wilcoxon-Mann-Whitney (WMW) test**         | *Old School\*\*\*:* Kruskal-Wallis analysis of variance (ANOVA)      | Wilcoxon sign rank test       | *Old School^\#^* Friedman two-way ANOVA by ranks                 |
+|                                              |                                              |                                                                      |                               |                                                                  |
+|                                              |                                              | *New School\*\*\*:* multiplicity adjusted WMW test                   |                               | *New School^\#^* Mulitiplicity adjusted Wilcoxon sign rank tests |
++----------------------------------------------+----------------------------------------------+----------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+
+| Continuous                                   | **independent groups t-test**                | *Old school\*\*\*:* oneway ANOVA                                     | **paired t-test**             | mixed effects linear regression                                  |
+|                                              |                                              |                                                                      |                               |                                                                  |
+|                                              |                                              | *New school\*\*\*:* multiplicity adjusted independent groups t tests |                               |                                                                  |
++----------------------------------------------+----------------------------------------------+----------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+
+| Censored: time to event                      | **log-rank test**                            | Multiplicity adjusted log-rank test                                  | Shared-frailty Cox regression | Shared-frailty Cox regression                                    |
++----------------------------------------------+----------------------------------------------+----------------------------------------------------------------------+-------------------------------+------------------------------------------------------------------+
+
+From: From: Stoddard GJ. Biostatistics and Epidemiology Using Stata: A Course Manual. Salt Lake City, UT: University of Utah School of Medicine.
+
+How can you collaborate effectively with a statistician? They will know these assumptions and can tell you when your analyses makes dubious assumptions (if you communicate the constraints of the problem correctly)
+
+Examples from Darren
+
+What test would we use to assess if "splenectomy" and "prox_v_dist" are associated beyond what's attributable to chance?
+
+To test if "splenectomy" and "hosp" are associated?
+
+If "splenectomy" and "qanadli" are associated?
+
+New example with hypercapnia stuff needed.
+
+## How to formulate your scientific question as a statistically testable hypothesis?
+
+## How to formulate your actual question as a test:
+
+## The logic of a scientific argument:
 
 ## P-values
 
-Frequentist P-values  - how suprising would this be if there was nothing going on? 
+Frequentist P-values - how suprising would this be if there was nothing going on?
 
-## What's power got to do with it? 
+S-value example… and then twist it so that I don’t say how many times I tried (and I’m incentivized to find one)
 
-Everything is underpowered ***
+## What is a statistical test?
 
-Power - https://onlinelibrary.wiley.com/doi/full/10.1111/test.12403?campaign=wolearlyview 
+\[ \] create some examples - choosing a statistical test.
 
+## What's power got to do with it?
+
+Everything is underpowered \*\*\*
+
+Power - https://onlinelibrary.wiley.com/doi/full/10.1111/test.12403?campaign=wolearlyview

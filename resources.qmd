@@ -33,6 +33,19 @@ style guide for how to name things https://style.tidyverse.org/syntax.html
 
 ## Take your knowledge to the next level
 
+Advanced topics: 
+
+Boostrap
+Survival Analysis 
+Multiple testing
+EM algorithm???
+Random effects models (?multi-level models)
+General linear models
+Propensity Score methods
+Generalized estimating equiations
+
+
+
 
 ### Bayesian Analysis: 
 

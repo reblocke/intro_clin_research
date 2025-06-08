@@ -7,11 +7,106 @@ source("R/my_setup.R")
 
 Statistical modeling is a bit counter-intuitive, so it makes sense to talk a bit about what we're trying to accomplish.
 
+## Objective 4: Understand the logic of regression analysis
+
+Recall, if there is an association between an 'exposure' and an 'outcome', there are 4 possible explanations
+
+1.  Chance
+2.  Confounding (some other factor influences the exposure and the outcome)
+3.  Bias 
+4.  Or, causation (a real effect)
+
+Randomization addresses point 2 (essentially, converts it to point 1, in that only chance confounding can occur)
+
+For non-randomized data, you must make an argument against point 2. This is the most common use of regression. 
+
+\[the methods section of your paper is the argument against point 3; pull in RECORD/STROBE recs\]
+
+**There are at least 3 uses of regression models:** 
+
+1.  Inferential Statistics: Hypothesis testing with confounding control
+2.  Descriptive Statistics: Summarize the strength of association
+3.  Prediction of an outcome (e.g. statistical machine learning)
+
+Regression comes with additional assumptions: 
+
+-   Independent observations (special "mixed models" can relax this)
+-   The form of the output variable is correct\* 
+-   The form of the predictor variables are correct
+-   The relationship between the predictors are properly specified.\*\*
+-   Additional constraints (e.g. constant variance)
+
+Thus the logic is: if the assumptions of the models hold in reality, then the described relationships are valid
+
+> No model is perfect, but some models are useful
+
+-   Morris moment(TM)
+
+Output variable (aka the dependent variable, predicted variable) form determines the type of regression : 
+
+|  |  |  |
+|--------------------|--------------------------|--------------------------|
+| **Level of measurement of outcome variable** | **Two Independent Groups without Confounding Adjustment** | **Two Independent Groups without Confounding Adjustment** |
+| Dichotomous | Chi2 Test | **logistic regression** |
+| Unordered categorical | Chi2 Test | multinomial logistic regression |
+| Ordered categorical | Wilcoxon-Mann-Whitney | ordinal logistic regression |
+| Continuous (normally distributed) | T-test | **linear regression** |
+| Censored: time to event | Log-rank test | **Cox regression** |
+
+From: From: Stoddard GJ. Biostatistics and Epidemiology Using Stata: A Course Manual. Salt Lake City, UT: University of Utah School of Medicine.
+
+**Interpretation:**
+
+Regression coefficient = What change in the outcome do you expected if you change the predictor by 1 unit, holding all other variables constant
+
+-   For linear regression: additive change in outcome
+-   For logistic regression: multiplicative change in odds of the outcome
+-   For Cox regression: multiplicative change in the hazard of the outcome. 
+
+Example:
+
+Consider, if we want to test whether 'splenectomy' and 'got_cteph?' are associated, we could use a chi2 test:
+
+```{r}
+#chi2_test_result <- chisq.test(darren_data_sheet$splenectomy, darren_data_sheet$`got_cteph?`)
+#print(chi2_test_result)
+```
+
+Alternatively you could specify a logistic regression
+
+("GLM" standards for 'general linear model'. Logistic regression is a type of glm where the family is binomial)
+
+```{r}
+#logistic_model <- glm(`got_cteph?` ~ splenectomy, data = darren_data_sheet, family = binomial())
+
+# Output the summary of the model to see coefficients and statistics
+#summary(logistic_model)
+```
+
+![Causal relationship of Splenectomy and CTEPH](images/Screenshot%202024-04-30%20at%209.11.26%20PM.png)
+
+(<https://www.dagitty.net/dags.html> Daggity is a tool to specify such diagrams)
+
+```{r}
+#logistic_model_updated <- glm(`got_cteph?` ~ splenectomy + prox_v_dist, data = darren_data_sheet, family = binomial())
+#summary(logistic_model_updated)
+```
+
+![Causal diagram of Splenectomy, Prox_v_dist, and CTEPH](images/Screenshot%202024-04-30%20at%209.11.20%20PM.png)
+
+Consider: do you want the adjusted or the unadjusted estimate? 
+
+Hint: it depends....
+
 Distributions:
 
 ![](images/clipboard-4048320043.png)
 
 Regressions -
+
+\[ \] create the linear regression interpretation and example.
+
+logic of different choices… ie. “under the following assumptions this is the estimate” - thus, if you make different assumptions, you make a different answers. Therefore, knowing the assumptinos are very important for knowing whether the result is believable.
 
 Models - you choose a way to distill the relationships that are contingent on certain assumptions - and if those assumptions hold, your conclusions follow.
 
@@ -21,4 +116,6 @@ Conceptually - you are modeling something… all models are wrong, some models a
 
 Functional forms \*\*\* dichotomization vs flexible models
 
-What type of questions can regression be used? Is caviar a risk factor for \*\*\*
+What type of questions can regression be used? - controlling for the effect of one thing on another. - prediction
+
+--- how to do in python: python resources for how to do that section of it: https://ajthurston.com/predprobs?utm_source=substack&utm_medium=email

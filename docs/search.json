@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Introduction to Clinical Research",
     "section": "",
-    "text": "Overview\nThis workbook is intended to function as a guide to get students, residents, or fellows started on the right foot on a research project.\nThere are many guides and publications covering this topic. The reason I made yet another is to better target the unique constraints and backgrounds of clinical trainees, and also to cover content relevant to my field - Internal Medicine (specifically, Pulmonary and Critical Care)\nThis guide is intended to act as a supplement to an involved mentor, who can answer context-specific questions and clarify things in a more interactive way. However, as discussed more in mentors - there are a spectrum of arrangements that work, and self-directed researchers may find more use for materials like this.\n[ ] Reframe this as a guide for trainees (whether working with me or whoever you’re working with)\nAlso - the nerds have a concept called ‘Tacit Knowledge’ that I think is extremely useful: how do people who actually do this well operate?\nSee ?sec-instructions for more details on … etc",
+    "text": "Overview\nThis workbook is intended to function as a guide to get students, residents, or fellows started on the right foot on a research project.\nThere are many guides and publications covering this topic. The reason I made yet another is to better target the unique constraints and backgrounds of clinical trainees, and also to cover content relevant to my field - Internal Medicine (specifically, Pulmonary and Critical Care)\nThis guide is intended to act as a supplement to an involved mentor, who can answer context-specific questions and clarify things in a more interactive way. However, as discussed more in mentors - there are a spectrum of arrangements that work, and self-directed researchers may find more use for materials like this.\n[ ] Reframe this as a guide for trainees (whether working with me or whoever you’re working with)\nAlso - the nerds have a concept called ‘Tacit Knowledge’ that I think is extremely useful: how do people who actually do this well operate?",
     "crumbs": [
       "Overview"
     ]
@@ -170,7 +170,7 @@
     "href": "index.html#about",
     "title": "Introduction to Clinical Research",
     "section": "About",
-    "text": "About\nI am an Assistant Professor of Research in the Department of Critical Care at Intermountain Medical Center. I am core faculty in the University of Utah Pulmonary and Critical Care Medicine Fellowship Program and Internal Medicine Residency. Academically, I focus on hypercapnic respiratory failure epidemiology, clinical reasoning, and research informatics. More information and current projects at (reblocke.github.io)",
+    "text": "About\nI am an Assistant Professor of Research in the Department of Critical Care at Intermountain Medical Center. I am core faculty in the University of Utah Pulmonary and Critical Care Medicine Fellowship Program and Internal Medicine Residency. Academically, I focus on hypercapnic respiratory failure epidemiology, clinical reasoning, and research informatics. More information and current projects at reblocke.github.io\n\n# TODO:  \n# Shorten a bit for 1h session (I think not)\n# Change structure to intentionally start people off installing, then progress\n# Trouble shoot regression and chi2 equivalence... may be easier with linear regression.\n# Create an example of using chatgpt to troubleshoot an error",
     "crumbs": [
       "Overview"
     ]
@@ -190,7 +190,7 @@
     "href": "stat_software.html",
     "title": "2  Statistical Software",
     "section": "",
-    "text": "2.1 Statistical software options:\nYou’ll need to at least understand some statistics to be effective as a researcher.\nIn fact, I’d recommend just learning to do your own statistics, though this isn’t strictly necessary for everyone.\nThe reasons are multiple.\nThe goal of this section is to assist in choosing the right statistical software.",
+    "text": "2.1 Statistical software options:\nYou’ll need to at least understand some statistics to be effective as a researcher.\nIn fact, I’d recommend just learning to do your own statistics, though this isn’t strictly necessary for everyone.\nThe reasons are multiple.\nThe goal of this section is to assist in choosing the right statistical software.\n*The idea that code should be readable by consumers of science has caught on in more quantitative fields (Math, CS), but will be coming to medicine. Long overdue. Learn now.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Statistical Software</span>"
     ]
@@ -200,7 +200,7 @@
     "href": "stat_software.html#statistical-software-options",
     "title": "2  Statistical Software",
     "section": "",
-    "text": "which to use\n\n\n2.1.1 How to install\nInstructions for how to do the multiple tabs: https://x.com/rlmcelreath/status/1793641224941007261?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg\nIn quarto just use\n\ntab 1\n\n\nContent ## tab 2 Content\n\n\n\nhttps://quarto.org/docs/interactive/layout.html",
+    "text": "R\nStata\nPython\n\n\nCost\nFree\nRequires License\nFree\n\n\nIDE\nRStudio\nBuilt in editor\nMany (Visual Code best)\n\n\nStrengths\nBest epi / trials libraries for helpful functions\nSimple functionality; powerful quasi-experimental/Meta-analysis. U of U MSCI uses.\nBest NLP, machine learning libraries\n\n\nWeakness\nClunky syntax; many ‘dialects’\nSimple syntax\nModerately Complex Syntax\n\n\nExplainable Programming*\nQuarto\nNo options\nJupyter\n\n\n\n\n\n2.1.1 How to install\nInstructions for how to do the multiple tabs: https://x.com/rlmcelreath/status/1793641224941007261?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg\nIn quarto just use\n\ntab 1\n\n\nContent ## tab 2 Content\n\n\n\nhttps://quarto.org/docs/interactive/layout.html\nFor R\n\n\nStep 1:\nInstall R Language\nhttps://cran.r-project.org/\n\n\n\nStep 2:\nInstall RStudio\nhttps://posit.co/downloads/\nRStudio is an IDE (development environment)\n\n\nStep 3:\nInstall Quarto (formerly Markdown)\nhttps://quarto.org/docs/get-started/\nFacilitates sharing and explaining your code. Will soon be standard in medical science.\n\n\nStep 4:\nDownload this document\nhttps://github.com/reblocke/fellow_stats\n“fellow_stats.qmd”\n\n\nThis page is made using Quarto.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Statistical Software</span>"
     ]
@@ -260,7 +260,7 @@
     "href": "study_design.html",
     "title": "4  Basics of Study Design",
     "section": "",
-    "text": "4.1 Exposures\nIn this section, we’ll cover the basics of study design.\nWhat does this mean",
+    "text": "4.1 Exposures\nIn this section, we’ll cover the basics of study design.\nStructure of scientific argument: disjunctive syllogism\nRandomization = takes care of some (but not all) of the other reasons for an association = can convince a skeptic. However, observational research must make arguments (based on assumptions) and they must be explicit.\nWhat does this mean",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Basics of Study Design</span>"
     ]
@@ -320,7 +320,7 @@
     "href": "intro_stats.html",
     "title": "5  Statistical Foundations",
     "section": "",
-    "text": "5.1 How to formulate your scientific question as a statistically testable hypothesis?\nHere, we talk about some of the introductory concepts that you have t understand to know what statistics is doing, and what the caveats are.\nFirst, a plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend.",
+    "text": "5.1 Objective 3: the Logic of Frequentist Inferential Statistics\nHere, we talk about some of the introductory concepts that you have t understand to know what statistics is doing, and what the caveats are.\nFirst, a plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend.\n[ ] cover signal to noise ratio: history? https://www.sensible-med.com/p/doing-statistics-can-be-difficult\nHume: we cannot directly observe causation\nIf there is an association between an ‘exposure’ and an ‘outcome’, there are 4 possible explanations\nDisjunctive syllogism:\n- Sherlock Holmes\n*note: Bayesian analysis follows a different logic.\nP-values ONLY address possibility 1: how likely is it that chance alone could explain the observed result If the two variables were not correlated, what the likeliihood that you’d see as extreme results or more - just as a result of chance?\nConsider: if I start flipping a coin, how many consecutives “Heads” need to occur before you’ll suspect it’s not a fair coin?\nMore at: https://stat.lesslikely.com/s-values/\nIMPORTANT POINT: the p-value is NOT the probability that the coin is biased. It is the probability of seeing that result (or more extreme) ASSUMING the coin is biased.\nSidebar: understanding multiplicity: If we all flipped a coin 5 times, what is the chance that one of us would get 5 heads in a row?\n‘Signal to noise’: if the alternative hypothesis is that the coin is subtly imbalanced, it’ll be a much harder to detect signal. This is the logic of power analysis - if you’re looking for a subtle signal (e.g. small difference, noisy data, rare events), you’ll need a bigger study.\nHowever, there is no free lunch: a statistical tests makes assumptions about the data, and if those assumptions hold in reality, then the implications from the analysis follow.\nExample interpretation:\nIf the p-value from a Chi2 test is P=0.03 - we say it’s as unlikely this would occur from just chance as it would be to flip a fair coin heads 5 times in a row.\nIF observations are independent; both variables are categorical; there are enough observations of each, then it is unlikely chance alone explains the difference.\nUsing the usual significance threshold (alpha), IF the assumptions hold, we conclude it is unlikely chance alone caused the finding (though it could have been confounding, bias, or a real effect).\nHow do you choose the right test?\nWhat type of variables? How many groups? Are the samples correlated (e.g. observation from the same patient at two different times)?\nFrom: From: Stoddard GJ. Biostatistics and Epidemiology Using Stata: A Course Manual. Salt Lake City, UT: University of Utah School of Medicine.\nHow can you collaborate effectively with a statistician? They will know these assumptions and can tell you when your analyses makes dubious assumptions (if you communicate the constraints of the problem correctly)\nExamples from Darren\nWhat test would we use to assess if “splenectomy” and “prox_v_dist” are associated beyond what’s attributable to chance?\nTo test if “splenectomy” and “hosp” are associated?\nIf “splenectomy” and “qanadli” are associated?\nNew example with hypercapnia stuff needed.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistical Foundations</span>"
     ]
@@ -329,8 +329,8 @@
     "objectID": "intro_stats.html#how-to-formulate-your-actual-question-as-a-test",
     "href": "intro_stats.html#how-to-formulate-your-actual-question-as-a-test",
     "title": "5  Statistical Foundations",
-    "section": "\n5.2 How to formulate your actual question as a test:",
-    "text": "5.2 How to formulate your actual question as a test:",
+    "section": "\n5.3 How to formulate your actual question as a test:",
+    "text": "5.3 How to formulate your actual question as a test:",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistical Foundations</span>"
     ]
@@ -339,8 +339,8 @@
     "objectID": "intro_stats.html#the-logic-of-a-scientific-argument",
     "href": "intro_stats.html#the-logic-of-a-scientific-argument",
     "title": "5  Statistical Foundations",
-    "section": "\n5.3 The logic of a scientific argument:",
-    "text": "5.3 The logic of a scientific argument:",
+    "section": "\n5.4 The logic of a scientific argument:",
+    "text": "5.4 The logic of a scientific argument:",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistical Foundations</span>"
     ]
@@ -349,8 +349,8 @@
     "objectID": "intro_stats.html#p-values",
     "href": "intro_stats.html#p-values",
     "title": "5  Statistical Foundations",
-    "section": "\n5.4 P-values",
-    "text": "5.4 P-values\nFrequentist P-values - how suprising would this be if there was nothing going on?",
+    "section": "\n5.5 P-values",
+    "text": "5.5 P-values\nFrequentist P-values - how suprising would this be if there was nothing going on?\nS-value example… and then twist it so that I don’t say how many times I tried (and I’m incentivized to find one)",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistical Foundations</span>"
     ]
@@ -359,8 +359,8 @@
     "objectID": "intro_stats.html#whats-power-got-to-do-with-it",
     "href": "intro_stats.html#whats-power-got-to-do-with-it",
     "title": "5  Statistical Foundations",
-    "section": "\n5.5 What’s power got to do with it?",
-    "text": "5.5 What’s power got to do with it?\nEverything is underpowered ***\nPower - https://onlinelibrary.wiley.com/doi/full/10.1111/test.12403?campaign=wolearlyview",
+    "section": "\n5.7 What’s power got to do with it?",
+    "text": "5.7 What’s power got to do with it?\nEverything is underpowered ***\nPower - https://onlinelibrary.wiley.com/doi/full/10.1111/test.12403?campaign=wolearlyview",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistical Foundations</span>"
     ]
@@ -370,7 +370,7 @@
     "href": "intro_regression.html",
     "title": "6  Regressions",
     "section": "",
-    "text": "Statistical modeling is a bit counter-intuitive, so it makes sense to talk a bit about what we’re trying to accomplish.\nDistributions:\n\nRegressions -\nModels - you choose a way to distill the relationships that are contingent on certain assumptions - and if those assumptions hold, your conclusions follow.\nDAGs What does it mean to control? https://idlhy0218.github.io/page%20building/blog.html#control\nConceptually - you are modeling something… all models are wrong, some models are useful. You just need to know the assumptions you are implying by your choice, so that you can make an argument about whether the assumptions are warranted or not .\nFunctional forms *** dichotomization vs flexible models\nWhat type of questions can regression be used? Is caviar a risk factor for ***",
+    "text": "6.1 Objective 4: Understand the logic of regression analysis\nStatistical modeling is a bit counter-intuitive, so it makes sense to talk a bit about what we’re trying to accomplish.\nRecall, if there is an association between an ‘exposure’ and an ‘outcome’, there are 4 possible explanations\nRandomization addresses point 2 (essentially, converts it to point 1, in that only chance confounding can occur)\nFor non-randomized data, you must make an argument against point 2. This is the most common use of regression.\n[the methods section of your paper is the argument against point 3; pull in RECORD/STROBE recs]\nThere are at least 3 uses of regression models:\nRegression comes with additional assumptions:\nThus the logic is: if the assumptions of the models hold in reality, then the described relationships are valid\nOutput variable (aka the dependent variable, predicted variable) form determines the type of regression :\nFrom: From: Stoddard GJ. Biostatistics and Epidemiology Using Stata: A Course Manual. Salt Lake City, UT: University of Utah School of Medicine.\nInterpretation:\nRegression coefficient = What change in the outcome do you expected if you change the predictor by 1 unit, holding all other variables constant\nExample:\nConsider, if we want to test whether ‘splenectomy’ and ‘got_cteph?’ are associated, we could use a chi2 test:\n#chi2_test_result &lt;- chisq.test(darren_data_sheet$splenectomy, darren_data_sheet$`got_cteph?`)\n#print(chi2_test_result)\nAlternatively you could specify a logistic regression\n(“GLM” standards for ‘general linear model’. Logistic regression is a type of glm where the family is binomial)\n#logistic_model &lt;- glm(`got_cteph?` ~ splenectomy, data = darren_data_sheet, family = binomial())\n\n# Output the summary of the model to see coefficients and statistics\n#summary(logistic_model)\n(https://www.dagitty.net/dags.html Daggity is a tool to specify such diagrams)\n#logistic_model_updated &lt;- glm(`got_cteph?` ~ splenectomy + prox_v_dist, data = darren_data_sheet, family = binomial())\n#summary(logistic_model_updated)\nConsider: do you want the adjusted or the unadjusted estimate?\nHint: it depends….\nDistributions:\nRegressions -\n[ ] create the linear regression interpretation and example.\nlogic of different choices… ie. “under the following assumptions this is the estimate” - thus, if you make different assumptions, you make a different answers. Therefore, knowing the assumptinos are very important for knowing whether the result is believable.\nModels - you choose a way to distill the relationships that are contingent on certain assumptions - and if those assumptions hold, your conclusions follow.\nDAGs What does it mean to control? https://idlhy0218.github.io/page%20building/blog.html#control\nConceptually - you are modeling something… all models are wrong, some models are useful. You just need to know the assumptions you are implying by your choice, so that you can make an argument about whether the assumptions are warranted or not .\nFunctional forms *** dichotomization vs flexible models\nWhat type of questions can regression be used? - controlling for the effect of one thing on another. - prediction\n— how to do in python: python resources for how to do that section of it: https://ajthurston.com/predprobs?utm_source=substack&utm_medium=email",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Regressions</span>"
     ]
@@ -401,10 +401,60 @@
     "href": "resources.html#take-your-knowledge-to-the-next-level",
     "title": "Appendix A — Other helpful resources",
     "section": "\nA.3 Take your knowledge to the next level",
-    "text": "A.3 Take your knowledge to the next level\n\nA.3.1 Bayesian Analysis:\nBayes factors - https://statsedge.org/shiny/LearnBF/",
+    "text": "A.3 Take your knowledge to the next level\nAdvanced topics:\nBoostrap Survival Analysis Multiple testing EM algorithm??? Random effects models (?multi-level models) General linear models Propensity Score methods Generalized estimating equiations\n\nA.3.1 Bayesian Analysis:\nBayes factors - https://statsedge.org/shiny/LearnBF/",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Other helpful resources</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#learning-objectives",
+    "href": "index.html#learning-objectives",
+    "title": "Introduction to Clinical Research",
+    "section": "Learning Objectives:",
+    "text": "Learning Objectives:\n\nSet Up Statistical Software\nShare “tacit knowledge” (how it’s actually done) of how to choose a statistical analyses and perform it.\nUnderstanding the structure of frequentist statistical tests\nUnderstand the logic of regression models\n\nBad news: you’ll need to learn how to do statistical analyses:\n\nrealistically, you’ll probably have to do your own stats somewhat\nif you join a project that has a statistican (or get CTSI assistance), you’ll still need to be able to specify, critique, and interpret the analyses. It will help substantially to have (at least) basic working knowledge.\n\nSee ?sec-instructions for more details on … etc",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "intro_stats.html#what-is-a-statistical-test",
+    "href": "intro_stats.html#what-is-a-statistical-test",
+    "title": "5  Statistical Foundations",
+    "section": "\n5.6 What is a statistical test?",
+    "text": "5.6 What is a statistical test?\n[ ] create some examples - choosing a statistical test.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistical Foundations</span>"
+    ]
+  },
+  {
+    "objectID": "intro_regression.html#objective-4-understand-the-logic-of-regression-analysis",
+    "href": "intro_regression.html#objective-4-understand-the-logic-of-regression-analysis",
+    "title": "6  Regressions",
+    "section": "",
+    "text": "Chance\nConfounding (some other factor influences the exposure and the outcome)\nBias \nOr, causation (a real effect)\n\n\n\n\n\n\nInferential Statistics: Hypothesis testing with confounding control\nDescriptive Statistics: Summarize the strength of association\nPrediction of an outcome (e.g. statistical machine learning)\n\n\n\nIndependent observations (special “mixed models” can relax this)\nThe form of the output variable is correct* \nThe form of the predictor variables are correct\nThe relationship between the predictors are properly specified.**\nAdditional constraints (e.g. constant variance)\n\n\n\nNo model is perfect, but some models are useful\n\n\nMorris moment(TM)\n\n\n\n\n\n\n\n\n\n\nLevel of measurement of outcome variable\nTwo Independent Groups without Confounding Adjustment\nTwo Independent Groups without Confounding Adjustment\n\n\nDichotomous\nChi2 Test\nlogistic regression\n\n\nUnordered categorical\nChi2 Test\nmultinomial logistic regression\n\n\nOrdered categorical\nWilcoxon-Mann-Whitney\nordinal logistic regression\n\n\nContinuous (normally distributed)\nT-test\nlinear regression\n\n\nCensored: time to event\nLog-rank test\nCox regression\n\n\n\n\n\n\n\nFor linear regression: additive change in outcome\nFor logistic regression: multiplicative change in odds of the outcome\nFor Cox regression: multiplicative change in the hazard of the outcome. \n\n\n\n\n\n\n\n\n\nCausal relationship of Splenectomy and CTEPH\n\n\n\n\n\nCausal diagram of Splenectomy, Prox_v_dist, and CTEPH",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Regressions</span>"
+    ]
+  },
+  {
+    "objectID": "intro_stats.html#objective-3-the-logic-of-frequentist-inferential-statistics",
+    "href": "intro_stats.html#objective-3-the-logic-of-frequentist-inferential-statistics",
+    "title": "5  Statistical Foundations",
+    "section": "",
+    "text": "David Hume: causation is never directly observed\n\n\n\nChance\nConfounding (some other factor influences the exposure and the outcome)\nBias\nOr, causation (meaning, a real effect)\n\n\n\nWhen you have eliminated the impossible, whatever remains, however improbable, must be the truth. \n\n\n\n\n\n\n\nSequence\nFlips\nP-value\n\n\nHH\n2 flips\n0.25\n\n\nHHH\n3 flips\n0.125\n\n\nHHHH\n4 flips\n0.0625\n\n\n\n4.32 flips\n0.05\n\n\nHHHHH\n5 flips\n0.03125\n\n\n\n\n\n\nIf 10 people = (1-0.03125)^10 = 0.727.  23.3% of at least 1 HHHHH -&gt; we’re back to weak evidence of a real effect. \nThis is obviously true when multiple tests are reported, but less obviously also true if you try several analyses and choose the “best one” after seeing the result. Hence, prespecification.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLevel of measurement of outcome variable\nTwo Independent Groups\nThree or more Independent Groups\nTwo Correlated* Samples\nThree or more Correlated* Samples\n\n\nDichotomous\n\nchi-square or Fisher’s exact test\n\nchi-square or Fisher-Freeman-Halton test\nMcNemar test\nCochran Q test\n\n\nUnordered Categorical\n\nchi-square or Fisher-Freeman-Halton test\n\nchi-square or Fisher-Freeman-Halton test\nStuart-Maxwell test\nMultiplicity adjusted Stuart-Maxwell tests#\n\n\n\nOrdered categorical\nWilcoxon-Mann-Whitney (WMW) test\n\nOld School***: Kruskal-Wallis analysis of variance (ANOVA)\nNew School***: multiplicity adjusted WMW test\n\nWilcoxon sign rank test\n\nOld School# Friedman two-way ANOVA by ranks\nNew School# Mulitiplicity adjusted Wilcoxon sign rank tests\n\n\n\nContinuous\nindependent groups t-test\n\nOld school***: oneway ANOVA\nNew school***: multiplicity adjusted independent groups t tests\n\npaired t-test\nmixed effects linear regression\n\n\nCensored: time to event\nlog-rank test\nMultiplicity adjusted log-rank test\nShared-frailty Cox regression\nShared-frailty Cox regression",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistical Foundations</span>"
+    ]
+  },
+  {
+    "objectID": "intro_stats.html#how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis",
+    "href": "intro_stats.html#how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis",
+    "title": "5  Statistical Foundations",
+    "section": "\n5.2 How to formulate your scientific question as a statistically testable hypothesis?",
+    "text": "5.2 How to formulate your scientific question as a statistically testable hypothesis?",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Statistical Foundations</span>"
     ]
   }
 ]

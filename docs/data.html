@@ -18,6 +18,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -417,13 +452,247 @@ ul.task-list li input[type="checkbox"] {
 <section id="getting-data" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="getting-data">
 <span class="header-section-number">3.1</span> Getting Data</h2>
 <p>what are some relevant data-sets. [ ] work in progress</p>
-</section><section id="formatting" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="formatting">
+<p>Step 0: Save yourself a headache and collect your data in a processable format <a href="https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in?utm_campaign=post&amp;utm_medium=web">https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in</a>&nbsp;</p>
+<p><strong>Step 1: Data Wrangling</strong></p>
+<ul>
+<li>Each row is an observation (usually a patient)</li>
+<li>Each column contains only 1 type of data (more below)</li>
+<li>No free text (if you need to, categorize responses)</li>
+</ul></section><section id="formatting" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="formatting">
 <span class="header-section-number">3.2</span> Formatting</h2>
 <p>Clean tabular format etc.</p>
 <p>Use excel like a boss, if you’re going to: More excel data https://cghlewis.com/blog/excel_entry/</p>
 <p>Flat files: Flat files: https://evidence.dev/blog/what-is-a-flat-file?utm_campaign=Data_Elixir&amp;utm_source=Data_Elixir_526</p>
 </section><section id="data-types" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="data-types">
 <span class="header-section-number">3.3</span> Data types</h2>
+<p><strong>Step 2: For each data element, consider the data type</strong></p>
+<ul>
+<li>Binary (aka dichotomous scale): e.g.&nbsp;Yes or No, 0 or 1</li>
+<li>Unordered Categorical (nominal scale): e.g.&nbsp;Utah, Colorado, Nevada, Idaho</li>
+<li>Ordered Categorical (ordinal scale): e.g.&nbsp;Room air, nasal cannula, HFNC, intubated, ECMO, dead</li>
+<li>Continuous (interval &amp; ratio scales - differ by whether 0 is special): e.g.&nbsp;Temperature (Celsius or Kelvin, respectively)</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 22%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 18%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><strong>dichotomous</strong></td>
+<td><strong>nominal</strong></td>
+<td><strong>ordinal</strong></td>
+<td><strong>interval</strong></td>
+</tr>
+<tr class="even">
+<td>a.ka.</td>
+<td>binary</td>
+<td>categorical</td>
+<td>ordered categorical</td>
+<td>continuous</td>
+</tr>
+<tr class="odd">
+<td>n</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>%</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>min</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>max</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>range</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>mode</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>mean</td>
+<td></td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>median</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>IQR</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>Std. dev.</td>
+<td></td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>Std. err.</td>
+<td></td>
+<td></td>
+<td></td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p>From: Stoddard GJ. Biostatistics and Epidemiology Using Stata: A Course Manual. Salt Lake City, UT: University of Utah School of Medicine.</p>
+<p>TODO: not sure this stuff should live here vs elsewhere:</p>
+<p><strong>Step 3: Visualize the distribution of each data-point</strong> (detect outliers, data entry errors, etc.)</p>
+<p>Darren’s hypothetical code lives in a spreadsheet “darren_proj.xlsx”:</p>
+<p>Here is some code that loads the excel spreadsheet into R (we’ll revisit)</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+</div>
+<p>It’s already (mostly) clean.</p>
+<p>Let’s summarize it:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">summary</span>(darren_data_sheet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   patient_id    splenectomy        prox_v_dist           qanadli     
+ Min.   : 1.00   Length:20          Length:20          Min.   : 2.00  
+ 1st Qu.: 5.75   Class :character   Class :character   1st Qu.: 3.75  
+ Median :10.50   Mode  :character   Mode  :character   Median :10.00  
+ Mean   :10.50                                         Mean   :10.30  
+ 3rd Qu.:15.25                                         3rd Qu.:15.00  
+ Max.   :20.00                                         Max.   :25.00  
+   got_cteph?       hosp          
+ Min.   :0.00   Length:20         
+ 1st Qu.:0.00   Class :character  
+ Median :0.00   Mode  :character  
+ Mean   :0.25                     
+ 3rd Qu.:0.25                     
+ Max.   :1.00                     </code></pre>
+</div>
+</div>
+<p>Hmmm.. what’s wrong with this?</p>
+<p>R need to be told that the binary variables are binary (and not characters)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># Convert 'y'/'n' in the splenectomy column to TRUE/FALSE</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>darren_data_sheet <span class="ot">&lt;-</span> darren_data_sheet <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">mutate</span>(<span class="at">splenectomy =</span> <span class="fu">ifelse</span>(splenectomy <span class="sc">==</span> <span class="st">"y"</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co"># Assuming darren_data_sheet is your dataframe</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>darren_data_sheet <span class="ot">&lt;-</span> darren_data_sheet <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">got_cteph?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="st">`</span><span class="at">got_cteph?</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">1</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s visualize each element:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># First, the binary ones</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># Plot for splenectomy</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="fu">ggplot</span>(darren_data_sheet, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(splenectomy))) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Splenectomy"</span>, <span class="at">x =</span> <span class="st">"Splenectomy"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="data_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Plot for prox_v_dist</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">ggplot</span>(darren_data_sheet, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(prox_v_dist))) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Proximal vs. Distal"</span>, <span class="at">x =</span> <span class="st">"Proximal vs Distal"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="data_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Plot for got_cteph?</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">ggplot</span>(darren_data_sheet, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(<span class="st">`</span><span class="at">got_cteph?</span><span class="st">`</span>))) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of CTEPH Diagnosis"</span>, <span class="at">x =</span> <span class="st">"Got CTEPH?"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="data_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The categorical one:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Bar chart for hosp</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">ggplot</span>(darren_data_sheet, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(hosp))) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"coral"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Hospital"</span>, <span class="at">x =</span> <span class="st">"Hospital"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  <span class="co"># Adjust text angle for better readability if needed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="data_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>and finally, the continuous one:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Histogram for qanadli</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">ggplot</span>(darren_data_sheet, <span class="fu">aes</span>(<span class="at">x =</span> qanadli)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Qanadli Scores"</span>, <span class="at">x =</span> <span class="st">"Qanadli Score"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="data_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section></main><!-- /main --><script>

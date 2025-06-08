@@ -5,28 +5,147 @@ source("R/booktem_setup.R")
 source("R/my_setup.R")
 ```
 
-Yes - this really is that important to deserve its own chapter. 
+Yes - this really is that important to deserve its own chapter.
 
-## Getting Data 
+## Getting Data
 
-what are some relevant data-sets. 
-[ ] work in progress
+what are some relevant data-sets. \[ \] work in progress
 
+Step 0: Save yourself a headache and collect your data in a processable format [https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in](https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in?utm_campaign=post&utm_medium=web) 
+
+**Step 1: Data Wrangling**
+
+-   Each row is an observation (usually a patient)
+-   Each column contains only 1 type of data (more below)
+-   No free text (if you need to, categorize responses)
 
 ## Formatting
 
-Clean tabular format etc. 
-
+Clean tabular format etc.
 
 Use excel like a boss, if you're going to: More excel data https://cghlewis.com/blog/excel_entry/
- 
 
-
-Flat files: Flat files: https://evidence.dev/blog/what-is-a-flat-file?utm_campaign=Data_Elixir&utm_source=Data_Elixir_526 
-
-
+Flat files: Flat files: https://evidence.dev/blog/what-is-a-flat-file?utm_campaign=Data_Elixir&utm_source=Data_Elixir_526
 
 ## Data types
 
+**Step 2: For each data element, consider the data type**
+
+-   Binary (aka dichotomous scale): e.g. Yes or No, 0 or 1
+-   Unordered Categorical (nominal scale): e.g. Utah, Colorado, Nevada, Idaho
+-   Ordered Categorical (ordinal scale): e.g. Room air, nasal cannula, HFNC, intubated, ECMO, dead
+-   Continuous (interval & ratio scales - differ by whether 0 is special): e.g. Temperature (Celsius or Kelvin, respectively)
+
+|           |                 |             |                     |              |
+|-----------|-----------------|-------------|---------------------|--------------|
+|           | **dichotomous** | **nominal** | **ordinal**         | **interval** |
+| a.ka.     | binary          | categorical | ordered categorical | continuous   |
+| n         | X               | X           | X                   | X            |
+| \%        | X               | X           | X                   | X            |
+| min       |                 |             | X                   | X            |
+| max       |                 |             | X                   | X            |
+| range     |                 |             | X                   | X            |
+| mode      | X               | X           | X                   | X            |
+| mean      |                 |             |                     | X            |
+| median    |                 |             | X                   | X            |
+| IQR       |                 |             | X                   | X            |
+| Std. dev. |                 |             |                     | X            |
+| Std. err. |                 |             |                     | X            |
+
+From: Stoddard GJ. Biostatistics and Epidemiology Using Stata: A Course Manual. Salt Lake City, UT: University of Utah School of Medicine.
+
+TODO: not sure this stuff should live here vs elsewhere:
+
+**Step 3: Visualize the distribution of each data-point** (detect outliers, data entry errors, etc.)
+
+Darren's hypothetical code lives in a spreadsheet "darren_proj.xlsx":
+
+Here is some code that loads the excel spreadsheet into R (we'll revisit)
+
+```{r}
+#| echo: false
+library(readxl)
+library(dplyr)
+
+# Define the URL of the Excel file on GitHub
+url <- "https://github.com/reblocke/fellow_stats/raw/main/darren_proj.xls"
+
+# Download the file temporarily
+temp_file <- tempfile(fileext = ".xls")
+download.file(url, temp_file, mode = "wb")
+
+# Read the Excel file, select columns, and arrange
+darren_data_sheet <- read_excel(temp_file) 
+
+# Clean up by removing the temporary file
+unlink(temp_file)
+```
+
+It's already (mostly) clean.
+
+Let's summarize it:
+
+```{r}
+summary(darren_data_sheet)
+```
+
+Hmmm.. what's wrong with this?
+
+R need to be told that the binary variables are binary (and not characters)
+
+```{r}
+library(dplyr)
+
+# Convert 'y'/'n' in the splenectomy column to TRUE/FALSE
+darren_data_sheet <- darren_data_sheet %>%
+  mutate(splenectomy = ifelse(splenectomy == "y", TRUE, FALSE))
+
+# Assuming darren_data_sheet is your dataframe
+darren_data_sheet <- darren_data_sheet %>%
+  mutate(`got_cteph?` = ifelse(`got_cteph?` == 1, TRUE, FALSE))
+
+```
+
+Let's visualize each element:
+
+```{r}
+library(ggplot2)
+
+# First, the binary ones
+
+# Plot for splenectomy
+ggplot(darren_data_sheet, aes(x = factor(splenectomy))) +
+  geom_bar() +
+  labs(title = "Distribution of Splenectomy", x = "Splenectomy", y = "Count")
+
+# Plot for prox_v_dist
+ggplot(darren_data_sheet, aes(x = factor(prox_v_dist))) +
+  geom_bar() +
+  labs(title = "Distribution of Proximal vs. Distal", x = "Proximal vs Distal", y = "Count")
+
+# Plot for got_cteph?
+ggplot(darren_data_sheet, aes(x = factor(`got_cteph?`))) +
+  geom_bar() +
+  labs(title = "Distribution of CTEPH Diagnosis", x = "Got CTEPH?", y = "Count")
 
 
+```
+
+The categorical one:
+
+```{r}
+# Bar chart for hosp
+ggplot(darren_data_sheet, aes(x = factor(hosp))) +
+  geom_bar(fill = "coral", color = "black") +
+  labs(title = "Distribution of Hospital", x = "Hospital", y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Adjust text angle for better readability if needed
+```
+
+and finally, the continuous one:
+
+```{r}
+# Histogram for qanadli
+ggplot(darren_data_sheet, aes(x = qanadli)) +
+  geom_histogram(bins = 30, fill = "blue", color = "black") +
+  labs(title = "Histogram of Qanadli Scores", x = "Qanadli Score", y = "Frequency")
+```

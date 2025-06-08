@@ -18,6 +18,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -388,8 +423,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#objective-4-understand-the-logic-of-regression-analysis" id="toc-objective-4-understand-the-logic-of-regression-analysis" class="nav-link active" data-scroll-target="#objective-4-understand-the-logic-of-regression-analysis"><span class="header-section-number">6.1</span> Objective 4: Understand the logic of regression analysis</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -408,18 +447,130 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header><p>Statistical modeling is a bit counter-intuitive, so it makes sense to talk a bit about what we’re trying to accomplish.</p>
+<section id="objective-4-understand-the-logic-of-regression-analysis" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="objective-4-understand-the-logic-of-regression-analysis">
+<span class="header-section-number">6.1</span> Objective 4: Understand the logic of regression analysis</h2>
+<p>Recall, if there is an association between an ‘exposure’ and an ‘outcome’, there are 4 possible explanations</p>
+<ol type="1">
+<li>Chance</li>
+<li>Confounding (some other factor influences the exposure and the outcome)</li>
+<li>Bias&nbsp;</li>
+<li>Or, causation (a real effect)</li>
+</ol>
+<p>Randomization addresses point 2 (essentially, converts it to point 1, in that only chance confounding can occur)</p>
+<p>For non-randomized data, you must make an argument against point 2. This is the most common use of regression.&nbsp;</p>
+<p>[the methods section of your paper is the argument against point 3; pull in RECORD/STROBE recs]</p>
+<p><strong>There are at least 3 uses of regression models:</strong>&nbsp;</p>
+<ol type="1">
+<li>Inferential Statistics: Hypothesis testing with confounding control</li>
+<li>Descriptive Statistics: Summarize the strength of association</li>
+<li>Prediction of an outcome (e.g.&nbsp;statistical machine learning)</li>
+</ol>
+<p>Regression comes with additional assumptions:&nbsp;</p>
+<ul>
+<li>Independent observations (special “mixed models” can relax this)</li>
+<li>The form of the output variable is correct*&nbsp;</li>
+<li>The form of the predictor variables are correct</li>
+<li>The relationship between the predictors are properly specified.**</li>
+<li>Additional constraints (e.g.&nbsp;constant variance)</li>
+</ul>
+<p>Thus the logic is: if the assumptions of the models hold in reality, then the described relationships are valid</p>
+<blockquote class="blockquote">
+<p>No model is perfect, but some models are useful</p>
+</blockquote>
+<ul>
+<li>Morris moment(TM)</li>
+</ul>
+<p>Output variable (aka the dependent variable, predicted variable) form determines the type of regression :&nbsp;</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Level of measurement of outcome variable</strong></td>
+<td><strong>Two Independent Groups without Confounding Adjustment</strong></td>
+<td><strong>Two Independent Groups without Confounding Adjustment</strong></td>
+</tr>
+<tr class="even">
+<td>Dichotomous</td>
+<td>Chi2 Test</td>
+<td><strong>logistic regression</strong></td>
+</tr>
+<tr class="odd">
+<td>Unordered categorical</td>
+<td>Chi2 Test</td>
+<td>multinomial logistic regression</td>
+</tr>
+<tr class="even">
+<td>Ordered categorical</td>
+<td>Wilcoxon-Mann-Whitney</td>
+<td>ordinal logistic regression</td>
+</tr>
+<tr class="odd">
+<td>Continuous (normally distributed)</td>
+<td>T-test</td>
+<td><strong>linear regression</strong></td>
+</tr>
+<tr class="even">
+<td>Censored: time to event</td>
+<td>Log-rank test</td>
+<td><strong>Cox regression</strong></td>
+</tr>
+</tbody>
+</table>
+<p>From: From: Stoddard GJ. Biostatistics and Epidemiology Using Stata: A Course Manual. Salt Lake City, UT: University of Utah School of Medicine.</p>
+<p><strong>Interpretation:</strong></p>
+<p>Regression coefficient = What change in the outcome do you expected if you change the predictor by 1 unit, holding all other variables constant</p>
+<ul>
+<li>For linear regression: additive change in outcome</li>
+<li>For logistic regression: multiplicative change in odds of the outcome</li>
+<li>For Cox regression: multiplicative change in the hazard of the outcome.&nbsp;</li>
+</ul>
+<p>Example:</p>
+<p>Consider, if we want to test whether ‘splenectomy’ and ‘got_cteph?’ are associated, we could use a chi2 test:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#chi2_test_result &lt;- chisq.test(darren_data_sheet$splenectomy, darren_data_sheet$`got_cteph?`)</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#print(chi2_test_result)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Alternatively you could specify a logistic regression</p>
+<p>(“GLM” standards for ‘general linear model’. Logistic regression is a type of glm where the family is binomial)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#logistic_model &lt;- glm(`got_cteph?` ~ splenectomy, data = darren_data_sheet, family = binomial())</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Output the summary of the model to see coefficients and statistics</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#summary(logistic_model)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/Screenshot 2024-04-30 at 9.11.26 PM.png" class="img-fluid figure-img"></p>
+<figcaption>Causal relationship of Splenectomy and CTEPH</figcaption></figure>
+</div>
+<p>(<a href="https://www.dagitty.net/dags.html" class="uri">https://www.dagitty.net/dags.html</a> Daggity is a tool to specify such diagrams)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#logistic_model_updated &lt;- glm(`got_cteph?` ~ splenectomy + prox_v_dist, data = darren_data_sheet, family = binomial())</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#summary(logistic_model_updated)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/Screenshot 2024-04-30 at 9.11.20 PM.png" class="img-fluid figure-img"></p>
+<figcaption>Causal diagram of Splenectomy, Prox_v_dist, and CTEPH</figcaption></figure>
+</div>
+<p>Consider: do you want the adjusted or the unadjusted estimate?&nbsp;</p>
+<p>Hint: it depends….</p>
 <p>Distributions:</p>
 <p><img src="images/clipboard-4048320043.png" class="img-fluid"></p>
 <p>Regressions -</p>
+<p>[ ] create the linear regression interpretation and example.</p>
+<p>logic of different choices… ie. “under the following assumptions this is the estimate” - thus, if you make different assumptions, you make a different answers. Therefore, knowing the assumptinos are very important for knowing whether the result is believable.</p>
 <p>Models - you choose a way to distill the relationships that are contingent on certain assumptions - and if those assumptions hold, your conclusions follow.</p>
 <p>DAGs What does it mean to control? https://idlhy0218.github.io/page%20building/blog.html#control</p>
 <p>Conceptually - you are modeling something… all models are wrong, some models are useful. You just need to know the assumptions you are implying by your choice, so that you can make an argument about whether the assumptions are warranted or not .</p>
 <p>Functional forms *** dichotomization vs flexible models</p>
-<p>What type of questions can regression be used? Is caviar a risk factor for ***</p>
+<p>What type of questions can regression be used? - controlling for the effect of one thing on another. - prediction</p>
+<p>— how to do in python: python resources for how to do that section of it: https://ajthurston.com/predprobs?utm_source=substack&amp;utm_medium=email</p>
 
 
-
-</main><!-- /main --><script>
+</section></main><!-- /main --><script>
 
 /* update total correct if #webex-total_correct exists */
 update_total_correct = function() {
