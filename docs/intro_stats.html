@@ -392,13 +392,20 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#objective-3-the-logic-of-frequentist-inferential-statistics" id="toc-objective-3-the-logic-of-frequentist-inferential-statistics" class="nav-link active" data-scroll-target="#objective-3-the-logic-of-frequentist-inferential-statistics"><span class="header-section-number">5.1</span> Objective 3: the Logic of Frequentist Inferential Statistics</a></li>
-  <li><a href="#how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis" id="toc-how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis" class="nav-link" data-scroll-target="#how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis"><span class="header-section-number">5.2</span> How to formulate your scientific question as a statistically testable hypothesis?</a></li>
-  <li><a href="#how-to-formulate-your-actual-question-as-a-test" id="toc-how-to-formulate-your-actual-question-as-a-test" class="nav-link" data-scroll-target="#how-to-formulate-your-actual-question-as-a-test"><span class="header-section-number">5.3</span> How to formulate your actual question as a test:</a></li>
-  <li><a href="#the-logic-of-a-scientific-argument" id="toc-the-logic-of-a-scientific-argument" class="nav-link" data-scroll-target="#the-logic-of-a-scientific-argument"><span class="header-section-number">5.4</span> The logic of a scientific argument:</a></li>
-  <li><a href="#p-values" id="toc-p-values" class="nav-link" data-scroll-target="#p-values"><span class="header-section-number">5.5</span> P-values</a></li>
-  <li><a href="#what-is-a-statistical-test" id="toc-what-is-a-statistical-test" class="nav-link" data-scroll-target="#what-is-a-statistical-test"><span class="header-section-number">5.6</span> What is a statistical test?</a></li>
-  <li><a href="#whats-power-got-to-do-with-it" id="toc-whats-power-got-to-do-with-it" class="nav-link" data-scroll-target="#whats-power-got-to-do-with-it"><span class="header-section-number">5.7</span> What’s power got to do with it?</a></li>
+<li><a href="#the-disjunctive-syllogism" id="toc-the-disjunctive-syllogism" class="nav-link active" data-scroll-target="#the-disjunctive-syllogism"><span class="header-section-number">5.1</span> The Disjunctive Syllogism</a></li>
+  <li>
+<a href="#whats-a-p-value-good-for" id="toc-whats-a-p-value-good-for" class="nav-link" data-scroll-target="#whats-a-p-value-good-for"><span class="header-section-number">5.2</span> What’s a P-value good for?</a>
+  <ul class="collapse">
+<li><a href="#intuitively-what-is-a-p-value" id="toc-intuitively-what-is-a-p-value" class="nav-link" data-scroll-target="#intuitively-what-is-a-p-value"><span class="header-section-number">5.2.1</span> Intuitively, what is a p-value?</a></li>
+  <li><a href="#how-surprising-is-too-surprising" id="toc-how-surprising-is-too-surprising" class="nav-link" data-scroll-target="#how-surprising-is-too-surprising"><span class="header-section-number">5.2.2</span> How surprising is too surprising?</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis" id="toc-how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis" class="nav-link" data-scroll-target="#how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis"><span class="header-section-number">5.3</span> How to formulate your scientific question as a statistically testable hypothesis?</a>
+  <ul class="collapse">
+<li><a href="#severity" id="toc-severity" class="nav-link" data-scroll-target="#severity"><span class="header-section-number">5.3.1</span> Severity:</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -417,36 +424,56 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><p>Here, we talk about some of the introductory concepts that you have t understand to know what statistics is doing, and what the caveats are.</p>
-<p>First, a plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend.</p>
-<p>[ ] cover signal to noise ratio: history? https://www.sensible-med.com/p/doing-statistics-can-be-difficult</p>
-<section id="objective-3-the-logic-of-frequentist-inferential-statistics" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="objective-3-the-logic-of-frequentist-inferential-statistics">
-<span class="header-section-number">5.1</span> Objective 3: the Logic of Frequentist Inferential Statistics</h2>
-<p>Hume: we cannot directly observe causation&nbsp;</p>
-<p><img src="images/clipboard-1623586370.png" class="img-fluid"></p>
+</header><p>The goal of this section is to build an intuition for what statistical tests accomplish, and what the assumptions are. (A plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend.)</p>
+<p>By the end of this page, you should have an intuitive sense of what a p-value is (and what it is not) and the role that it plays in the argument of a scientific report.</p>
+<p>To forecast the punchline: We seek to make arguments that observed relationships are not explained by confounding, bias, or chance - and therefore must be causation. P-values summarize how surprising it would be to see the observed data, assuming there is nothing going on and the assumptions of the test hold.</p>
+<section id="the-disjunctive-syllogism" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="the-disjunctive-syllogism">
+<span class="header-section-number">5.1</span> The Disjunctive Syllogism</h2>
+<p>We’ll start out abstract, and become more concrete.</p>
+<p>The root of the problem is that we don’t directly observe cause and effect. Instead, we must make an argument for it.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/Allan_Ramsay_-_David_Hume,_1711_-_1776._Historian_and_philosopher_-_Google_Art_Project.jpg" class="img-fluid figure-img" alt="David Hume" width="400"></p>
-<figcaption>David Hume: causation is never directly observed</figcaption></figure>
+<figure class="figure"><p><img src="images/clipboard-1623586370.png" class="img-fluid figure-img" width="360"></p>
+<figcaption>David Hume: Causation is never directly observed</figcaption></figure>
 </div>
-<p>If there is an association between an ‘exposure’ and an ‘outcome’, there are 4 possible explanations</p>
-<ol type="1">
-<li>Chance</li>
-<li>Confounding (some other factor influences the exposure and the outcome)</li>
-<li>Bias</li>
-<li>Or, causation (meaning, a real effect)</li>
-</ol>
-<p><strong>Disjunctive syllogism</strong>:</p>
+<p>The structure of the usual scientific argument mirrors Sherlock Holmes quote:</p>
 <blockquote class="blockquote">
 <p>When you have eliminated the impossible, whatever remains, however improbable, must be the truth.&nbsp;</p>
 </blockquote>
-<p>- Sherlock Holmes</p>
-<p>*note: Bayesian analysis follows a different logic.&nbsp;</p>
-<p><strong>P-values ONLY address possibility 1:</strong> how likely is it that chance alone could explain the observed result If the two variables were not correlated, what the likeliihood that you’d see as extreme results or more - just as a result of chance?&nbsp;</p>
-<p>Consider: if I start flipping a coin, how many consecutives “Heads” need to occur before you’ll suspect it’s not a fair coin?&nbsp;</p>
+<p>This “argument-by-excluding-alternatives” is termed the disjunctive syllogism. NOTE: this isn’t the only possible argument - for example, likelihoodism (and by extension, Bayesianism), makes the argument that when comparing a hypothesis to the alternative hypotheses the data would be much less likely. etc.</p>
+<p>In the language of epidemiology, we’re interested in the relationship between an “exposure” (meant broadly - could refer to a treatment, an occupational exposure, a characteristics, etc.) and an “outcome” (also meant broadly, could be the occurence of an event, a side effect, a health state, etc.).</p>
+<p>If an exposure and an outcome are associated, there are 4 possible explanations:</p>
+<ol type="1">
+<li>Confounding (some other factor, the confounder, influences the likelihood of the exposure and the likelihood of the outcome through other mechanisms)</li>
+<li>Bias (some non-random distortion of the measurements in a study)</li>
+<li>Chance</li>
+<li>Or, causation (meaning, a real effect)</li>
+</ol>
+<p>Thus, the way we’ll seek evidence for causation is indirect. First, we’ll show there is an association. Then, we’ll make arguments against the possibility of confounding, bias, and chance explaining the association. If the reader accepts there’s an association but that reasons 1-3 are not plausible explanations, they’re left accepting causation as an explanation.</p>
+</section><section id="whats-a-p-value-good-for" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="whats-a-p-value-good-for">
+<span class="header-section-number">5.2</span> What’s a P-value good for?</h2>
+<p>To provide evidence for cause and effect, we need compelling arguments against confounding, bias, and chance. Arguments against confounding are best done by by study design (e.g.&nbsp;randomization) but can be addressed using statistical methods (see <a href="intro_regression.html" class="quarto-xref"><span>Chapter 6</span></a>). Bias is best addressed by careful choice of instruments/assessments, but can also be supported by elements of study design (e.g.&nbsp;blinding).</p>
+<p>Whether or not chance is a plausible explanation or not is where P-values come in. Repeated for emphasis: <strong>P-values ONLY address the plausibilit of chance explaining an apparent association.</strong> Having a low p-value tells you nothing about whether confounding or bias could explain an association - you need other arguments for that.</p>
+<section id="intuitively-what-is-a-p-value" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="intuitively-what-is-a-p-value">
+<span class="header-section-number">5.2.1</span> Intuitively, what is a p-value?</h3>
+<p>If there was no association, how surprising would it be to see the observed data?</p>
+<ul>
+<li><p>if there is a large p-value, it would not be very surprising to see the observed data by just the play of chance.</p></li>
+<li><p>if the p-value is small, then it would be quite surprising to see the observed data if there’s really nothing going on.</p></li>
+</ul>
+<p>Note: the P-value is not comparing one hypothesis to another (ie. an alternative hypothesis). Nor is it saying how likely it would be to find an effect if there is something going on - it’s just saying: “if there’s actually nothing going on here (ie. no causal effect, no confounding, no bias), how unlikely would this finding be?</p>
+<p>This is a conditional probability: “IF nothing is going on” (or, assume nothing is going on), then, how unlikely would this be. The notation is P ( observed_data | nothing going on).</p>
+<p>Box: note that p-values are NOT a measure of how strong evidence is. A finding with p-value 0.03 isn’t necessarily less robust even than p-value 0.001 - even if there is no bias or confounding. Consider, a huge study can have a very small p-value (unlikely chance.. but could be a small amount of bias, confounding, or a trivial effect), or a smaller study could have a larger p-value. This is termed “Lindley’s Paradox”</p>
+</section><section id="how-surprising-is-too-surprising" class="level3" data-number="5.2.2"><h3 data-number="5.2.2" class="anchored" data-anchor-id="how-surprising-is-too-surprising">
+<span class="header-section-number">5.2.2</span> How surprising is too surprising?</h3>
+<p>Arguing by coincidence begs the question: how surprising does something have to be before you say “there must be something going on here!”.</p>
+<p>Luckily, you can convert P-values to coin flips to get an intuitive sense (look inside the box for the actual conversion, but feel free to skip of logarithms make you queasy). &nbsp;</p>
+<p>Box: “Shannon Transform: S-value”</p>
+<p>In a world where the null value is true (ie. either heads or tails is equally likely to occur; but it’s going to be one of those two), you can characterize how suprising it would be to see a particular sequence. this is calculated by S-value = -log_2_ P-value.</p>
+<p>Here’s the setup… say I start flipping a coin, how many consecutive “Heads” need to occur before you’ll suspect it’s not a fair coin?&nbsp;</p>
 <table class="caption-top table"><tbody>
 <tr class="odd">
 <td><strong>Sequence</strong></td>
-<td><strong>Flips</strong></td>
+<td><strong>Flips (S-Value)</strong></td>
 <td><strong>P-value</strong></td>
 </tr>
 <tr class="even">
@@ -477,19 +504,17 @@ ul.task-list li input[type="checkbox"] {
 </tbody></table>
 <p>More at: <a href="https://stat.lesslikely.com/s-values/" class="uri">https://stat.lesslikely.com/s-values/</a></p>
 <p><strong>IMPORTANT POINT:</strong> the p-value is <u>NOT</u> the probability that the coin is biased. It is the probability of seeing that result (or more extreme) <u>ASSUMING</u> the coin is biased.&nbsp;</p>
-<p>Sidebar: understanding multiplicity: If we all flipped a coin 5 times, what is the chance that one of us would get 5 heads in a row?&nbsp;</p>
+<p>So, to answer the question from the lede… the specific answer to “How surprising is too surprising for chance to be a compelling explanation? Since we, as a community, have agreed that P = 0.05 is the threshold… <strong>a bit more surprising than 4 consecutive heads with a fair coin is too suspicious.</strong></p>
+<p>Box: Multiplicity understanding multiplicity: If we all flipped a coin 5 times, what is the chance that one of us would get 5 heads in a row?&nbsp;</p>
 <ul>
 <li>If 10 people = (1-0.03125)^10 = 0.727.&nbsp; 23.3% of at least 1 HHHHH -&gt; we’re back to weak evidence of a real effect.&nbsp;</li>
 <li>This is obviously true when multiple tests are reported, but less obviously also true if you try several analyses and choose the “best one” after seeing the result. Hence, prespecification.</li>
 </ul>
-<p><strong>‘Signal to noise’</strong>: if the alternative hypothesis is that the coin is subtly imbalanced, it’ll be a much harder to detect signal.&nbsp;This is the logic of power analysis - if you’re looking for a subtle signal (e.g.&nbsp;small difference, noisy data, rare events), you’ll need a bigger study.</p>
-<p>However, there is <strong>no free lunch:</strong> a statistical tests makes assumptions about the data, and if those assumptions hold in reality, then the implications from the analysis follow.</p>
-<p>Example interpretation:</p>
-<p>If the p-value from a Chi2 test is P=0.03 - we say it’s as unlikely this would occur from just chance as it would be to flip a fair coin heads 5 times in a row.</p>
-<p>IF observations are independent; both variables are categorical; there are enough observations of each, then it is unlikely chance alone explains the difference.&nbsp;</p>
-<p>Using the usual significance threshold (alpha), IF the assumptions hold, we conclude it is unlikely chance alone caused the finding (though it could have been confounding, bias, or a real effect).</p>
+<p>Box: What, then, do confidence intervals mean?</p>
+<p>Note - it’s NOT that there’s a 95% chance that the true value is within this range. It’s if you execute this method 100 times, you’d the value to be outside the range 5% of the time. [ ].gif</p>
 <p><strong>How do you choose the right test?</strong></p>
-<p>What type of variables? How many groups? Are the samples correlated (e.g.&nbsp;observation from the same patient at two different times)?</p>
+<p>We have to go one step further to understand where the P-value comes from because of one sneaky clause that I snuck into the definition of the p-value. Quote: “P-values summarize how surprising it would be to see the observed data, assuming there is nothing going on <em>and the assumptions of the test hold</em>.”</p>
+<p>Like regression models (covered soon <a href="intro_regression.html" class="quarto-xref"><span>Chapter 6</span></a>), there are many statistical tests, each of which requires assumptions to be made. The main characteristics of the data that allow one to choose an appropriate tests are how many groups, the size of the groups, the type of variable, and whether measurements are independent of each other (ie. knowing one observation tells you nothing about another) or correlated (e.g.&nbsp;observation from the same patient at two different times)?</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 17%">
@@ -507,7 +532,10 @@ ul.task-list li input[type="checkbox"] {
 <td><strong>Three or more Correlated* Samples</strong></td>
 </tr>
 <tr class="even">
-<td>Dichotomous</td>
+<td>
+<p>Dichotomous</p>
+<p>(e.g.&nbsp;yes/no)</p>
+</td>
 <td>
 <strong>chi-square</strong> or Fisher’s exact test</td>
 <td>
@@ -516,7 +544,10 @@ ul.task-list li input[type="checkbox"] {
 <td>Cochran Q test</td>
 </tr>
 <tr class="odd">
-<td>Unordered Categorical</td>
+<td>
+<p>Unordered Categorical</p>
+<p>(e.g.&nbsp;red/blue/grey)</p>
+</td>
 <td>
 <strong>chi-square</strong> or Fisher-Freeman-Halton test</td>
 <td>
@@ -526,7 +557,10 @@ ul.task-list li input[type="checkbox"] {
 </td>
 </tr>
 <tr class="even">
-<td>Ordered categorical</td>
+<td>
+<p>Ordered categorical</p>
+<p>(e.g.&nbsp;bad, neutral, good)</p>
+</td>
 <td><strong>Wilcoxon-Mann-Whitney (WMW) test</strong></td>
 <td>
 <p><em>Old School***:</em> Kruskal-Wallis analysis of variance (ANOVA)</p>
@@ -539,7 +573,10 @@ ul.task-list li input[type="checkbox"] {
 </td>
 </tr>
 <tr class="odd">
-<td>Continuous</td>
+<td>
+<p>Continuous</p>
+<p>(e.g.&nbsp;BMI)</p>
+</td>
 <td><strong>independent groups t-test</strong></td>
 <td>
 <p><em>Old school***:</em> oneway ANOVA</p>
@@ -549,7 +586,10 @@ ul.task-list li input[type="checkbox"] {
 <td>mixed effects linear regression</td>
 </tr>
 <tr class="even">
-<td>Censored: time to event</td>
+<td>
+<p>Time to event</p>
+<p>(e.g.&nbsp;survival)</p>
+</td>
 <td><strong>log-rank test</strong></td>
 <td>Multiplicity adjusted log-rank test</td>
 <td>Shared-frailty Cox regression</td>
@@ -558,32 +598,26 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>From: From: Stoddard GJ. Biostatistics and Epidemiology Using Stata: A Course Manual. Salt Lake City, UT: University of Utah School of Medicine.</p>
-<p>How can you collaborate effectively with a statistician? They will know these assumptions and can tell you when your analyses makes dubious assumptions (if you communicate the constraints of the problem correctly)</p>
-<p>Examples from Darren</p>
-<p>What test would we use to assess if “splenectomy” and “prox_v_dist” are associated beyond what’s attributable to chance?</p>
-<p>To test if “splenectomy” and “hosp” are associated?</p>
-<p>If “splenectomy” and “qanadli” are associated?</p>
-<p>New example with hypercapnia stuff needed.</p>
-</section><section id="how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis">
-<span class="header-section-number">5.2</span> How to formulate your scientific question as a statistically testable hypothesis?</h2>
-</section><section id="how-to-formulate-your-actual-question-as-a-test" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="how-to-formulate-your-actual-question-as-a-test">
-<span class="header-section-number">5.3</span> How to formulate your actual question as a test:</h2>
-</section><section id="the-logic-of-a-scientific-argument" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="the-logic-of-a-scientific-argument">
-<span class="header-section-number">5.4</span> The logic of a scientific argument:</h2>
-</section><section id="p-values" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="p-values">
-<span class="header-section-number">5.5</span> P-values</h2>
-<p>Frequentist P-values - how suprising would this be if there was nothing going on?</p>
-<p>S-value example… and then twist it so that I don’t say how many times I tried (and I’m incentivized to find one)</p>
-</section><section id="what-is-a-statistical-test" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="what-is-a-statistical-test">
-<span class="header-section-number">5.6</span> What is a statistical test?</h2>
-<p>[ ] create some examples - choosing a statistical test.</p>
-</section><section id="whats-power-got-to-do-with-it" class="level2" data-number="5.7"><h2 data-number="5.7" class="anchored" data-anchor-id="whats-power-got-to-do-with-it">
-<span class="header-section-number">5.7</span> What’s power got to do with it?</h2>
-<p>Everything is underpowered ***</p>
-<p>Power - https://onlinelibrary.wiley.com/doi/full/10.1111/test.12403?campaign=wolearlyview</p>
+<p>Side-box: How can you collaborate effectively with a statistician? They will know these assumptions and can tell you when your analyses makes dubious assumptions (if you communicate the constraints of the problem correctly). THus, the reason to know about these things, even if you’re enrolling the help of a statistician, is to realize when you’re making a decision that bakes assumptions into your analysis - and you want to help the statistician understand the clinical situation so they can help match)</p>
+</section></section><section id="how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="how-to-formulate-your-scientific-question-as-a-statistically-testable-hypothesis">
+<span class="header-section-number">5.3</span> How to formulate your scientific question as a statistically testable hypothesis?</h2>
+<p>Without a doubt, the most common error trainees make when formulating their <em>scientific hypothesis</em> as a <em>(statistically-)testable hypothesis</em> is not realizing that you must define a null hypothesis where there is no effect, then find evidence against it - so-called Null Hypotheses Significance Testing. It goes something like this:</p>
+<ul>
+<li><p>Scientifically, I suspect that high PaCO2 levels indicate a patient is at higher risk of 30-day readmission</p></li>
+<li><p>The null hypothesis is that PaCO2 levels are not associated with risk of 30-day readmission</p></li>
+<li><p>I then evaluate the numbers of readmissions across the range of PaCO2 levels and ask the question: is there a substantial enough excess in readmissions among patients with higher PaCO2 levels that it’s unlikely to be explainable just by random variation?</p></li>
+<li><p>if it’s more suspicious than getting heads 4.32 times in a row, we say that chance alone can’t explain it.</p></li>
+</ul>
+<p>(Note, I’ll need to make separate arguments that confounders or biased assessment of either PaCO2 or readmission could explain it, if I want to make a convincing argument is the PaCO2 per se - for more on that, <a href="intro_regression.html" class="quarto-xref"><span>Chapter 6</span></a>)</p>
+<section id="severity" class="level3" data-number="5.3.1"><h3 data-number="5.3.1" class="anchored" data-anchor-id="severity">
+<span class="header-section-number">5.3.1</span> Severity:</h3>
+<p>A last topic that I’ve included here - but would often usually be introduced later… but I think warrants early exposure - is statistical severity. If we zoom out - we see that we’re generating exclusionary evidence against “null” hypothesis - but we’re not necessarily summarizing the strength of evidence <em>in favor</em> of a hypothesis.</p>
+<p>How should we summarize how much evidence for a hypothesis? The idea is that we have evidence in favor of a theory in proportion to the strength of challenges it has survived. For example, if theres a theory that makes a prediction that would be extremely unlikely to occur unless the theory is true -e.g.&nbsp;einstein predicting the gravity-induced curvature of light - but then the evidence does NOT disprove it… that’s pretty strong evidence - because that test was severe.</p>
+<p>Similarly, if you prespecify an analysis - stick to the statistical analysis plan, and find an effect - that’s a much stronger challenge than if you have a lot of ways to slice the data or analyze the effect. Prespecification is more severe.</p>
+<p>Applied to your design - you want to balance power (see <a href="study_design.html" class="quarto-xref"><span>Chapter 4</span></a>) and severity. ***</p>
 
 
-</section></main><!-- /main --><script>
+</section></section></main><!-- /main --><script>
 
 /* update total correct if #webex-total_correct exists */
 update_total_correct = function() {

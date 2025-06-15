@@ -5,61 +5,256 @@ source("R/booktem_setup.R")
 source("R/my_setup.R")
 ```
 
-You'll need to at least understand some statistics to be effective as a researcher.
+In the past, researchers had to manually code their own statistical analyses, which was tedious and error-prone. Today, statistical software simplifies this process dramatically. Researchers shift their focus from the technical complexities of computation to understanding statistical logic and applying analyses correctly.
 
-In fact, I'd recommend just learning to do your own statistics, though this isn't strictly necessary for everyone.
+This section offers guidance on selecting appropriate statistical programming language, walks through the set-up process, and introduces the basics of conducting statistical analyses using modern tools.
 
-The reasons are multiple.
+## Statistical software options: {#sec-options}
 
-The goal of this section is to assist in choosing the right statistical software.
-
-## Statistical software options:
+R, Python, and Stata are the 3 most commonly used languages.
 
 |  |  |  |  |
-|---------------|---------------|--------------------------|---------------|
-|  | R | Stata | Python |
-| Cost | Free | Requires License | Free |
-| IDE | RStudio | Built in editor | Many (Visual Code best) |
-| Strengths | Best epi / trials libraries for helpful functions | Simple functionality; powerful quasi-experimental/Meta-analysis. U of U MSCI uses. | Best NLP, machine learning libraries |
-| Weakness | Clunky syntax; many 'dialects' | Simple syntax | Moderately Complex Syntax |
-| Explainable Programming\* | Quarto | No options | Jupyter |
+|-----------------|-----------------|-----------------|--------------------|
+|  | **R** | **Python** | **Stata** |
+| **Cost** | Free | Free | Requires License |
+| **IDE** | RStudio/Posit | Many, Visual Code is good | Built in editor |
+| **Strengths** | Best libraries for epidemiology, trial statistics. | Best libraries for text processing, machine learning, AI integration | Simple syntax; powerful quasi-experimental/meta-analysis packages. Used by U of U MSCI. |
+| **Weakness** | Clunky syntax; many 'dialects' | Overkill for many, complex development environment | Clunkiest machine learning, explainable programing, cost. |
+| `r glossary("Explainable programming")` | Quarto | Jupyter, Quarto | Not native (though can use Jupyter) |
 
-\*The idea that code should be readable by consumers of science has caught on in more quantitative fields (Math, CS), but will be coming to medicine. Long overdue. Learn now.
+There are a few other language options (SPSS, SAS, Julia, etc.), but they are omitted for brevity (generally, not the best modern options)
 
-### How to install
+`r glossary_table()`
 
-Instructions for how to do the multiple tabs: https://x.com/rlmcelreath/status/1793641224941007261?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg
+## How to install {#sec-install}
 
-In quarto just use
+Choose the tab for the language(s) you plan to use:
 
 ::: panel-tabset
-## tab 1
-
-Content \## tab 2 Content
-:::
-
-https://quarto.org/docs/interactive/layout.html
-
-For R
+## R
 
 |  |  |  |  |
-|--------------|--------------|--------------|------------------------------|
-| Step 1: | Install R Language | <https://cran.r-project.org/> |  |
-| Step 2: | Install RStudio | <https://posit.co/downloads/> | RStudio is an IDE (development environment) |
-| Step 3: | Install Quarto (formerly Markdown) | <https://quarto.org/docs/get-started/> | Facilitates sharing and explaining your code. Will soon be standard in medical science. |
-| Step 4: | Download this document | <https://github.com/reblocke/fellow_stats> | "fellow_stats.qmd" |
+|----------------|----------------|----------------|------------------------|
+| 1: | Install R Language | <https://cran.r-project.org/> | This installs the base programming language |
+| 2: | Install RStudio | <https://posit.co/downloads/> | RStudio is an `r glossary("IDE")` (integrated development environment) that allows you to write, execute, and debug code from within a single program. |
+| 3: | Install Quarto (formerly Markdown) | <https://quarto.org/docs/get-started/> | Facilitates sharing and explaining your code. |
 
-This page is made using Quarto.
+## Python
 
-**Packages**
+<table style="width:95%;">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 25%" />
+<col style="width: 32%" />
+<col style="width: 31%" />
+</colgroup>
+<tbody>
+<tr>
+<td><p>1: </p></td>
+<td><p>Install Python Language and dependencies</p></td>
+<td><p><a href="https://github.com/conda-forge/miniforge?tab=readme-ov-file" class="uri">https://github.com/conda-forge/miniforge?tab=readme-ov-file</a></p></td>
+<td><p>This (mini-forge) installs the base Python programming language, the things it depends on, and many useful packages</p></td>
+</tr>
+<tr>
+<td><p>2:</p></td>
+<td><p>Create an environment</p></td>
+<td><p>Execute the following commands in a terminal: </p>
+<p><code>mamba create -n stats python=3.12 numpy pandas scipy statsmodels scikit-learn lifelines pingouinmatplotlib seaborn plotnine pyreadstatjupyterlab ipykernel jupytext --channel conda-forge</code></p>
+<p><code>conda activate stats</code> </p></td>
+<td><p>This sets up an environment (controls the versions and packages that are used).</p></td>
+</tr>
+<tr>
+<td><p>3:</p></td>
+<td><p>Install Visual Code</p></td>
+<td><p><a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a></p></td>
+<td><p>Visual Code is an IDE (integrated development environment) that allows you to write, execute, and debug code from within a single program.</p></td>
+</tr>
+</tbody>
+</table>
 
-Other people have mostly done all the analyses you'll want to do:
+\*Note: there are many `r glossary("IDE")`. Visual Code is a classic one with a lot of functionality, though there are AI enabled ones (e.g. Cursor) that may be more helpful depending on how much programming you plan to do and whether you want to bother with the added complexity (discussed more in @sec-llm).
 
--   Curated lists of relevant packages: <https://cran.r-project.org/web/views/>
--   \`install.packages( )\` will install the packages
--   \`?package\`  or \`?command\` will bring up the documentation
+You can also use Quarto for explainable programming in Python - but Jupyter is a more common workflow so we focus on that.
 
-Example: Say you want to do a meta-analysis.
+## Stata
+
+|  |  |  |  |
+|-----------------|-----------------|-----------------|---------------------|
+| 1: | Get a product key | if U of U Trainee, contact me | This verifies you or your institutions' purchase |
+| 2: | Install STATA | <https://www.stata.com/install-guide/> | Includes language and `r glossary("IDE")` (integrated development environment) |
+:::
+
+## **Packages** {#sec-packages}
+
+For common statistical analyses in any of these languages, specialized *packages* already exist that handle these tasks efficiently. Whenever you find yourself manually calculating or coding a statistical procedure, consider that someone likely has already written reliable, tested code that will perform the analysis faster and more accurately. You'll want to use these packages whenever possible.
+
+`r glossary_reset()`
+
+First, a few terms: `r glossary("function")`, `r glossary("arguments")`, `r glossary("package")`
+
+`r glossary_table()`
+
+::: panel-tabset
+## R
+
+|  |  |
+|--------------------------|---------------------------------------|
+| Where to find packages? | <https://cran.r-project.org/web/views/> |
+| Command to install packages | `install.packages(`\``package_name`\``)` |
+| How to access documentation file? | `?package_name` or `?command_name` |
+
+: Package Installation and Documentation in R
+
+## Python
+
+<table style="width:99%;">
+<caption>Package Installation and Documentation in Python</caption>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 71%" />
+</colgroup>
+<tbody>
+<tr>
+<td><p>Where to find packages?</p></td>
+<td><ol type="1">
+<li><p><a href="https://anaconda.org/conda-forge">https://anaconda.org/conda-forge</a></p></li>
+<li><p><a href="https://pypi.org/">https://pypi.org/</a></p></li>
+<li><p><a href="https://github.com/topics/python">https://github.com/topics/python</a></p></li>
+</ol></td>
+</tr>
+<tr>
+<td><p>Command to install packages</p></td>
+<td><p><code>mamba install package_name</code> (rarely, packages that have not been compiled on conda-forge will require <code>pip install package_name</code> to be used)</p></td>
+</tr>
+<tr>
+<td><p>How to access documentation file?</p></td>
+<td><p>The project page on <a href="https://pypi.org/">https://pypi.org/</a> or <a href="https://github.com/">https://github.com/</a></p></td>
+</tr>
+</tbody>
+</table>
+
+## Stata
+
+|                                   |                            |
+|-----------------------------------|----------------------------|
+| Where to find packages?           | `findit package_name`      |
+| Command to install packages       | `ssc install package_name` |
+| How to access documentation file? | `help package_name`        |
+
+: Package Installation and Documentation in Stata
+:::
+
+## Reproducible Research {#sec-reproducible}
+
+As mentioned before, `r glossary("Explainable programming")` is an increasingly important idea because programming errors frequently lead to erroneous research results. Understandable analytic code is important for co-authors to understand and verify what you've done, as well as facilitating replication and improvements.
+
+Importantly (and, as will be discussed in @sec-data), it's not just the statistical design choices that can have an influence on the observed outcomes. Researchers must decide what data should be included, how the data should be cleaned, whether missing values will be imputed (and if so, how). All this occurs before talk of statistical tests, regressions, or presentation occur. By some estimates, variation in how these pre-processing tasks are done accounts for more variability in findings than the design choices most readers focus on. Accordingly, the data processing code that is shared should include the entire process, from data cleaning to figure generation.
+
+### How to share code
+
+::: panel-tabset
+## R
+
+In R, the easiest way to put together understandable and sharable code is to use Quarto documents (this website is actually is generated in Quarto).
+
+Quarto creates notebooks that include segments that can contain text and pictures with other sections that contain executable R code. The segments containing R code can be executed in subsequent order - variables are shared between the boxes - thus allowing a long analytic pipeline to be broken up into small understandable chunks.
+
+To create a new Quarto notebook, go to File-\>New-\>Quarto Document (\*.qmd). Leave all the options in their default.
+
+For example, a hypothetical analysis might go something like:
+
+#### Example Simulation of Coin Flips: 
+
+Our aim is to simulate the number of heads seen if a coin is flipped 50 times.
+
+First, we create a function that simulates a fair coin flip: 50% probability heads (coded as 1), 50% probability of tails (coded as 0)
+
+```{r}
+# r code to simulate 
+```
+
+Then, we write a program that repesents a single simulation: the coin is flipped 50 times
+
+```{r}
+# r code to do 50 trials
+```
+
+Then, we perform 1000 simulations and store the results in an array, which we then present summary statistics on.
+
+```{r}
+# r code for running 1000 simulations and displaying summary statistics. 
+```
+
+#### Nuts and Bolts
+
+Obviously, this example is a bit contrived, but is meant to show how the text and code can be interleaved to make the resulting output easy to understand. This quarto file can then be shared with collaborators (or posted on a code sharing site, such as github - provided none of the protected health information is hard coded into the text.
+
+As an exercise, see if you can create your own Quarto markdown file, and extend the analysis to generate the interquartile range for the mean number of Heads in 50 flips.
+
+## Python
+
+In Python, the easiest way to put together understandable and sharable code is to use Jupyter notebooks.
+
+Jupyter (like Quarto) creates notebooks that include segments that can contain text and pictures with other sections that contain executable Python code. The segments containing Python code can be executed in subsequent order - variables are shared between the boxes - thus allowing a long analytic pipeline to be broken up into small understandable chunks.
+
+To make a new Jupyter notebook, go to File -\> New Jupyter Notebook (\*.ipynb).
+
+For example, a hypothetical analysis might go something like:
+
+#### Example Simulation of 50 Coin Flips
+
+Our aim is to simulate the number of heads seen if a coin is flipped 50 times.
+
+First, we create a function that simulates a fair coin flip: 50% probability heads (coded as 1), 50% probability of tails (coded as 0)
+
+```{python}
+#python code
+```
+
+Then, we write a program that repesents a single simulation: the coin is flipped 50 times
+
+```{python}
+#python code
+```
+
+Then, we perform 1000 simulations and store the results in an array, which we then present summary statistics on.
+
+```{python}
+#python code
+```
+
+## Stata
+
+|                                   |                            |
+|-----------------------------------|----------------------------|
+| Where to find packages?           | `findit package_name`      |
+| Command to install packages       | `ssc install package_name` |
+| How to access documentation file? | `help package_name`        |
+
+: Package Installation and Documentation in Stata
+:::
+
+## Reproducible Research
+
+From a perspective of scientific rigor, sharing should also include the individual patient data to allow researchers to directly replicate or modify the reported analyses. However, despite research participant support for data sharing, privacy concerns and research ethics concerns generally do not permit the sharing of data, even if it has been pseudonomized. This is an active space where "ideal" and "actual" are far apart... but the current takeaway is that individual patient data should not ben shared unless that was explicitly part of the IRB authorization.
+
+Further reading (R focus): <https://raps-with-r.dev/intro.html>
+
+## An Example: meta-analyzing the effect of \*\*\* steroids in CAP
+
+Here's an
+
+This example is chosen to demonstrate how to make a reproducible notebook, download a package, and execute the relevant commands.
+
+Example - simple meta-analysis in all 3 languages? (all default in STATA?)
+
+install the needed packages (meta, excel spreadsheet import)
+
+display the data
+
+meta-analyze
+
+generate a figure.
 
 Relevant packages: <https://cran.r-project.org/web/views/MetaAnalysis.html>
 
@@ -129,13 +324,11 @@ plot(an_rtsa)
 
 Meaning, we've passed futility (at 90% power) for a 10% relative risk reduction a few trials ago. Cool.
 
-## Reproducible Research
+## Large Language Models {#sec-llm}
 
--   basic usage - notebooks - reproducible research pipelines.
+'Vibe Coding' and related concepts. - GPT usage.
 
-## 'Vibe Coding' and related concepts.
-
--   GPT usage.
+word of caution - do not put Patient Health Information into LLM Chatbots. most the services offer to be your data-analyst... which does work, but is not appropriate for research data. This includes "publically avalilable" databases like MIMIC
 
 **Large Language Models:** Options:
 
@@ -159,10 +352,22 @@ Prompt Engineering:
 
 How I used GPT4 creating this workbook:
 
-![The prompt I used to create the above example.](images/IMG_ADC8B4B4AF1D-1.jpeg){alt="The prompt I used to create the above example." width="462"}
+![The prompt I used to create the above example.](images/IMG_ADC8B4B4AF1D-1.jpeg){width="462"}
 
-**U of U Resources -** 
+Next steps:
+
+How should you version control, store, and share statistical analyses? Github is an excellent resource that is relatively straightforward to use, and I strongly recommend it.
+
+## Local (and other) resources {#sec-utah_resources}
 
 -   One Data Science Hub Workshops: <https://utah-data-science-hub.github.io/education_archived.html>  
 -   Request CTSI help: <https://ctsi.utah.edu/cores-and-services/triad> 
 -   Intuitive Biostatistics by Harvey Motulsky - <https://a.co/d/4NCk2bS> 
+
+## TODO List: {.unnumbered}
+
+```{r}
+# finish examples, and advice about replicable programming. 
+# find citation on how frequently errors occur in scientific programming. 
+# find citation for data cleaning influence on 
+```

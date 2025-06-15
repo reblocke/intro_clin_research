@@ -7,37 +7,65 @@ source("R/my_setup.R")
 
 In this section, we'll cover the basics of study design. 
 
+We circle back to this after covering the overall logic of scientific argument (the disjunctive syllogism, @sec-intro_stats) and the basics of regression (@sec-intro_regression). The main remaining topics to cover are related to how w ecan set up an analysis to differentiate 'signal from noise' - a helpful analogy for understanding the related issues of variation, end-points, and power. 
+
 
 
 Structure of scientific argument: disjunctive syllogism
 
+## Variable Definitions
 
-Randomization = takes care of some (but not all) of the other reasons for an association = can convince a skeptic. However, observational research must make arguments (based on assumptions) and they must be explicit. 
+For this section, we'll use somewhat broad stand-ins to represent the types of variables relevant to many types of analyses. I'll give specific examples from respiratory failure research that might be sensible. 
 
+### Exposures
 
-## Exposures
+The 'cause' that we investigate is generally termed the exposure. This could represent a specific exposure (in the common language sense), like air pollution. But it is also used to refer to treatment group assignment of 0 or 1 in a trial, or things that aren't modified per se, like race/ethnicity, if we're interested on the influence of that variable on our outcome of interest. 
 
-What does this mean
+### Outcome
 
-## Outcome
+The thing you're interesting in measuring is referred to as the outcome. Choosing an outcome is not as simple as it would seem. Consider a trial of a medication for ARDS. 
 
-The thing you're interesting in measuring. 
+A common argument is made for using "hard outcomes", like whether a patient died or not 90-days after they were enrolled in the trial.  A benefit to this type of outcome is that when an effect is found, there's little doubt as to whether it's important or how to quantify the magnitude. We can then choose one of a handful of measure to summarize the effect: a risk ratio (risk of death among exposed over risk of death among non-exposed), the risk difference (risk of death among exposed - risk of death in the unexposed), or the odds ratio ( [exposed alive / exposed dead] / [nonexposed alive / non-exposed dead] Odds ratio : https://onlinelibrary.wiley.com/doi/10.1111/test.12391 ). 
 
-Effect measures: 
+However, the downside is that the outcome doesn't contain much information, so a binary outcome is not very efficient. All we get is whether a patient died or not at 90-days. For the exposure to be shown to have an effect, there must be enough patients where they would have died if they hadn't received the treatment, but would survive with it. For everyone else (they were destined to live or destined to die regardless of the exposure), we don't learn anything. Consequently, it takes a lot of patients in the trial to convincingly separate signal from noise. 
 
-Risk ratio
-
-Odds ratio : https://onlinelibrary.wiley.com/doi/10.1111/test.12391 
-
-
-
-### Considerations in choosing an outcome
+A variety of more informative end-point could be used:
+- you could define an ordinal outcome like: alive and independent at 90-days, alive but discharged to facility, alive but still in acute care, or dead  - which increases the power as you now can learn something from patients who would potentially switch categories. Sometimes this effect is quantified using a win ratio or a proportional odds ratio
+- you could look at time to death, knowing that death won't be observed in many patients (called right censoring). This means that you'd capture even the patients where the treatment kept them alive for longer, but not enough for their to be a counterfactual difference at 90-days (which generally increases the power, but might not mirror what we care about so much). This is a more efficient option when more people have the outcome. 
+- you could model the duration of respiratory support on each day in the following period, such as using a longitudinal ordinal model. That way, you have many opportunities to learn whether the exposure is having an effect (each day, it can be influencing the amount of ventilator support). However, the outcome of the analysis  may be harder to quantify and also may be less patient centered. 
 
 
 Endpoint considerations: 
 https://hbiostat.org/endpoint/ 
 
+### Considerations in choosing an outcome
 
+
+
+
+
+
+
+
+'Signal to noise':  [ ] maybe move this to the study design one? I think so - cover power at the same time. 
+
+if the alternative hypothesis is that the coin is subtly imbalanced, it'll be a much harder to detect signal. This is the logic of power analysis - if you're looking for a subtle signal (e.g. small difference, noisy data, rare events), you'll need a bigger study.
+
+However, there is no free lunch: a statistical tests makes assumptions about the data, and if those assumptions hold in reality, then the implications from the analysis follow.
+
+Example interpretation:
+
+If the p-value from a Chi2 test is P=0.03 - we say it's as unlikely this would occur from just chance as it would be to flip a fair coin heads 5 times in a row.
+
+IF observations are independent; both variables are categorical; there are enough observations of each, then it is unlikely chance alone explains the difference. 
+
+[ ] cover signal to noise ratio: history? https://www.sensible-med.com/p/doing-statistics-can-be-difficult
+
+What's power got to do with it?
+
+Everything is underpowered ***
+
+Power - https://onlinelibrary.wiley.com/doi/full/10.1111/test.12403?campaign=wolearlyview
 
 ## Confounding
 Whats a confounder? 

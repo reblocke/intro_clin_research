@@ -427,7 +427,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#objective-4-understand-the-logic-of-regression-analysis" id="toc-objective-4-understand-the-logic-of-regression-analysis" class="nav-link active" data-scroll-target="#objective-4-understand-the-logic-of-regression-analysis"><span class="header-section-number">6.1</span> Objective 4: Understand the logic of regression analysis</a></li>
+<li>
+<a href="#what-use-are-regression-models" id="toc-what-use-are-regression-models" class="nav-link active" data-scroll-target="#what-use-are-regression-models"><span class="header-section-number">6.1</span> What use are regression models?</a>
+  <ul class="collapse">
+<li><a href="#when-do-you-not-want-a-corrected-estimate" id="toc-when-do-you-not-want-a-corrected-estimate" class="nav-link" data-scroll-target="#when-do-you-not-want-a-corrected-estimate"><span class="header-section-number">6.1.1</span> When do you (not) want a corrected estimate?</a></li>
+  </ul>
+</li>
+  <li><a href="#understand-the-logic-of-regression-analysis" id="toc-understand-the-logic-of-regression-analysis" class="nav-link" data-scroll-target="#understand-the-logic-of-regression-analysis"><span class="header-section-number">6.2</span> Understand the logic of regression analysis</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -447,8 +453,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p>Statistical modeling is a bit counter-intuitive, so it makes sense to talk a bit about what we’re trying to accomplish.</p>
-<section id="objective-4-understand-the-logic-of-regression-analysis" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="objective-4-understand-the-logic-of-regression-analysis">
-<span class="header-section-number">6.1</span> Objective 4: Understand the logic of regression analysis</h2>
+<p>Lets first start with why - what is it that regressions accomplish? Then, we’ll discuss the “model” part of regression model - which implies that (much like with statistical tests) there are decisions about how one represents the data that influence the results we’ll get. We’ll end with some practical advice, though there’s obviously a huge corpus of content we can barely scratch the surface of.</p>
+<section id="what-use-are-regression-models" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="what-use-are-regression-models">
+<span class="header-section-number">6.1</span> What use are regression models?</h2>
+<p>You can do a few things with a regression model, and it helps to be clear about what you’re aiming for.</p>
+<ol type="1">
+<li>You can use regressions to make predictions (e.g.&nbsp;using a linear regression to predict the FEV1 by age, sex, and height)</li>
+<li>You can summarize the association between two variables after “adjusting” for the effect of other variables in the model (e.g.&nbsp;the effect of changing a treatment indicator from 0 to 1, correcting for other observed covariates)</li>
+</ol>
+<section id="when-do-you-not-want-a-corrected-estimate" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="when-do-you-not-want-a-corrected-estimate">
+<span class="header-section-number">6.1.1</span> When do you (not) want a corrected estimate?</h3>
+<p>To answer this question, we need to differentiate a couple of related terms that describe the way that an Exposure (E) -&gt; Outcome (O) relationship can be distored by a third variable. To explain this, we’ll use Directed Acyclic Graphs, which can be created with tools like Dagitty.</p>
+<p>The idea is that you draw the causal connections between variables to define how you think they are related. It’s helpful for our purposes because it can define the different ways that three variables may interrelate.</p>
+<section id="confounder-c" class="level4" data-number="6.1.1.1"><h4 data-number="6.1.1.1" class="anchored" data-anchor-id="confounder-c">
+<span class="header-section-number">6.1.1.1</span> Confounder (C)</h4>
+<p>As mentioned earlier, a confounder is something that influences both the likelihood of exposure and the likelihood of the outcome via other mechanisms than through the exposure.</p>
+<p>For example, consider the risk of death in patients with elevated PaCO2 levels. Say that older patients are more likely to get hypercapnia. In an unadjusted analysis, PaCO2 levels might be associated with death because age is associated with likelihood of hypercapnia, and likelihood of death via a variety of mechanisms. In this case, what we’d really like to do is evaluate whether PaCO2 levels remain associated with the risk of death after controlling for age (a confounder).</p>
+<p>[ ] DAG.</p>
+</section><section id="mediator-m" class="level4" data-number="6.1.1.2"><h4 data-number="6.1.1.2" class="anchored" data-anchor-id="mediator-m">
+<span class="header-section-number">6.1.1.2</span> Mediator (M)</h4>
+<p>Another way</p>
+<p>(cover this here? or elsewhere)</p>
+</section><section id="effect-modifier" class="level4" data-number="6.1.1.3"><h4 data-number="6.1.1.3" class="anchored" data-anchor-id="effect-modifier">
+<span class="header-section-number">6.1.1.3</span> Effect Modifier</h4>
+<p>Effect modifiers (and the related concept of interactions) refer to situations where a third variable influences the effect of the exposure on the outcome. As a hypothetical example, a bacterial pathogen is presumably an effect modifier for response to antibiotics on community acquired pneumonia: if bacterial CAP, antibiotics help, and if viral it probably doesn’t.</p>
+<p>This might seem like a very distinct concept from mediators and confounders - and it is. But the reason I bring it up here is that it’ll appear similar in regression analyses if not specified.</p>
+</section></section></section><section id="understand-the-logic-of-regression-analysis" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="understand-the-logic-of-regression-analysis">
+<span class="header-section-number">6.2</span> Understand the logic of regression analysis</h2>
 <p>Recall, if there is an association between an ‘exposure’ and an ‘outcome’, there are 4 possible explanations</p>
 <ol type="1">
 <li>Chance</li>
@@ -456,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Bias&nbsp;</li>
 <li>Or, causation (a real effect)</li>
 </ol>
-<p>Randomization addresses point 2 (essentially, converts it to point 1, in that only chance confounding can occur)</p>
+<p>Randomization = takes care of some (but not all) of the other reasons for an association = can convince a skeptic. However, observational research must make arguments (based on assumptions) and they must be explicit. Randomization addresses point 2 (essentially, converts it to point 1, in that only chance confounding can occur)</p>
 <p>For non-randomized data, you must make an argument against point 2. This is the most common use of regression.&nbsp;</p>
 <p>[the methods section of your paper is the argument against point 3; pull in RECORD/STROBE recs]</p>
 <p><strong>There are at least 3 uses of regression models:</strong>&nbsp;</p>

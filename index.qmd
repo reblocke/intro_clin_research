@@ -1,41 +1,53 @@
 # Overview {.unnumbered}
 
-This workbook is intended to function as a guide to get students, residents, or fellows started on the right foot on a research project. 
+This workbook provides a practical, step-by-step guide for medical students, residents, and fellows embarking on a clinical research project.
 
-There are many guides and publications covering this topic. The reason I made yet another is to better target the unique constraints and backgrounds of clinical trainees, and also to cover content relevant to my field - Internal Medicine (specifically, Pulmonary and Critical Care)
+The focus is specifically on clinical epidemiology and health services research, reflecting both my expertise and the suitability of these areas for clinician-researchers (discussed further in @sec-type).
 
-This guide is intended to act as a supplement to an involved mentor, who can answer context-specific questions and clarify things in a more interactive way. However, as discussed more in mentors - there are a spectrum of arrangements that work, and self-directed researchers may find more use for materials like this. 
+While numerous excellent resources exist, this guide uniquely emphasizes:
 
-[ ] Reframe this as a guide for trainees (whether working with me or whoever you’re working with)
+- Accessibility for clinical trainees (particularly in Internal Medicine and related specialties) who may have little prior experience with statistics, programming, or research but who wish to develop foundational skills.
+- The often-overlooked "tacit knowledge" required to efficiently conduct research. Unlike PhD or MPH students, clinical trainees typically receive less structured mentorship or formal research training, potentially leading to challenges in conducting rigorous and impactful studies. Additionally, most trainees have less time to devote to in-depth study, so this resource is meant to only focus on the highest-value topics.
+- the key lessons and recurrent issues I've encountered. This guide is meant to be an opinionated "lessons learned" that offers practical advice as I see it, rather than sticking to universally accepted advice. 
 
-Also - the nerds have a concept called 'Tacit Knowledge' that I think is extremely useful: how do people who actually do this well operate? 
+Ideally, this guide serves as a complement to active mentorship, where a dedicated mentor can address specific questions and contextual challenges. However, as detailed in @sec-mentor, mentorship can vary significantly in quality and depth. Some mentors might lack content-specific expertise (methodologists are unfortunately rare and highly sought-after) or sufficient involvement, making self-directed resources particularly valuable for trainees eager to independently advance their research skills.
 
+## Must you learn to do your own stats? {.unnumbered}
 
-## Learning Objectives:
+Strictly speaking, no. Not every successful clinician-researcher masters statistics or study design. Research increasingly involves collaborative teams, where methodologists and/or statisticians can handle technical details. In fact, some advocate for involving a statistician in every research project, a model that is more feasible in well-resourced settings.
 
-1.  Set Up Statistical Software
-2.  Share "tacit knowledge" (how it's actually done) of how to choose a statistical analyses and perform it.
-3.  Understanding the structure of frequentist statistical tests
-4.  Understand the logic of regression models
+However, relying exclusively on others for statistical expertise has important drawbacks:
 
-**Bad news**: you'll need to learn how to do statistical analyses:
+- Speed: Conducting at least basic analyses yourself substantially accelerates research.
+- Effectiveness: Understanding key statistical concepts enables more productive interactions with the rest of the research team, as you're more likely to understand key issues and understand the proposed solutions.
+- Independence: Dependence on external expertise restricts the range of research questions you can feasibly explore.
+- Educational Value: A stated reason (see note) that many training programs retain research requirements is that familiarity with study design and statistics directly enhances clinical practice by improving your interpretation of research literature. Outsourcing related tasks will not help you critically evaluate evidence or apply findings effectively to patient care.
 
--   realistically, you'll probably have to do your own stats somewhat
--   if you join a project that has a statistican (or get CTSI assistance), you'll still need to be able to specify, critique, and interpret the analyses. It will help substantially to have (at least) basic working knowledge.
+Note: There are less complimentary reasons that explain why such requirements actually persist. 
 
+For these reasons and others, I strongly recommend acquiring statistical and study design skills, even though it’s not strictly required in all cases. I still recommend it even if you have access to statisticians and methodologists because it will help you interact with them, and it'll help you appraise the research.
 
-See @sec-instructions for more details on ...  etc
+## Learning Objectives: {.unnumbered}
 
+By the end of this module you will be able to:
 
-## About {.unnumbered}
+1.	Select a feasible, worthwhile research topic that balances rigor, resources, and personal motivation.
+2.	Draft a reproducible study plan. This entails formulating a testable question, choosing an appropriate design, outlining data acquisition, and creating (and possibly preregistering) an analytic protocol.
+3.	Perform and interpret (frequentist) statistical analyses, including interpreting p-values, classifying data-types, and and avoiding common pitfalls.
+4.	Build and explain basic regression models (linear, logistic, survival), including understanding when adjustment is required/desired, interpreting the regression coeficients, and communicating results clearly.
+5.	Prepare a manuscript suitable for peer review, applying reporting guidelines (e.g., STROBE) and constructing a coherent argument from introduction through discussion.
 
-I am an Assistant Professor of Research in the Department of Critical Care at Intermountain Medical Center. I am core faculty in the University of Utah Pulmonary and Critical Care Medicine Fellowship Program and Internal Medicine Residency. Academically, I focus on hypercapnic respiratory failure epidemiology, clinical reasoning, and research informatics. More information and current projects at [reblocke.github.io](https://reblocke.github.io/)
+## About the author {.unnumbered}
 
+I am an [Assistant Professor of Research](https://doctors.intermountainhealth.org/provider/brian-w-locke/2561053) in the Department of Critical Care at Intermountain Medical Center and core faculty in the [University of Utah Pulmonary and Critical Care Medicine Fellowship Program](https://medicine.utah.edu/internal-medicine/pulmonary/fellowship) and closely involved with the [University of Utah Internal Medicine Residency](https://medicine.utah.edu/internal-medicine/residency). I earned a [Master of Science in Clinical Investigation](https://ctsi.utah.edu/education/msci) in 2024. My academic research primarily addresses the epidemiology of hypercapnic respiratory failure, clinical reasoning, and research informatics. For more information about my current projects, visit [reblocke.github.io](https://reblocke.github.io/)
+
+## TODO List: {.unnumbered}
 
 ```{r}
-# TODO:  
-# Shorten a bit for 1h session (I think not)
-# Change structure to intentionally start people off installing, then progress
 # Trouble shoot regression and chi2 equivalence... may be easier with linear regression.
 # Create an example of using chatgpt to troubleshoot an error
+# Find statisticians in all projects citation - and set up references/bibliography
 ```
+
+If you find errors or have suggestions (content, resources, corrections, anything), email me and {first}dot{last}at imail.org
+

@@ -7,7 +7,49 @@ source("R/my_setup.R")
 
 Statistical modeling is a bit counter-intuitive, so it makes sense to talk a bit about what we're trying to accomplish.
 
-## Objective 4: Understand the logic of regression analysis
+Lets first start with why - what is it that regressions accomplish? Then, we'll discuss the "model" part of regression model - which implies that (much like with statistical tests) there are decisions about how one represents the data that influence the results we'll get. We'll end with some practical advice, though there's obviously a huge corpus of content we can barely scratch the surface of. 
+
+## What use are regression models? 
+
+You can do a few things with a regression model, and it helps to be clear about what you're aiming for. 
+
+1. You can use regressions to make predictions (e.g. using a linear regression to predict the FEV1 by age, sex, and height)
+2. You can summarize the association between two variables after "adjusting" for the effect of other variables in the model (e.g. the effect of changing a treatment indicator from 0 to 1, correcting for other observed covariates)
+
+
+### When do you (not) want a corrected estimate? 
+
+To answer this question, we need to differentiate a couple of related terms that describe the way that an Exposure (E) -> Outcome (O) relationship can be distored by a third variable. To explain this, we'll use Directed Acyclic Graphs, which can be created with tools like Dagitty. 
+
+The idea is that you draw the causal connections between variables to define how you think they are related. It's helpful for our purposes because it can define the different ways that three variables may interrelate. 
+
+#### Confounder (C)
+
+As mentioned earlier, a confounder is something that influences both the likelihood of exposure and the likelihood of the outcome via other mechanisms than through the exposure. 
+
+For example, consider the risk of death in patients with elevated PaCO2 levels. Say that older patients are more likely to get hypercapnia. In an unadjusted analysis, PaCO2 levels might be associated with death because age is associated with likelihood of hypercapnia, and likelihood of death via a variety of mechanisms. In this case, what we'd really like to do is evaluate whether PaCO2 levels remain associated with the risk of death after controlling for age (a confounder). 
+
+[ ] DAG. 
+
+
+
+#### Mediator (M)
+
+Another way 
+
+
+
+
+(cover this here? or elsewhere)
+
+#### Effect Modifier
+
+Effect modifiers (and the related concept of interactions) refer to situations where a third variable influences the effect of the exposure on the outcome. As a hypothetical example, a bacterial pathogen is presumably an effect modifier for response to antibiotics on community acquired pneumonia: if bacterial CAP, antibiotics help, and if viral it probably doesn't. 
+
+This might seem like a very distinct concept from mediators and confounders - and it is. But the reason I bring it up here is that it'll appear similar in regression analyses if not specified. 
+
+
+## Understand the logic of regression analysis
 
 Recall, if there is an association between an 'exposure' and an 'outcome', there are 4 possible explanations
 
@@ -16,6 +58,7 @@ Recall, if there is an association between an 'exposure' and an 'outcome', there
 3.  Bias 
 4.  Or, causation (a real effect)
 
+Randomization = takes care of some (but not all) of the other reasons for an association = can convince a skeptic. However, observational research must make arguments (based on assumptions) and they must be explicit. 
 Randomization addresses point 2 (essentially, converts it to point 1, in that only chance confounding can occur)
 
 For non-randomized data, you must make an argument against point 2. This is the most common use of regression. 

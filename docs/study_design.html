@@ -392,17 +392,18 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#exposures" id="toc-exposures" class="nav-link active" data-scroll-target="#exposures"><span class="header-section-number">4.1</span> Exposures</a></li>
-  <li>
-<a href="#outcome" id="toc-outcome" class="nav-link" data-scroll-target="#outcome"><span class="header-section-number">4.2</span> Outcome</a>
+<li>
+<a href="#variable-definitions" id="toc-variable-definitions" class="nav-link active" data-scroll-target="#variable-definitions"><span class="header-section-number">4.1</span> Variable Definitions</a>
   <ul class="collapse">
-<li><a href="#considerations-in-choosing-an-outcome" id="toc-considerations-in-choosing-an-outcome" class="nav-link" data-scroll-target="#considerations-in-choosing-an-outcome"><span class="header-section-number">4.2.1</span> Considerations in choosing an outcome</a></li>
+<li><a href="#exposures" id="toc-exposures" class="nav-link" data-scroll-target="#exposures"><span class="header-section-number">4.1.1</span> Exposures</a></li>
+  <li><a href="#outcome" id="toc-outcome" class="nav-link" data-scroll-target="#outcome"><span class="header-section-number">4.1.2</span> Outcome</a></li>
+  <li><a href="#considerations-in-choosing-an-outcome" id="toc-considerations-in-choosing-an-outcome" class="nav-link" data-scroll-target="#considerations-in-choosing-an-outcome"><span class="header-section-number">4.1.3</span> Considerations in choosing an outcome</a></li>
   </ul>
 </li>
-  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding"><span class="header-section-number">4.3</span> Confounding</a></li>
-  <li><a href="#effect-modification-and-interactions" id="toc-effect-modification-and-interactions" class="nav-link" data-scroll-target="#effect-modification-and-interactions"><span class="header-section-number">4.4</span> Effect Modification and Interactions</a></li>
-  <li><a href="#risk-factor" id="toc-risk-factor" class="nav-link" data-scroll-target="#risk-factor"><span class="header-section-number">4.5</span> Risk factor</a></li>
-  <li><a href="#counterfactual-reasoning" id="toc-counterfactual-reasoning" class="nav-link" data-scroll-target="#counterfactual-reasoning"><span class="header-section-number">4.6</span> Counterfactual reasoning</a></li>
+  <li><a href="#confounding" id="toc-confounding" class="nav-link" data-scroll-target="#confounding"><span class="header-section-number">4.2</span> Confounding</a></li>
+  <li><a href="#effect-modification-and-interactions" id="toc-effect-modification-and-interactions" class="nav-link" data-scroll-target="#effect-modification-and-interactions"><span class="header-section-number">4.3</span> Effect Modification and Interactions</a></li>
+  <li><a href="#risk-factor" id="toc-risk-factor" class="nav-link" data-scroll-target="#risk-factor"><span class="header-section-number">4.4</span> Risk factor</a></li>
+  <li><a href="#counterfactual-reasoning" id="toc-counterfactual-reasoning" class="nav-link" data-scroll-target="#counterfactual-reasoning"><span class="header-section-number">4.5</span> Counterfactual reasoning</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -422,29 +423,42 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header><p>In this section, we’ll cover the basics of study design.</p>
+<p>We circle back to this after covering the overall logic of scientific argument (the disjunctive syllogism, <a href="intro_stats.html" class="quarto-xref"><span>Chapter 5</span></a>) and the basics of regression (<span class="quarto-unresolved-ref">?sec-intro_regression</span>). The main remaining topics to cover are related to how w ecan set up an analysis to differentiate ‘signal from noise’ - a helpful analogy for understanding the related issues of variation, end-points, and power.</p>
 <p>Structure of scientific argument: disjunctive syllogism</p>
-<p>Randomization = takes care of some (but not all) of the other reasons for an association = can convince a skeptic. However, observational research must make arguments (based on assumptions) and they must be explicit.</p>
-<section id="exposures" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="exposures">
-<span class="header-section-number">4.1</span> Exposures</h2>
-<p>What does this mean</p>
-</section><section id="outcome" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="outcome">
-<span class="header-section-number">4.2</span> Outcome</h2>
-<p>The thing you’re interesting in measuring.</p>
-<p>Effect measures:</p>
-<p>Risk ratio</p>
-<p>Odds ratio : https://onlinelibrary.wiley.com/doi/10.1111/test.12391</p>
-<section id="considerations-in-choosing-an-outcome" class="level3" data-number="4.2.1"><h3 data-number="4.2.1" class="anchored" data-anchor-id="considerations-in-choosing-an-outcome">
-<span class="header-section-number">4.2.1</span> Considerations in choosing an outcome</h3>
+<section id="variable-definitions" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="variable-definitions">
+<span class="header-section-number">4.1</span> Variable Definitions</h2>
+<p>For this section, we’ll use somewhat broad stand-ins to represent the types of variables relevant to many types of analyses. I’ll give specific examples from respiratory failure research that might be sensible.</p>
+<section id="exposures" class="level3" data-number="4.1.1"><h3 data-number="4.1.1" class="anchored" data-anchor-id="exposures">
+<span class="header-section-number">4.1.1</span> Exposures</h3>
+<p>The ‘cause’ that we investigate is generally termed the exposure. This could represent a specific exposure (in the common language sense), like air pollution. But it is also used to refer to treatment group assignment of 0 or 1 in a trial, or things that aren’t modified per se, like race/ethnicity, if we’re interested on the influence of that variable on our outcome of interest.</p>
+</section><section id="outcome" class="level3" data-number="4.1.2"><h3 data-number="4.1.2" class="anchored" data-anchor-id="outcome">
+<span class="header-section-number">4.1.2</span> Outcome</h3>
+<p>The thing you’re interesting in measuring is referred to as the outcome. Choosing an outcome is not as simple as it would seem. Consider a trial of a medication for ARDS.</p>
+<p>A common argument is made for using “hard outcomes”, like whether a patient died or not 90-days after they were enrolled in the trial. A benefit to this type of outcome is that when an effect is found, there’s little doubt as to whether it’s important or how to quantify the magnitude. We can then choose one of a handful of measure to summarize the effect: a risk ratio (risk of death among exposed over risk of death among non-exposed), the risk difference (risk of death among exposed - risk of death in the unexposed), or the odds ratio ( [exposed alive / exposed dead] / [nonexposed alive / non-exposed dead] Odds ratio : https://onlinelibrary.wiley.com/doi/10.1111/test.12391 ).</p>
+<p>However, the downside is that the outcome doesn’t contain much information, so a binary outcome is not very efficient. All we get is whether a patient died or not at 90-days. For the exposure to be shown to have an effect, there must be enough patients where they would have died if they hadn’t received the treatment, but would survive with it. For everyone else (they were destined to live or destined to die regardless of the exposure), we don’t learn anything. Consequently, it takes a lot of patients in the trial to convincingly separate signal from noise.</p>
+<p>A variety of more informative end-point could be used: - you could define an ordinal outcome like: alive and independent at 90-days, alive but discharged to facility, alive but still in acute care, or dead - which increases the power as you now can learn something from patients who would potentially switch categories. Sometimes this effect is quantified using a win ratio or a proportional odds ratio - you could look at time to death, knowing that death won’t be observed in many patients (called right censoring). This means that you’d capture even the patients where the treatment kept them alive for longer, but not enough for their to be a counterfactual difference at 90-days (which generally increases the power, but might not mirror what we care about so much). This is a more efficient option when more people have the outcome. - you could model the duration of respiratory support on each day in the following period, such as using a longitudinal ordinal model. That way, you have many opportunities to learn whether the exposure is having an effect (each day, it can be influencing the amount of ventilator support). However, the outcome of the analysis may be harder to quantify and also may be less patient centered.</p>
 <p>Endpoint considerations: https://hbiostat.org/endpoint/</p>
-</section></section><section id="confounding" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="confounding">
-<span class="header-section-number">4.3</span> Confounding</h2>
+</section><section id="considerations-in-choosing-an-outcome" class="level3" data-number="4.1.3"><h3 data-number="4.1.3" class="anchored" data-anchor-id="considerations-in-choosing-an-outcome">
+<span class="header-section-number">4.1.3</span> Considerations in choosing an outcome</h3>
+<p>‘Signal to noise’: [ ] maybe move this to the study design one? I think so - cover power at the same time.</p>
+<p>if the alternative hypothesis is that the coin is subtly imbalanced, it’ll be a much harder to detect signal.&nbsp;This is the logic of power analysis - if you’re looking for a subtle signal (e.g.&nbsp;small difference, noisy data, rare events), you’ll need a bigger study.</p>
+<p>However, there is no free lunch: a statistical tests makes assumptions about the data, and if those assumptions hold in reality, then the implications from the analysis follow.</p>
+<p>Example interpretation:</p>
+<p>If the p-value from a Chi2 test is P=0.03 - we say it’s as unlikely this would occur from just chance as it would be to flip a fair coin heads 5 times in a row.</p>
+<p>IF observations are independent; both variables are categorical; there are enough observations of each, then it is unlikely chance alone explains the difference.&nbsp;</p>
+<p>[ ] cover signal to noise ratio: history? https://www.sensible-med.com/p/doing-statistics-can-be-difficult</p>
+<p>What’s power got to do with it?</p>
+<p>Everything is underpowered ***</p>
+<p>Power - https://onlinelibrary.wiley.com/doi/full/10.1111/test.12403?campaign=wolearlyview</p>
+</section></section><section id="confounding" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="confounding">
+<span class="header-section-number">4.2</span> Confounding</h2>
 <p>Whats a confounder?</p>
-</section><section id="effect-modification-and-interactions" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="effect-modification-and-interactions">
-<span class="header-section-number">4.4</span> Effect Modification and Interactions</h2>
-</section><section id="risk-factor" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="risk-factor">
-<span class="header-section-number">4.5</span> Risk factor</h2>
-</section><section id="counterfactual-reasoning" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="counterfactual-reasoning">
-<span class="header-section-number">4.6</span> Counterfactual reasoning</h2>
+</section><section id="effect-modification-and-interactions" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="effect-modification-and-interactions">
+<span class="header-section-number">4.3</span> Effect Modification and Interactions</h2>
+</section><section id="risk-factor" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="risk-factor">
+<span class="header-section-number">4.4</span> Risk factor</h2>
+</section><section id="counterfactual-reasoning" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="counterfactual-reasoning">
+<span class="header-section-number">4.5</span> Counterfactual reasoning</h2>
 <p>Advanced topics (maybe a little bit)</p>
 
 

@@ -1,4 +1,4 @@
-# How to get your project done {#sec-project_management}
+# Getting your project done {#sec-project_management}
 
 ```{r, include = FALSE}
 source("R/booktem_setup.R")
@@ -7,6 +7,8 @@ source("R/my_setup.R")
 
 In this section, we'll discuss how to actually make the research happen: what should your workflow be, what are some hints for how to do things quickly and robustly. 
 
+
+Workflow....
 
 ## Key Figures
 

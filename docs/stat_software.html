@@ -103,7 +103,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+}</script><script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 <link rel="stylesheet" href="include/booktem.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/glossary.css">
@@ -387,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">How to get your project done</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Getting your project done</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -427,14 +428,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#statistical-software-options" id="toc-statistical-software-options" class="nav-link active" data-scroll-target="#statistical-software-options"><span class="header-section-number">2.1</span> Statistical software options:</a>
-  <ul class="collapse">
-<li><a href="#how-to-install" id="toc-how-to-install" class="nav-link" data-scroll-target="#how-to-install"><span class="header-section-number">2.1.1</span> How to install</a></li>
-  </ul>
-</li>
-  <li><a href="#reproducible-research" id="toc-reproducible-research" class="nav-link" data-scroll-target="#reproducible-research"><span class="header-section-number">2.2</span> Reproducible Research</a></li>
-  <li><a href="#vibe-coding-and-related-concepts." id="toc-vibe-coding-and-related-concepts." class="nav-link" data-scroll-target="#vibe-coding-and-related-concepts."><span class="header-section-number">2.3</span> ‘Vibe Coding’ and related concepts.</a></li>
+<li><a href="#sec-options" id="toc-sec-options" class="nav-link active" data-scroll-target="#sec-options"><span class="header-section-number">2.1</span> Statistical software options:</a></li>
+  <li><a href="#sec-install" id="toc-sec-install" class="nav-link" data-scroll-target="#sec-install"><span class="header-section-number">2.2</span> How to install</a></li>
+  <li><a href="#sec-packages" id="toc-sec-packages" class="nav-link" data-scroll-target="#sec-packages"><span class="header-section-number">2.3</span> <strong>Packages</strong></a></li>
+  <li><a href="#sec-reproducible" id="toc-sec-reproducible" class="nav-link" data-scroll-target="#sec-reproducible"><span class="header-section-number">2.4</span> Reproducible Research</a></li>
+  <li><a href="#an-example-meta-analyzing-the-effect-of-steroids-in-cap" id="toc-an-example-meta-analyzing-the-effect-of-steroids-in-cap" class="nav-link" data-scroll-target="#an-example-meta-analyzing-the-effect-of-steroids-in-cap"><span class="header-section-number">2.5</span> An Example: meta-analyzing the effect of *** steroids in CAP</a></li>
+  <li><a href="#sec-llm" id="toc-sec-llm" class="nav-link" data-scroll-target="#sec-llm"><span class="header-section-number">2.6</span> Large Language Models</a></li>
+  <li><a href="#sec-utah_resources" id="toc-sec-utah_resources" class="nav-link" data-scroll-target="#sec-utah_resources"><span class="header-section-number">2.7</span> Local Resources</a></li>
+  <li><a href="#todo-list" id="toc-todo-list" class="nav-link" data-scroll-target="#todo-list">TODO List:</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -453,109 +454,378 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>You’ll need to at least understand some statistics to be effective as a researcher.</p>
-<p>In fact, I’d recommend just learning to do your own statistics, though this isn’t strictly necessary for everyone.</p>
-<p>The reasons are multiple.</p>
-<p>The goal of this section is to assist in choosing the right statistical software.</p>
-<section id="statistical-software-options" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="statistical-software-options">
+</header><p>In the past, researchers had to manually code their own statistical analyses, which was tedious and error-prone. Today, statistical software simplifies this process dramatically. Researchers shift their focus from the technical complexities of computation to understanding statistical logic and applying analyses correctly.</p>
+<p>This section offers guidance on selecting appropriate statistical programming language, walks through the set-up process, and introduces the basics of conducting statistical analyses using modern tools.</p>
+<section id="sec-options" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="sec-options">
 <span class="header-section-number">2.1</span> Statistical software options:</h2>
+<p>R, Python, and Stata are the 3 most commonly used languages. There are a few other options (SPSS, SAS, Julia, etc.), but they aren’t covered here.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 21%">
-<col style="width: 36%">
-<col style="width: 21%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 28%">
 </colgroup>
 <tbody>
 <tr class="odd">
 <td></td>
-<td>R</td>
-<td>Stata</td>
-<td>Python</td>
+<td><strong>R</strong></td>
+<td><strong>Python</strong></td>
+<td><strong>Stata</strong></td>
 </tr>
 <tr class="even">
-<td>Cost</td>
+<td><strong>Cost</strong></td>
+<td>Free</td>
 <td>Free</td>
 <td>Requires License</td>
-<td>Free</td>
 </tr>
 <tr class="odd">
-<td>IDE</td>
-<td>RStudio</td>
+<td><strong>IDE</strong></td>
+<td>RStudio/Posit</td>
+<td>Many, Visual Code is good</td>
 <td>Built in editor</td>
-<td>Many (Visual Code best)</td>
 </tr>
 <tr class="even">
-<td>Strengths</td>
-<td>Best epi / trials libraries for helpful functions</td>
-<td>Simple functionality; powerful quasi-experimental/Meta-analysis. U of U MSCI uses.</td>
-<td>Best NLP, machine learning libraries</td>
+<td><strong>Strengths</strong></td>
+<td>Best libraries for epidemiology, trial statistics.</td>
+<td>Best libraries for text processing, machine learning, AI integration</td>
+<td>Simple syntax; powerful quasi-experimental/meta-analysis packages. Used by U of U MSCI.</td>
 </tr>
 <tr class="odd">
-<td>Weakness</td>
+<td><strong>Weakness</strong></td>
 <td>Clunky syntax; many ‘dialects’</td>
-<td>Simple syntax</td>
-<td>Moderately Complex Syntax</td>
+<td>Overkill for many, complex development environment</td>
+<td>Clunkiest machine learning, explainable programing, cost.</td>
 </tr>
 <tr class="even">
-<td>Explainable Programming*</td>
+<td><a class="glossary">Explainable programming<span class="def">Writing analytic code in a clear, structured, and understandable way so that readers (including reviewers, collaborators, and future researchers) can easily follow and replicate the steps of your analysis. In quantitative disciplines such as mathematics and computer science, providing such code is already standard practice. Medicine is beginning to adopt this approach, recognizing its importance for transparency and reproducibility.</span></a></td>
 <td>Quarto</td>
-<td>No options</td>
-<td>Jupyter</td>
+<td>Jupyter, Quarto</td>
+<td>Not native (though can use Jupyter)</td>
 </tr>
 </tbody>
 </table>
-<p>*The idea that code should be readable by consumers of science has caught on in more quantitative fields (Math, CS), but will be coming to medicine. Long overdue. Learn now.</p>
-<section id="how-to-install" class="level3" data-number="2.1.1"><h3 data-number="2.1.1" class="anchored" data-anchor-id="how-to-install">
-<span class="header-section-number">2.1.1</span> How to install</h3>
-<p>Instructions for how to do the multiple tabs: https://x.com/rlmcelreath/status/1793641224941007261?s=46&amp;t=5eJ6uoTQrbbYTlHIOnRYRg</p>
-<p>In quarto just use</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:left;">
+definition
+</th>
+</tr></thead>
+<tbody><tr>
+<td style="text-align:left;">
+Explainable programming
+</td>
+<td style="text-align:left;">
+Writing analytic code in a clear, structured, and understandable way so that readers (including reviewers, collaborators, and future researchers) can easily follow and replicate the steps of your analysis. In quantitative disciplines such as mathematics and computer science, providing such code is already standard practice. Medicine is beginning to adopt this approach, recognizing its importance for transparency and reproducibility.
+</td>
+</tr></tbody>
+</table></section><section id="sec-install" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="sec-install">
+<span class="header-section-number">2.2</span> How to install</h2>
+<p>Choose the tab for the language(s) you plan to use:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">tab 1</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">R</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Stata</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Content ## tab 2 Content</p>
-</div>
-</div>
-</div>
-<p>https://quarto.org/docs/interactive/layout.html</p>
-<p>For R</p>
 <table class="caption-top table"><tbody>
 <tr class="odd">
-<td>Step 1:</td>
+<td>1:</td>
 <td>Install R Language</td>
 <td><a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></td>
-<td></td>
+<td>This installs the base programming language</td>
 </tr>
 <tr class="even">
-<td>Step 2:</td>
+<td>2:</td>
 <td>Install RStudio</td>
 <td><a href="https://posit.co/downloads/" class="uri">https://posit.co/downloads/</a></td>
-<td>RStudio is an IDE (development environment)</td>
+<td>RStudio is an <a class="glossary">IDE<span class="def">Integrated Development Environment, a program that allows for writing, running, and debugging code within a single program.</span></a> (integrated development environment) that allows you to write, execute, and debug code from within a single program.</td>
 </tr>
 <tr class="odd">
-<td>Step 3:</td>
+<td>3:</td>
 <td>Install Quarto (formerly Markdown)</td>
 <td><a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a></td>
-<td>Facilitates sharing and explaining your code. Will soon be standard in medical science.</td>
-</tr>
-<tr class="even">
-<td>Step 4:</td>
-<td>Download this document</td>
-<td><a href="https://github.com/reblocke/fellow_stats" class="uri">https://github.com/reblocke/fellow_stats</a></td>
-<td>“fellow_stats.qmd”</td>
+<td>Facilitates sharing and explaining your code.</td>
 </tr>
 </tbody></table>
-<p>This page is made using Quarto.</p>
-<p><strong>Packages</strong></p>
-<p>Other people have mostly done all the analyses you’ll want to do:</p>
-<ul>
-<li>Curated lists of relevant packages: <a href="https://cran.r-project.org/web/views/" class="uri">https://cran.r-project.org/web/views/</a>
-</li>
-<li>`install.packages( )` will install the packages</li>
-<li>`?package`&nbsp; or `?command` will bring up the documentation</li>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<table style="width:95%;">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 25%">
+<col style="width: 32%">
+<col style="width: 31%">
+</colgroup>
+<tbody>
+<tr>
+<td>
+<p>
+1:
+</p>
+</td>
+<td>
+<p>
+Install Python Language and dependencies
+</p>
+</td>
+<td>
+<p>
+<a href="https://github.com/conda-forge/miniforge?tab=readme-ov-file" class="uri">https://github.com/conda-forge/miniforge?tab=readme-ov-file</a>
+</p>
+</td>
+<td>
+<p>
+This (mini-forge) installs the base Python programming language, the things it depends on, and many useful packages
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+2:
+</p>
+</td>
+<td>
+<p>
+Create an environment
+</p>
+</td>
+<td>
+<p>
+Execute the following commands in a terminal:
+</p>
+<p>
+<code>mamba create -n stats python=3.12 numpy pandas scipy statsmodels scikit-learn lifelines pingouinmatplotlib seaborn plotnine pyreadstatjupyterlab ipykernel jupytext –channel conda-forge</code>
+</p>
+<p>
+<code>conda activate stats</code>
+</p>
+</td>
+<td>
+<p>
+This sets up an environment (controls the versions and packages that are used).
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+3:
+</p>
+</td>
+<td>
+<p>
+Install Visual Code
+</p>
+</td>
+<td>
+<p>
+<a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a>
+</p>
+</td>
+<td>
+<p>
+Visual Code is an IDE (integrated development environment) that allows you to write, execute, and debug code from within a single program.
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>*Note: there are many <a class="glossary">IDE<span class="def">Integrated Development Environment, a program that allows for writing, running, and debugging code within a single program.</span></a>. Visual Code is a classic one with a lot of functionality, though there are AI enabled ones (e.g.&nbsp;Cursor) that may be more helpful depending on how much programming you plan to do and whether you want to bother with the added complexity (discussed more in <a href="#sec-llm" class="quarto-xref"><span>Section 2.6</span></a>).</p>
+<p>You can also use Quarto for explainable programming in Python - but Jupyter is a more common workflow so we focus on that.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<table class="caption-top table"><tbody>
+<tr class="odd">
+<td>1:</td>
+<td>Get a product key</td>
+<td>if U of U Trainee, contact me</td>
+<td>This verifies you or your institutions’ purchase</td>
+</tr>
+<tr class="even">
+<td>2:</td>
+<td>Install STATA</td>
+<td><a href="https://www.stata.com/install-guide/" class="uri">https://www.stata.com/install-guide/</a></td>
+<td>Includes language and <a class="glossary">IDE<span class="def">Integrated Development Environment, a program that allows for writing, running, and debugging code within a single program.</span></a> (integrated development environment)</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+</section><section id="sec-packages" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="sec-packages">
+<span class="header-section-number">2.3</span> <strong>Packages</strong>
+</h2>
+<p>For common statistical analyses in any of these languages, specialized <em>packages</em> already exist that handle these tasks efficiently. Whenever you find yourself manually calculating or coding a statistical procedure, consider that someone likely has already written reliable, tested code that will perform the analysis faster and more accurately. You’ll want to use these packages whenever possible.</p>
+<p>First, a few terms: <a class="glossary">function<span class="def">A reusable piece of code that performs a specific task. Examples include calculating the mean of a dataset or running logistic regression.</span></a>, <a class="glossary">arguments<span class="def">Inputs provided to a function so it can perform its task. For instance, a function calculating a mean needs a dataset, while logistic regression requires data, the outcome variable, and predictor variables.</span></a>, <a class="glossary">package<span class="def">A curated collection of functions designed to accomplish related tasks. Programming languages come pre-installed with basic packages, but you’ll often download additional packages to access specialized functions. Each language provides straightforward ways to locate and install new packages.</span></a></p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:left;">
+definition
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+arguments
+</td>
+<td style="text-align:left;">
+Inputs provided to a function so it can perform its task. For instance, a function calculating a mean needs a dataset, while logistic regression requires data, the outcome variable, and predictor variables.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+function
+</td>
+<td style="text-align:left;">
+A reusable piece of code that performs a specific task. Examples include calculating the mean of a dataset or running logistic regression.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+package
+</td>
+<td style="text-align:left;">
+A curated collection of functions designed to accomplish related tasks. Programming languages come pre-installed with basic packages, but you’ll often download additional packages to access specialized functions. Each language provides straightforward ways to locate and install new packages.
+</td>
+</tr>
+</tbody>
+</table>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Python</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Stata</a></li>
 </ul>
-<p>Example: Say you want to do a meta-analysis.</p>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<table class="caption-top table">
+<caption>Package Installation and Documentation in R</caption>
+<tbody>
+<tr class="odd">
+<td>Where to find packages?</td>
+<td><a href="https://cran.r-project.org/web/views/" class="uri">https://cran.r-project.org/web/views/</a></td>
+</tr>
+<tr class="even">
+<td>Command to install packages</td>
+<td>
+<code>install.packages(</code>`<code>package_name</code>`<code>)</code>
+</td>
+</tr>
+<tr class="odd">
+<td>How to access documentation file?</td>
+<td>
+<code>?package_name</code> or <code>?command_name</code>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<table style="width:96%;">
+<caption>
+Package Installation and Documentation in Python
+</caption>
+<colgroup>
+<col style="width: 23%">
+<col style="width: 71%">
+</colgroup>
+<tbody>
+<tr>
+<td>
+<p>
+Where to find packages?
+</p>
+</td>
+<td>
+<ol type="1">
+<li>
+<p>
+<a href="https://anaconda.org/conda-forge">https://anaconda.org/conda-forge</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://pypi.org/">https://pypi.org/</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://github.com/topics/python">https://github.com/topics/python</a>
+</p>
+</li>
+</ol>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Command to install packages
+</p>
+</td>
+<td>
+<p>
+<code>mamba install package_name</code> (rarely, packages that have not been compiled on conda-forge will require <code>pip install package_name</code> to be used)
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+How to access documentation file?
+</p>
+</td>
+<td>
+<p>
+The project page on <a href="https://pypi.org/">https://pypi.org/</a> or <a href="https://github.com/">https://github.com/</a>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<table class="caption-top table">
+<caption>Package Installation and Documentation in Stata</caption>
+<tbody>
+<tr class="odd">
+<td>Where to find packages?</td>
+<td><code>findit package_name</code></td>
+</tr>
+<tr class="even">
+<td>Command to install packages</td>
+<td><code>ssc install package_name</code></td>
+</tr>
+<tr class="odd">
+<td>How to access documentation file?</td>
+<td><code>help package_name</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section><section id="sec-reproducible" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="sec-reproducible">
+<span class="header-section-number">2.4</span> Reproducible Research</h2>
+<p>As mentioned before, explainable programming is an important idea for ensuring that the statistical analyses you do can be double checked, replicated, and improved.</p>
+<p>The idea is that the steps that individually</p>
+<p>basic usage - notebooks - reproducible research pipelines.</p>
+</section><section id="an-example-meta-analyzing-the-effect-of-steroids-in-cap" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="an-example-meta-analyzing-the-effect-of-steroids-in-cap">
+<span class="header-section-number">2.5</span> An Example: meta-analyzing the effect of *** steroids in CAP</h2>
+<p>This example is chosen to demonstrate how to make a reproducible notebook, download a package, and execute the relevant commands.</p>
+<p>Example - simple meta-analysis in all 3 languages? (all default in STATA?)</p>
+<p>install the needed packages (meta, excel spreadsheet import)</p>
+<p>display the data</p>
+<p>meta-analyze</p>
+<p>generate a figure.</p>
 <p>Relevant packages: <a href="https://cran.r-project.org/web/views/MetaAnalysis.html" class="uri">https://cran.r-project.org/web/views/MetaAnalysis.html</a></p>
 <p>The ‘meta’ package looks good. Try using `install.packages(‘meta’)` to install it, then you can you can access the documentation using `?meta`</p>
 <p>Let’s try an example… I extracted data on all of the trials comparing high O2 to low O2 targets and uploaded to github.</p>
@@ -884,15 +1154,10 @@ integer(0)</code></pre>
 </div>
 </div>
 <p>Meaning, we’ve passed futility (at 90% power) for a 10% relative risk reduction a few trials ago. Cool.</p>
-</section></section><section id="reproducible-research" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="reproducible-research">
-<span class="header-section-number">2.2</span> Reproducible Research</h2>
-<ul>
-<li>basic usage - notebooks - reproducible research pipelines.</li>
-</ul></section><section id="vibe-coding-and-related-concepts." class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="vibe-coding-and-related-concepts.">
-<span class="header-section-number">2.3</span> ‘Vibe Coding’ and related concepts.</h2>
-<ul>
-<li>GPT usage.</li>
-</ul>
+</section><section id="sec-llm" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="sec-llm">
+<span class="header-section-number">2.6</span> Large Language Models</h2>
+<p>‘Vibe Coding’ and related concepts. - GPT usage.</p>
+<p>word of caution - do not put Patient Health Information into LLM Chatbots. most the services offer to be your data-analyst… which does work, but is not appropriate for research data. This includes “publically avalilable” databases like MIMIC</p>
 <p><strong>Large Language Models:</strong> Options:</p>
 <ul>
 <li>OpenAI Chat GPT (requires subscription for best performance; custom GPTs)</li>
@@ -918,12 +1183,19 @@ integer(0)</code></pre>
 <figure class="figure"><p><img src="images/IMG_ADC8B4B4AF1D-1.jpeg" class="img-fluid figure-img" width="462"></p>
 <figcaption>The prompt I used to create the above example.</figcaption></figure>
 </div>
-<p><strong>U of U Resources -</strong>&nbsp;</p>
+<p>Next steps:</p>
+<p>How should you version control, store, and share statistical analyses? Github is an excellent resource that is relatively straightforward to use, and I strongly recommend it.</p>
+</section><section id="sec-utah_resources" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="sec-utah_resources">
+<span class="header-section-number">2.7</span> Local Resources</h2>
 <ul>
 <li>One Data Science Hub Workshops: <a href="https://utah-data-science-hub.github.io/education_archived.html" class="uri">https://utah-data-science-hub.github.io/education_archived.html</a> &nbsp;</li>
 <li>Request CTSI help: <a href="https://ctsi.utah.edu/cores-and-services/triad" class="uri">https://ctsi.utah.edu/cores-and-services/triad</a>&nbsp;</li>
 <li>Intuitive Biostatistics by Harvey Motulsky - <a href="https://a.co/d/4NCk2bS" class="uri">https://a.co/d/4NCk2bS</a>&nbsp;</li>
-</ul>
+</ul></section><section id="todo-list" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="todo-list">TODO List:</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># finish examples, and advice about replicable programming. </span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="co"># should I move the definitions to a separate glossary section?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section></main><!-- /main --><script>
