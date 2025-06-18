@@ -429,16 +429,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li><a href="#sec-options" id="toc-sec-options" class="nav-link active" data-scroll-target="#sec-options"><span class="header-section-number">2.1</span> Statistical software options:</a></li>
-  <li><a href="#sec-install" id="toc-sec-install" class="nav-link" data-scroll-target="#sec-install"><span class="header-section-number">2.2</span> How to install</a></li>
-  <li><a href="#sec-packages" id="toc-sec-packages" class="nav-link" data-scroll-target="#sec-packages"><span class="header-section-number">2.3</span> <strong>Packages</strong></a></li>
+  <li>
+<a href="#sec-install" id="toc-sec-install" class="nav-link" data-scroll-target="#sec-install"><span class="header-section-number">2.2</span> How to install</a>
+  <ul class="collapse">
+<li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions"><span class="header-section-number">2.2.1</span> Instructions:</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-packages" id="toc-sec-packages" class="nav-link" data-scroll-target="#sec-packages"><span class="header-section-number">2.3</span> Packages</a>
+  <ul class="collapse">
+<li><a href="#finding-packages" id="toc-finding-packages" class="nav-link" data-scroll-target="#finding-packages"><span class="header-section-number">2.3.1</span> Finding Packages</a></li>
+  </ul>
+</li>
   <li>
 <a href="#sec-reproducible" id="toc-sec-reproducible" class="nav-link" data-scroll-target="#sec-reproducible"><span class="header-section-number">2.4</span> Reproducible Research</a>
   <ul class="collapse">
-<li><a href="#how-to-share-code" id="toc-how-to-share-code" class="nav-link" data-scroll-target="#how-to-share-code"><span class="header-section-number">2.4.1</span> How to share code</a></li>
+<li><a href="#how-to-document-and-share-code" id="toc-how-to-document-and-share-code" class="nav-link" data-scroll-target="#how-to-document-and-share-code"><span class="header-section-number">2.4.1</span> How to document and share code</a></li>
   </ul>
 </li>
-  <li><a href="#reproducible-research" id="toc-reproducible-research" class="nav-link" data-scroll-target="#reproducible-research"><span class="header-section-number">2.5</span> Reproducible Research</a></li>
-  <li><a href="#an-example-meta-analyzing-the-effect-of-corticosteroids-in-cap" id="toc-an-example-meta-analyzing-the-effect-of-corticosteroids-in-cap" class="nav-link" data-scroll-target="#an-example-meta-analyzing-the-effect-of-corticosteroids-in-cap"><span class="header-section-number">2.6</span> An Example: Meta-analyzing the effect of corticosteroids in CAP</a></li>
+  <li><a href="#sec-reproducible" id="toc-sec-reproducible" class="nav-link" data-scroll-target="#sec-reproducible"><span class="header-section-number">2.5</span> Reproducible Research</a></li>
+  <li>
+<a href="#sec-steroids_cap" id="toc-sec-steroids_cap" class="nav-link" data-scroll-target="#sec-steroids_cap"><span class="header-section-number">2.6</span> An Example: Meta-analyzing the effect of corticosteroids in CAP</a>
+  <ul class="collapse">
+<li><a href="#example-code" id="toc-example-code" class="nav-link" data-scroll-target="#example-code"><span class="header-section-number">2.6.1</span> Example Code</a></li>
+  </ul>
+</li>
   <li>
 <a href="#sec-llm" id="toc-sec-llm" class="nav-link" data-scroll-target="#sec-llm"><span class="header-section-number">2.7</span> Large Language Models (LLMs)</a>
   <ul class="collapse">
@@ -537,6 +552,8 @@ Writing analytic code in a clear, structured, and understandable way so that rea
 </table></section><section id="sec-install" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="sec-install">
 <span class="header-section-number">2.2</span> How to install</h2>
 <p>Choose the tab for the language(s) you plan to use:</p>
+<section id="instructions" class="level3" data-number="2.2.1"><h3 data-number="2.2.1" class="anchored" data-anchor-id="instructions">
+<span class="header-section-number">2.2.1</span> Instructions:</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">R</a></li>
@@ -567,12 +584,12 @@ Writing analytic code in a clear, structured, and understandable way so that rea
 </tbody></table>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<table style="width:32%;">
+<table style="width:94%;">
 <colgroup>
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 17%">
+<col style="width: 42%">
+<col style="width: 30%">
 </colgroup>
 <tbody>
 <tr>
@@ -670,9 +687,8 @@ Visual Code is an IDE (integrated development environment) that allows you to wr
 </div>
 </div>
 </div>
-</section><section id="sec-packages" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="sec-packages">
-<span class="header-section-number">2.3</span> <strong>Packages</strong>
-</h2>
+</section></section><section id="sec-packages" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="sec-packages">
+<span class="header-section-number">2.3</span> Packages</h2>
 <p>For common statistical analyses in any of these languages, specialized <em>packages</em> already exist that handle these tasks efficiently. Whenever you find yourself manually calculating or coding a statistical procedure, consider that someone likely has already written reliable, tested code that will perform the analysis faster and more accurately. You’ll want to use these packages whenever possible.</p>
 <p>First, a few terms: <a class="glossary">function<span class="def">A reusable piece of code that performs a specific task. Examples include calculating the mean of a dataset or running logistic regression.</span></a>, <a class="glossary">arguments<span class="def">Inputs provided to a function so it can perform its task. For instance, a function calculating a mean needs a dataset, while logistic regression requires data, the outcome variable, and predictor variables.</span></a>, <a class="glossary">package<span class="def">A curated collection of functions designed to accomplish related tasks. Programming languages come pre-installed with basic packages, but you’ll often download additional packages to access specialized functions. Each language provides straightforward ways to locate and install new packages.</span></a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -711,6 +727,8 @@ A curated collection of functions designed to accomplish related tasks. Programm
 </tr>
 </tbody>
 </table>
+<section id="finding-packages" class="level3" data-number="2.3.1"><h3 data-number="2.3.1" class="anchored" data-anchor-id="finding-packages">
+<span class="header-section-number">2.3.1</span> Finding Packages</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li>
@@ -739,10 +757,10 @@ A curated collection of functions designed to accomplish related tasks. Programm
 </tbody></table>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<table style="width:79%;">
+<table style="width:78%;">
 <colgroup>
 <col style="width: 24%">
-<col style="width: 54%">
+<col style="width: 53%">
 </colgroup>
 <tbody>
 <tr>
@@ -816,13 +834,13 @@ The project page on <a href="https://pypi.org/">https://pypi.org/</a> or <a href
 </div>
 </div>
 </div>
-</section><section id="sec-reproducible" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="sec-reproducible">
+</section></section><section id="sec-reproducible" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="sec-reproducible">
 <span class="header-section-number">2.4</span> Reproducible Research</h2>
 <p>As mentioned before, <a class="glossary">Explainable programming<span class="def">Writing analytic code in a clear, structured, and understandable way so that readers (including reviewers, collaborators, and future researchers) can easily follow and replicate the steps of your analysis. In quantitative disciplines such as mathematics and computer science, providing such code is already standard practice. Medicine is beginning to adopt this approach, recognizing its importance for transparency and reproducibility.</span></a> is an increasingly important idea because programming errors frequently lead to erroneous research results. Understandable analytic code is important for co-authors to understand and verify what you’ve done, as well as facilitating replication and improvements.</p>
 <p>Importantly (and, as will be discussed in <a href="data.html" class="quarto-xref"><span>Chapter 3</span></a>), it’s not just the statistical design choices that can have an influence on the observed outcomes. Researchers must decide what data should be included, how the data should be cleaned, whether missing values will be imputed (and if so, how). All this occurs before talk of statistical tests, regressions, or presentation occur.</p>
 <p>By some estimates, variation in how these pre-processing tasks are done accounts for more variability in findings than the design choices most readers focus on. Accordingly, the data processing code that is shared should include the entire process, from data cleaning to figure generation.</p>
-<section id="how-to-share-code" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="how-to-share-code">
-<span class="header-section-number">2.4.1</span> How to share code</h3>
+<section id="how-to-document-and-share-code" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="how-to-document-and-share-code">
+<span class="header-section-number">2.4.1</span> How to document and share code</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li>
@@ -1075,11 +1093,11 @@ Tip
 </div>
 </div>
 </div>
-</section></section><section id="reproducible-research" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="reproducible-research">
+</section></section><section id="sec-reproducible" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="sec-reproducible">
 <span class="header-section-number">2.5</span> Reproducible Research</h2>
 <p>From a perspective of scientific rigor, sharing should also include the individual patient data to allow researchers to directly replicate or modify the reported analyses. However, despite research participant support for data sharing, privacy concerns and research ethics concerns generally do not permit the sharing of data, even if it has been pseudonomized. This is an active space where “ideal” and “actual” are far apart… but the current takeaway is that individual patient data should not ben shared unless that was explicitly part of the IRB authorization.</p>
 <p>Further reading (R focus): <a href="https://raps-with-r.dev/intro.html" class="uri">https://raps-with-r.dev/intro.html</a></p>
-</section><section id="an-example-meta-analyzing-the-effect-of-corticosteroids-in-cap" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="an-example-meta-analyzing-the-effect-of-corticosteroids-in-cap">
+</section><section id="sec-steroids_cap" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="sec-steroids_cap">
 <span class="header-section-number">2.6</span> An Example: Meta-analyzing the effect of corticosteroids in CAP</h2>
 <p>Let’s use meta-analysis as a quick example of how to put this all into action.</p>
 <p>A meta-analysis typically accompanies a systematic review to comprehensively capture relevant studies on a question. Systematic reviews are complex, so we’ll skip the details here. Instead, we’ll perform a meta-analysis using a prepared spreadsheet of all known steroids-for-CAP studies (let me know if any studies are missing).</p>
@@ -1276,6 +1294,8 @@ Tip
 </div>
 </div>
 <p>Now, we’ll cover how you’d meta-analyze these studies in each language as an exercise:</p>
+<section id="example-code" class="level3" data-number="2.6.1"><h3 data-number="2.6.1" class="anchored" data-anchor-id="example-code">
+<span class="header-section-number">2.6.1</span> Example Code</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">R</a></li>
@@ -1558,7 +1578,7 @@ random effect wls  0.785   0.146   0.590   1.045    NaN  1.000</code></pre>
 </div>
 </div>
 </div>
-</section><section id="sec-llm" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="sec-llm">
+</section></section><section id="sec-llm" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="sec-llm">
 <span class="header-section-number">2.7</span> Large Language Models (LLMs)</h2>
 <p>Randomized trials (!) show the professional coders are more productive when using LLMs to assist with code. Novices see larger relative gains because LLMs supply boiler-plate, interface syntax, and “first drafts” of code.</p>
 <p>However, LLMs can hallucinate. They can also be tricky to use. Here’s some guidance that holds for any of the frontier company models (OpenAI: chatGPT, Anthropic Claude, Google Gemini)</p>

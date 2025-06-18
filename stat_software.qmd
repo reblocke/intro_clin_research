@@ -47,6 +47,8 @@ There are a few other language options (SPSS, SAS, Julia, etc.), but they are om
 
 Choose the tab for the language(s) you plan to use:
 
+### Instructions:
+
 ::: panel-tabset
 ## R
 
@@ -58,12 +60,12 @@ Choose the tab for the language(s) you plan to use:
 
 ## Python
 
-<table style="width:32%;">
+<table style="width:94%;">
 <colgroup>
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
+<col style="width: 3%" />
+<col style="width: 17%" />
+<col style="width: 42%" />
+<col style="width: 30%" />
 </colgroup>
 <tbody>
 <tr>
@@ -101,7 +103,7 @@ You can also use Quarto for explainable programming in Python - but Jupyter is a
 | 2: | Install STATA | <https://www.stata.com/install-guide/> | Includes language and `r glossary("IDE")` (integrated development environment) |
 :::
 
-## **Packages** {#sec-packages}
+## Packages {#sec-packages}
 
 For common statistical analyses in any of these languages, specialized *packages* already exist that handle these tasks efficiently. Whenever you find yourself manually calculating or coding a statistical procedure, consider that someone likely has already written reliable, tested code that will perform the analysis faster and more accurately. You'll want to use these packages whenever possible.
 
@@ -111,21 +113,23 @@ First, a few terms: `r glossary("function")`, `r glossary("arguments")`, `r glos
 
 `r glossary_table()`
 
+### Finding Packages
+
 ::: panel-tabset
 ## R
 
 |  |  |
-|-----------------------------|-------------------------------------------|
+|---------------------------|------------------------------|
 | Where to find packages? | <https://cran.r-project.org/web/views/> |
 | Command to install packages | `install.packages(`\``package_name`\``)` |
 | How to access documentation file? | `?package_name` or `?command_name` |
 
 ## Python
 
-<table style="width:79%;">
+<table style="width:78%;">
 <colgroup>
 <col style="width: 24%" />
-<col style="width: 54%" />
+<col style="width: 53%" />
 </colgroup>
 <tbody>
 <tr>
@@ -164,7 +168,7 @@ Importantly (and, as will be discussed in @sec-data), it's not just the statisti
 
 By some estimates, variation in how these pre-processing tasks are done accounts for more variability in findings than the design choices most readers focus on. Accordingly, the data processing code that is shared should include the entire process, from data cleaning to figure generation.
 
-### How to share code
+### How to document and share code 
 
 ::::::::: panel-tabset
 ## R
@@ -355,13 +359,13 @@ As an exercise, see if you can create your own Stata do file, and extend the ana
 :::
 :::::::::
 
-## Reproducible Research
+## Reproducible Research {#sec-reproducible}
 
 From a perspective of scientific rigor, sharing should also include the individual patient data to allow researchers to directly replicate or modify the reported analyses. However, despite research participant support for data sharing, privacy concerns and research ethics concerns generally do not permit the sharing of data, even if it has been pseudonomized. This is an active space where "ideal" and "actual" are far apart... but the current takeaway is that individual patient data should not ben shared unless that was explicitly part of the IRB authorization.
 
 Further reading (R focus): <https://raps-with-r.dev/intro.html>
 
-## An Example: Meta-analyzing the effect of corticosteroids in CAP
+## An Example: Meta-analyzing the effect of corticosteroids in CAP {#sec-steroids_cap}
 
 Let's use meta-analysis as a quick example of how to put this all into action.
 
@@ -389,6 +393,8 @@ kable(steroids_pna, caption = "Steroids PNa meta-analysis data")
 ```
 
 Now, we'll cover how you'd meta-analyze these studies in each language as an exercise:
+
+### Example Code
 
 ::: panel-tabset
 ## R
