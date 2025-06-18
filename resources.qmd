@@ -5,10 +5,11 @@ source("R/booktem_setup.R")
 source("R/my_setup.R")
 ```
 
-Here are some other helpful resources:
+::: callout-important
+**This section is still under construction**
+:::
 
--   [ ] todo: compile and sort these.
-
+Here are some other helpful resources that still need to be organized and triaged. 
 
 ## Statiatical Programming: 
 
@@ -17,9 +18,6 @@ University of Utah Resource https://uofudelphi-r-23-08-21.netlify.app/
 More in depth resource/book https://r4ds.hadley.nz/
 and slightly more advanced: https://rap4mads.eu/03-functional-programming.html
 style guide for how to name things https://style.tidyverse.org/syntax.html
-
-
-
 
 
 ## Project Management
@@ -33,22 +31,20 @@ style guide for how to name things https://style.tidyverse.org/syntax.html
 
 ## Take your knowledge to the next level
 
-Advanced topics: 
+Advanced topic list: 
 
 Boostrap
-Survival Analysis 
-Multiple testing
+Survival Analysis / competing events? 
+Multiple testing /FWER
 EM algorithm???
-Random effects models (?multi-level models)
-General linear models
+Random effects models / GEEs
+General linear model
 Propensity Score methods
-Generalized estimating equiations
-
-
-
 
 ### Bayesian Analysis: 
 
-
-
 Bayes factors - https://statsedge.org/shiny/LearnBF/ 
+
+### Machine Learning
+
+todo

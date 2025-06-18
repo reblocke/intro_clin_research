@@ -5,7 +5,15 @@ source("R/booktem_setup.R")
 source("R/my_setup.R")
 ```
 
-The goal of this section is to build an intuition for what statistical tests accomplish, and what the assumptions are. (A plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend.)
+::: callout-important
+**This section is still under construction**
+:::
+
+The goal of this section is to build an intuition for what statistical tests accomplish, and what the assumptions are.
+
+::: callout-tip
+A plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommended - <https://a.co/d/4NCk2bS> 
+:::
 
 By the end of this page, you should have an intuitive sense of what a p-value is (and what it is not) and the role that it plays in the argument of a scientific report.
 

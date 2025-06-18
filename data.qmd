@@ -5,11 +5,114 @@ source("R/booktem_setup.R")
 source("R/my_setup.R")
 ```
 
+::: callout-important
+**This section is still under construction**
+:::
+
 Yes - this really is that important to deserve its own chapter.
 
-## Getting Data
+## Getting Data {#sec-get_data}
 
-what are some relevant data-sets. \[ \] work in progress
+what are some relevant (to PCCM) data-sets.
+
+Databases compiled by NLM <https://www.datasetcatalog.nlm.nih.gov/index.html> 
+
+The NHLBI Pooled Cohorts Study harmonized spirometry data from nine U.S. population-based cohorts: 9 Prospective US Cohorts from NHLBI  includig spirometry:  (from Am J Epidemiol. 2018;187(11):2265–2278 )
+
+https://academic-oup-com.ezproxy.lib.utah.edu/aje/article/187/11/2265/5047150
+
+ARIC, Atherosclerosis Risk in Communities
+
+CARDIA, Coronary Artery Risk Development in Young Adults
+
+CHS, Cardiovascular Health Study; 
+
+FHS-O, Framingham Heart Study—Offspring Cohort
+
+HABC, Health, Aging and Body Composition
+
+HCHS/SOL, Hispanic Community Health Study/Study of Latinos
+
+JHS, Jackson Heart Study
+
+MESA, Multi-Ethnic Study of Atherosclerosis; 
+
+SHS, Strong Heart Study.
+
+Spiromics
+
+COPDGene
+
+TriNetX
+
+Pinc AI Healthcare
+
+Sleep: [Sleepdata.org](http://Sleepdata.org)
+
+NCHS: National Center for Health Statistics Datasets:: https://www.cdc.gov/nchs/nhis/nhis_questionnaires.htm
+
+https://nhis.ipums.org/nhis/aboutIPUMSNHIS.shtml   \<— documentation for the NCHS datasets, and an integration of several years with weightings. 
+
+Reference for sampling designs - <https://stats.oarc.ucla.edu/other/mult-pkg/faq/faq-choosing-the-correct-analysis-for-various-survey-designs/>  ; <https://stats.oarc.ucla.edu/stata/seminars/survey-data-analysis-in-stata-17/> 
+
+\
+
+NHIS—list of variables pertinent to respiratory health: <https://nhis.ipums.org/nhis/userNotes_HP2020.shtml#group14> 
+
+— can be linked with the National Death Index
+
+National Inpatient Sample Data elements: https://hcup-us.ahrq.gov/db/nation/nis/nisdde.jsp
+
+NHANES
+
+MIMIC - III/IV 
+
+EICU - <https://www.nature.com/articles/sdata2018178> 
+
+SicDB - <https://link.springer.com/article/10.1007/s00134-023-07046-3> Salzburg “SICdb (1.0.4) contains 27,386 admissions from 4 different intensive care units (ICUs) at 1 single tertiary care institution of the Department of Anesthesiology and Intensive Care Medicine at the Salzburger Landesklinik (SALK) and Paracelsus Medical University (PMU) between 2013 and 2021.” 1-per-minute. <https://www.sicdb.com/> 
+
+—-\> comment on anonymization https://link.springer.com/article/10.1007/s00134-023-07153-1 
+
+| **Database** | **Features** | **Link** |
+|----|----|----|
+| MIMIC III | EHR, notes, high-frequency physiology; ICU | <https://physionet.org/content/mimiciii/1.4/> |
+| MIMIC IV | EHR, notes, high-frequency physiology, electrocardiograms, radiologic images, EEG, echocardiograms; Emergency department, hospital, ICU | <https://physionet.org/content/mimiciv/2.2/> |
+| eICU | EHR; ICU | <https://physionet.org/content/eicu-crd/2.0/> |
+| AmsterdamUMCdb | EHR; ICU | <https://amsterdammedicaldatascience.nl/amsterdamumcdb/> |
+| HiRID | EHR, high-frequency physiology; ICU; COVID-19 focused | <https://physionet.org/content/hirid/1.1.1/> |
+| SICdb | EHR; high-frequency physiology; ICU | <https://physionet.org/content/sicdb/1.06/> |
+| Zhejiang | EHR; ICU | <https://physionet.org/content/zhejiang-ehr-critical-care/1.0/> |
+| Pediatric Intensive Care | EHR; ICU | <https://physionet.org/content/picdb/1.1.0/> |
+
+UPDB \*\*\*
+
+NHLBI BioData Catalyst - <https://academic-oup-com.ezproxy.lib.utah.edu/jamia/article/30/7/1293/7165700?utm_source=etoc&utm_campaign=jamia&utm_medium=email&nbd=41184264570&nbd_source=campaigner> - includes TOPmed, COVID data-sets. Idea = a place for researchers to store these resources
+
+EDW. 
+
+Research Networks: (get Limited dataset) 
+
+-PCORNET (can access broad network) - need to submit an IRB to them. Dr. Hess is local contact
+
+-ACT (smaller version of PCORNET)
+
+-Clinithink
+
+-TriNetX
+
+-Epic Cosmos
+
+Data Science Services (since \~2016) - handles query with research.
+
+-   Services prioritized if they involve a grant or a grant application (4h, or requires seed function). Also can be prioritized as short queue (4-5 hours or less).
+
+-   
+
+    ```         
+      In the future, there will be a merit reward to prioritize your project. 
+    ```
+
+## Formatting {#sec-formatting}
 
 Step 0: Save yourself a headache and collect your data in a processable format [https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in](https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in?utm_campaign=post&utm_medium=web) 
 
@@ -19,15 +122,13 @@ Step 0: Save yourself a headache and collect your data in a processable format [
 -   Each column contains only 1 type of data (more below)
 -   No free text (if you need to, categorize responses)
 
-## Formatting
-
 Clean tabular format etc.
 
 Use excel like a boss, if you're going to: More excel data https://cghlewis.com/blog/excel_entry/
 
 Flat files: Flat files: https://evidence.dev/blog/what-is-a-flat-file?utm_campaign=Data_Elixir&utm_source=Data_Elixir_526
 
-## Data types
+## Primer on Data types {#sec-data_types}
 
 **Step 2: For each data element, consider the data type**
 

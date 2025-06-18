@@ -9,13 +9,15 @@ knitr::opts_chunk$set(echo = FALSE)
 #style_widgets(incorrect = "goldenrod", correct = "purple", highlight = "firebrick")
 ```
 
-This is a Web Exercise template created by the [psychology teaching team at the University of Glasgow](http://www.psy.gla.ac.uk), based on ideas from [Software Carpentry](https://software-carpentry.org/lessons/). This template shows how instructors can easily create interactive web documents that students can use in self-guided learning.
+::: callout-important
+**I HAVEN"T EVEN STARTED THIS SECTION YET: NOTHING TO SEE HERE.**
+:::
 
-The `{webexercises}` package provides a number of functions that you use in [inline R code](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf) or through code chunk options to create HTML widgets (text boxes, pull down menus, buttons that reveal hidden content). Examples are given below. Render this file to HTML to see how it works.
+This template shows how instructors can easily create interactive web documents that students can use in self-guided learning. The `{webexercises}` package provides a number of functions that you use in [inline R code](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf) or through code chunk options to create HTML widgets (text boxes, pull down menus, buttons that reveal hidden content). Examples are given below. Render this file to HTML to see how it works.
 
 **NOTE: To use the widgets in the compiled HTML file, you need to have a JavaScript-enabled browser.**
 
-## Example Questions
+## Example Question types
 
 ### Fill-In-The-Blanks (`fitb()`)
 
@@ -104,8 +106,6 @@ cat("What is a p-value?", longmcq(opts))
 ```
 
 :::
-
-
 
 ## Hidden solutions and hints
 

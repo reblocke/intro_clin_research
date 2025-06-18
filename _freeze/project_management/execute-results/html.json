@@ -1,8 +1,8 @@
 {
-  "hash": "f23e17b9fda67eb410af063a2250574f",
+  "hash": "90f7a03e54441c4523fc31153daa27e1",
   "result": {
     "engine": "knitr",
-    "markdown": "# Getting your project done {#sec-project_management}\n\n\n\nIn this section, we'll discuss how to actually make the research happen: what should your workflow be, what are some hints for how to do things quickly and robustly. \n\n\nWorkflow....\n\n## Key Figures\n\nStart by making your key figures. \n",
+    "markdown": "# Getting your project done {#sec-project_management}\n\n\n\n::: callout-important\n**This section is still under construction**\n:::\n\nIn this section, we'll discuss how to actually make the research happen: what should your workflow be, what are some hints for how to do things quickly and robustly. \n\n\nWorkflow....\n\n## Key Figures\n\nStart by making your key figures. \n",
     "supporting": [
       "project_management_files"
     ],

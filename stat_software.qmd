@@ -3,6 +3,23 @@
 ```{r, include = FALSE}
 source("R/booktem_setup.R")
 source("R/my_setup.R")
+
+library(reticulate)
+ENV <- "r-reticulate"                         # change if py_config() says otherwise
+
+# point reticulate at the env *before* Python spins up
+use_condaenv(ENV, required = TRUE)
+
+if (!py_module_available("matplotlib")) {
+  message("Installing matplotlib (and numpy) into '", ENV, "' …")
+  conda_install(envname = ENV,
+                packages = c("matplotlib", "numpy"),
+                pip      = FALSE)
+
+  message("Restarting embedded Python …")
+  py_restart_session()                        # <- works in v1.42+
+}
+
 ```
 
 In the past, researchers had to manually code their own statistical analyses, which was tedious and error-prone. Today, statistical software simplifies this process dramatically. Researchers shift their focus from the technical complexities of computation to understanding statistical logic and applying analyses correctly.
@@ -14,7 +31,7 @@ This section offers guidance on selecting appropriate statistical programming la
 R, Python, and Stata are the 3 most commonly used languages.
 
 |  |  |  |  |
-|-----------------|-----------------|-----------------|--------------------|
+|------------------|------------------|------------------|-------------------|
 |  | **R** | **Python** | **Stata** |
 | **Cost** | Free | Free | Requires License |
 | **IDE** | RStudio/Posit | Many, Visual Code is good | Built in editor |
@@ -34,33 +51,33 @@ Choose the tab for the language(s) you plan to use:
 ## R
 
 |  |  |  |  |
-|----------------|----------------|----------------|------------------------|
+|------------------|------------------|------------------|-------------------|
 | 1: | Install R Language | <https://cran.r-project.org/> | This installs the base programming language |
 | 2: | Install RStudio | <https://posit.co/downloads/> | RStudio is an `r glossary("IDE")` (integrated development environment) that allows you to write, execute, and debug code from within a single program. |
 | 3: | Install Quarto (formerly Markdown) | <https://quarto.org/docs/get-started/> | Facilitates sharing and explaining your code. |
 
 ## Python
 
-<table style="width:95%;">
+<table style="width:32%;">
 <colgroup>
-<col style="width: 4%" />
-<col style="width: 25%" />
-<col style="width: 32%" />
-<col style="width: 31%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
 </colgroup>
 <tbody>
 <tr>
-<td><p>1: </p></td>
+<td><p>1:</p></td>
 <td><p>Install Python Language and dependencies</p></td>
-<td><p><a href="https://github.com/conda-forge/miniforge?tab=readme-ov-file" class="uri">https://github.com/conda-forge/miniforge?tab=readme-ov-file</a></p></td>
+<td><p><a href="https://github.com/conda-forge/miniforge?tab=readme-ov-file">https://github.com/conda-forge/miniforge?tab=readme-ov-file</a></p></td>
 <td><p>This (mini-forge) installs the base Python programming language, the things it depends on, and many useful packages</p></td>
 </tr>
 <tr>
 <td><p>2:</p></td>
 <td><p>Create an environment</p></td>
-<td><p>Execute the following commands in a terminal: </p>
+<td><p>Execute the following commands in a terminal:</p>
 <p><code>mamba create -n stats python=3.12 numpy pandas scipy statsmodels scikit-learn lifelines pingouinmatplotlib seaborn plotnine pyreadstatjupyterlab ipykernel jupytext --channel conda-forge</code></p>
-<p><code>conda activate stats</code> </p></td>
+<p><code>conda activate stats</code></p></td>
 <td><p>This sets up an environment (controls the versions and packages that are used).</p></td>
 </tr>
 <tr>
@@ -79,7 +96,7 @@ You can also use Quarto for explainable programming in Python - but Jupyter is a
 ## Stata
 
 |  |  |  |  |
-|-----------------|-----------------|-----------------|---------------------|
+|------------------|------------------|------------------|-------------------|
 | 1: | Get a product key | if U of U Trainee, contact me | This verifies you or your institutions' purchase |
 | 2: | Install STATA | <https://www.stata.com/install-guide/> | Includes language and `r glossary("IDE")` (integrated development environment) |
 :::
@@ -98,20 +115,17 @@ First, a few terms: `r glossary("function")`, `r glossary("arguments")`, `r glos
 ## R
 
 |  |  |
-|--------------------------|---------------------------------------|
+|-----------------------------|-------------------------------------------|
 | Where to find packages? | <https://cran.r-project.org/web/views/> |
 | Command to install packages | `install.packages(`\``package_name`\``)` |
 | How to access documentation file? | `?package_name` or `?command_name` |
 
-: Package Installation and Documentation in R
-
 ## Python
 
-<table style="width:99%;">
-<caption>Package Installation and Documentation in Python</caption>
+<table style="width:79%;">
 <colgroup>
-<col style="width: 27%" />
-<col style="width: 71%" />
+<col style="width: 24%" />
+<col style="width: 54%" />
 </colgroup>
 <tbody>
 <tr>
@@ -140,56 +154,78 @@ First, a few terms: `r glossary("function")`, `r glossary("arguments")`, `r glos
 | Where to find packages?           | `findit package_name`      |
 | Command to install packages       | `ssc install package_name` |
 | How to access documentation file? | `help package_name`        |
-
-: Package Installation and Documentation in Stata
 :::
 
 ## Reproducible Research {#sec-reproducible}
 
 As mentioned before, `r glossary("Explainable programming")` is an increasingly important idea because programming errors frequently lead to erroneous research results. Understandable analytic code is important for co-authors to understand and verify what you've done, as well as facilitating replication and improvements.
 
-Importantly (and, as will be discussed in @sec-data), it's not just the statistical design choices that can have an influence on the observed outcomes. Researchers must decide what data should be included, how the data should be cleaned, whether missing values will be imputed (and if so, how). All this occurs before talk of statistical tests, regressions, or presentation occur. By some estimates, variation in how these pre-processing tasks are done accounts for more variability in findings than the design choices most readers focus on. Accordingly, the data processing code that is shared should include the entire process, from data cleaning to figure generation.
+Importantly (and, as will be discussed in @sec-data), it's not just the statistical design choices that can have an influence on the observed outcomes. Researchers must decide what data should be included, how the data should be cleaned, whether missing values will be imputed (and if so, how). All this occurs before talk of statistical tests, regressions, or presentation occur.
+
+By some estimates, variation in how these pre-processing tasks are done accounts for more variability in findings than the design choices most readers focus on. Accordingly, the data processing code that is shared should include the entire process, from data cleaning to figure generation.
 
 ### How to share code
 
-::: panel-tabset
+::::::::: panel-tabset
 ## R
 
 In R, the easiest way to put together understandable and sharable code is to use Quarto documents (this website is actually is generated in Quarto).
 
 Quarto creates notebooks that include segments that can contain text and pictures with other sections that contain executable R code. The segments containing R code can be executed in subsequent order - variables are shared between the boxes - thus allowing a long analytic pipeline to be broken up into small understandable chunks.
 
-To create a new Quarto notebook, go to File-\>New-\>Quarto Document (\*.qmd). Leave all the options in their default.
+::: callout-tip
+To create a new Quarto notebook, go to File-\>New-\>Quarto Document (\*.qmd). Leave all the options in their default. **Try it to make the below notebook.**
+:::
 
 For example, a hypothetical analysis might go something like:
 
-#### Example Simulation of Coin Flips: 
+#### Example Simulation of Coin Flips:
 
 Our aim is to simulate the number of heads seen if a coin is flipped 50 times.
 
 First, we create a function that simulates a fair coin flip: 50% probability heads (coded as 1), 50% probability of tails (coded as 0)
 
 ```{r}
-# r code to simulate 
+## one fair-coin flip: 1 = Heads, 0 = Tails
+flip_coin <- function(n = 1) {
+  sample(c(0, 1), size = n, replace = TRUE)
+}
 ```
 
 Then, we write a program that repesents a single simulation: the coin is flipped 50 times
 
 ```{r}
-# r code to do 50 trials
+## run one experiment of 50 flips and return #Heads
+simulate_50 <- function() {
+  sum(flip_coin(50))
+}
+
+## quick demo
+set.seed(42)   # reproducible example
+simulate_50()
 ```
 
 Then, we perform 1000 simulations and store the results in an array, which we then present summary statistics on.
 
 ```{r}
-# r code for running 1000 simulations and displaying summary statistics. 
+set.seed(42)                       # reproducible simulations
+n_sims  <- 1000                    # how many experiments?
+results <- replicate(n_sims, simulate_50())
+
+summary(results)                   # five-number summary
+hist(results,
+     breaks = 20,
+     main   = "Distribution of heads in 1 000 × 50-flip experiments",
+     xlab   = "Number of heads") 
 ```
 
 #### Nuts and Bolts
 
 Obviously, this example is a bit contrived, but is meant to show how the text and code can be interleaved to make the resulting output easy to understand. This quarto file can then be shared with collaborators (or posted on a code sharing site, such as github - provided none of the protected health information is hard coded into the text.
 
+::: callout-tip
 As an exercise, see if you can create your own Quarto markdown file, and extend the analysis to generate the interquartile range for the mean number of Heads in 50 flips.
+:::
 
 ## Python
 
@@ -197,7 +233,9 @@ In Python, the easiest way to put together understandable and sharable code is t
 
 Jupyter (like Quarto) creates notebooks that include segments that can contain text and pictures with other sections that contain executable Python code. The segments containing Python code can be executed in subsequent order - variables are shared between the boxes - thus allowing a long analytic pipeline to be broken up into small understandable chunks.
 
-To make a new Jupyter notebook, go to File -\> New Jupyter Notebook (\*.ipynb).
+::: callout-tip
+To create a new Jupyter notebook, go to File -\> New Jupyter Notebook (\*.ipynb). **Try it to make the below notebook.**
+:::
 
 For example, a hypothetical analysis might go something like:
 
@@ -208,31 +246,114 @@ Our aim is to simulate the number of heads seen if a coin is flipped 50 times.
 First, we create a function that simulates a fair coin flip: 50% probability heads (coded as 1), 50% probability of tails (coded as 0)
 
 ```{python}
-#python code
+import random
+
+def flip_coin(n: int = 1) -> list[int]:
+    """Return a list of 0 / 1 draws; 1 = heads, 0 = tails."""
+    return random.choices([0, 1], k=n)
 ```
 
 Then, we write a program that repesents a single simulation: the coin is flipped 50 times
 
 ```{python}
-#python code
+def simulate_50() -> int:
+    """Flip a coin 50 × and return the number of heads."""
+    return sum(flip_coin(50))
+
+random.seed(42)          # reproducible example
+simulate_50()
 ```
 
 Then, we perform 1000 simulations and store the results in an array, which we then present summary statistics on.
 
 ```{python}
-#python code
+import numpy as np
+import matplotlib.pyplot as plt
+
+random.seed(42)
+
+n_sims  = 1000
+results = [simulate_50() for _ in range(n_sims)]
+
+# summary statistics
+print(f"min  : {min(results)}")
+print(f"max  : {max(results)}")
+print(f"mean : {np.mean(results):.2f}")
+print(f"sd   : {np.std(results, ddof=1):.2f}")
+
+# visualise
+plt.hist(results, bins=20, edgecolor="black")
+plt.title("Heads in 1 000 × 50-flip experiments")
+plt.xlabel("Number of heads")
+plt.ylabel("Frequency")
+plt.show()
 ```
+
+#### Nuts and Bolts
+
+Obviously, this example is a bit contrived, but is meant to show how the text and code can be interleaved to make the resulting output easy to understand. This Jupyter notebook can then be shared with collaborators (or posted on a code sharing site, such as github - provided none of the protected health information is hard coded into the text.
+
+::: callout-tip
+As an exercise, see if you can create your own Jupyter notebook file, and extend the analysis to generate the interquartile range for the mean number of Heads in 50 flips.
+:::
 
 ## Stata
 
-|                                   |                            |
-|-----------------------------------|----------------------------|
-| Where to find packages?           | `findit package_name`      |
-| Command to install packages       | `ssc install package_name` |
-| How to access documentation file? | `help package_name`        |
+Stata does not have a native notebook-style way to share code, but instead you have \*.do files that contain a script of the relevant commands, and you can add comments using either \# , \*, or //\* \*//\*
 
-: Package Installation and Documentation in Stata
+::: callout-tip
+To create a new STATA do file, go to File -\> New -\> Do File (\*.do). **Try it to make the below script.**
 :::
+
+Stata Code: \*.do files dont have an easy way to execute within the web page, so you'll have to run the below script on your own machine to see the output.
+
+``` stata
+*-----------------------------------------------------*
+* 1.  Set the number of simulations                  *
+*-----------------------------------------------------*
+local nsims   = 1000      // how many experiments?
+local nflips  = 50        // flips per experiment
+
+set obs `nsims'           // create `nsims' empty observations
+
+* Optional: reproducibility
+set seed 42
+
+*-----------------------------------------------------*
+* 2.  Simulate 50 fair-coin flips for each experiment *
+*     A "head" is coded 1 when runiform() < .5        *
+*-----------------------------------------------------*
+forvalues j = 1/`nflips' {
+    generate byte flip`j' = runiform() < .5
+}
+
+*-----------------------------------------------------*
+* 3.  Count heads in each experiment                  *
+*-----------------------------------------------------*
+egen heads = rowtotal(flip1-flip`nflips')
+
+*-----------------------------------------------------*
+* 4.  Inspect the sampling distribution               *
+*-----------------------------------------------------*
+summarize heads
+
+histogram heads , ///
+    width(1) start(0.5)          /// each bin spans one integer count
+    title("Heads in `nsims' × `nflips'-flip experiments") ///
+    xlabel(0(5)50)               /// tick every 5 heads; adjust as desired
+    ylabel(, angle(horizontal))
+```
+
+![](images/clipboard-1761817781.png)
+
+#### Nuts and Bolts
+
+Obviously, this example is a bit contrived, but is meant to show how the text in comments and code can be interleaved to make the resulting output easy to understand. This do file can then be shared with collaborators (or posted on a code sharing site, such as github - provided none of the protected health information is hard coded into the text.
+
+::: callout-tip
+As an exercise, see if you can create your own Stata do file, and extend the analysis to generate the interquartile range for the mean number of Heads in 50 flips.
+:::
+:::::::::
 
 ## Reproducible Research
 
@@ -240,134 +361,301 @@ From a perspective of scientific rigor, sharing should also include the individu
 
 Further reading (R focus): <https://raps-with-r.dev/intro.html>
 
-## An Example: meta-analyzing the effect of \*\*\* steroids in CAP
+## An Example: Meta-analyzing the effect of corticosteroids in CAP
 
-Here's an
+Let's use meta-analysis as a quick example of how to put this all into action.
 
-This example is chosen to demonstrate how to make a reproducible notebook, download a package, and execute the relevant commands.
+A meta-analysis typically accompanies a systematic review to comprehensively capture relevant studies on a question. Systematic reviews are complex, so we’ll skip the details here. Instead, we’ll perform a meta-analysis using a prepared spreadsheet of all known steroids-for-CAP studies (let me know if any studies are missing).
 
-Example - simple meta-analysis in all 3 languages? (all default in STATA?)
+Download the data here: [Steroid CAP Trials Spreadsheet](https://github.com/reblocke/statistics_sandbox/blob/1b87fb4e65da11a7f9541ea9c7f93b7e3947a13a/Steroids%20PNa/Steroids%20PNa%20MA.xls)
 
-install the needed packages (meta, excel spreadsheet import)
+```{r, include=FALSE}
+# ---- setup: read Steroids PNa meta-analysis data ---------------------------
 
-display the data
+library(readxl)      # tidy way to read .xls/.xlsx
+library(knitr)       # for kable() later
 
-meta-analyze
+url  <- "https://raw.githubusercontent.com/reblocke/statistics_sandbox/1b87fb4e65da11a7f9541ea9c7f93b7e3947a13a/Steroids%20PNa/Steroids%20PNa%20MA.xls"
 
-generate a figure.
+tmpfile <- tempfile(fileext = ".xls")   # Quarto render is read-only; use temp
+download.file(url, tmpfile, mode = "wb")
 
-Relevant packages: <https://cran.r-project.org/web/views/MetaAnalysis.html>
+steroids_pna <- read_xls(tmpfile, sheet = 1)
+```
+
+```{r}
+# ---- display the table ------------------------------------------------------
+kable(steroids_pna, caption = "Steroids PNa meta-analysis data")
+```
+
+Now, we'll cover how you'd meta-analyze these studies in each language as an exercise:
+
+::: panel-tabset
+## R
+
+In R, here's the steps needed to perform the meta-analysis:
+
+First, set your working directory to wherever you downloaded the file. Then, we'll need to make sure we have the right package to read in the spreadsheet
+
+We'll need the 'readxl' package to read in the \*.xls file <https://cran.r-project.org/web/packages/readxl/index.html>
+
+Then, we write code to import the spreadsheet with study data
+
+```{r}
+
+library(readxl)                           # install.packages("readxl") if needed
+
+## --- OPTION A – read from a local copy ------------------------------------
+# setwd("~/your_dir")                       # uncomment and edit this line
+# dat <- read_xls("Steroids PNa MA.xls", sheet = "Sheet1") |>
+#        janitor::clean_names()
+
+## --- OPTION B – read directly from the GitHub raw file             ----
+url  <- "https://raw.githubusercontent.com/reblocke/statistics_sandbox/" |>
+        paste0("1b87fb4e65da11a7f9541ea9c7f93b7e3947a13a/",
+                "Steroids%20PNa/Steroids%20PNa%20MA.xls")
+
+tmp  <- tempfile(fileext = ".xls")          # download to a temp file
+download.file(url, tmp, mode = "wb")
+
+dat  <- read_xls(tmp, sheet = "Sheet1") |>
+        janitor::clean_names()                       # lower-case, snake_case
+
+# Inspect the key columns
+dat |>
+  dplyr::select(study, year,
+                int_death, int_alive,
+                pla_death, pla_alive) |>
+  print()
+
+```
+
+Next, we'll need to get a package to do the meta-analysis. Here's a list of relevant packages: <https://cran.r-project.org/web/views/MetaAnalysis.html>
 
 The 'meta' package looks good. Try using \`install.packages('meta')\` to install it, then you can you can access the documentation using \`?meta\`
 
-Let's try an example... I extracted data on all of the trials comparing high O2 to low O2 targets and uploaded to github.
+Now, we'll perform a random-effects meta-analysis (Using DL variance stimator)
 
 ```{r}
-#| echo: false
-library(readxl) # a package to read excel files - try ?readxl
-library(dplyr) # a package to process data. - try ?dplyr
 
-# Define the URL of the Excel file on GitHub
-url <- "https://github.com/reblocke/fellow_stats/raw/main/O2%20icu%20target%20MA.xls"
+library(meta)                             # install.packages("meta")
 
-# Download the file temporarily
-temp_file <- tempfile(fileext = ".xls")
-download.file(url, temp_file, mode = "wb")
+m <- metabin(
+  event.e     = int_death,
+  n.e         = int_death + int_alive,
+  event.c     = pla_death,
+  n.c         = pla_death + pla_alive,
+  studlab     = paste(study, year),
+  data        = dat,
+  sm          = "OR",      # odds ratio
+  method.tau  = "DL",      # <-- DerSimonian–Laird estimator
+  method.random.ci        = FALSE
+)
 
-# Read the Excel file, select columns, and arrange
-data_sheet <- read_excel(temp_file) %>%
-  select(-other_comment) %>%
-  arrange(year)
-
-# Clean up by removing the temporary file
-unlink(temp_file)
 ```
+
+Lastly, we'll need to plot the result as a Forest Plot on a log scale (always log scale with ratio variables)
 
 ```{r}
-head(data_sheet)
-authors <- select(data_sheet, author)
+
+forest(
+  m,
+  comb.fixed  = FALSE,
+  comb.random = TRUE,
+  print.tau2  = FALSE,
+  backtransf  = TRUE,
+  xlab        = "Odds Ratio (death)",
+  leftlabs    = c("Study (year)", "Steroid", "Placebo"),
+  xlog        = TRUE,
+  at          = c(1/32, 1/16, 1/8, 1/4, 1/2, 1, 2, 4, 8, 16, 32),
+  label.e     = "Steroid",
+  label.c     = "Placebo",
+  col.diamond = "navy",
+  overall.lty = 2,
+  ## keep the default right-hand columns
+  # rightcols = FALSE,          # <-- delete this line
+  main        = "Steroids OR for Death, Random-Effects Meta-analysis"
+)
 ```
 
-Now, let's meta-analyze it:
+## Python
 
-```{r}
-library(meta)
+In Python, here's the steps needed to perform the meta-analysis:
 
-#metabin takes events, total (rather than events, nonevents)
-m_ex1 <- meta::metabin(low_o2_died, num_low_o2, high_o2_died, num_high_o2, data = data_sheet, studlab = paste(name, author, year), sm = "OR")
-meta::forest(m_ex1, comb.random = FALSE, lab.c = "High Oxygen", lab.e = "Low Oxygen", label.left = "Favors Low O2", label.right = "Favors High O2")
+First, set your working directory to wherever you downloaded the file. Then, we'll need to make sure we have the right package to read in the spreadsheet
+
+Then, we write code to import the spreadsheet with study data using pandas
+
+```{python, include=FALSE}
+import subprocess, sys, importlib
+
+def ensure(pkg):
+    try:
+        importlib.import_module(pkg)
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
+
+for p in ("pandas", "statsmodels", "matplotlib", "xlrd"):   
+    ensure(p)
 ```
 
-And if you want to get really cutting edge, you can do a trial sequential analysis (TSA) on it:
+```{python}
+import pandas as pd
 
-```{r}
-#| echo: false
-library(RTSA) # A package for performing TSA
-library(tidyverse) # A package that pulls in many data manipulation programs.
+# --- OPTION A: read directly from disk -------------------------------
+# df = pd.read_excel("Steroids PNa MA.xls", sheet_name="Sheet1")
 
-rtsa_df <- data_sheet |> 
-  rename("eI" = high_o2_died, 
-         "eC" = low_o2_died, 
-         "nI" = num_high_o2,
-         "nC" = num_low_o2, 
-         "study" = name)
+# --- OPTION B:  For this demo we fetch the raw file from GitHub (same content as R block)
+url = ("https://raw.githubusercontent.com/reblocke/statistics_sandbox/"
+       "1b87fb4e65da11a7f9541ea9c7f93b7e3947a13a/"
+       "Steroids%20PNa/Steroids%20PNa%20MA.xls")
+df = pd.read_excel(url)           # GitHub serves raw file
 
-map(rtsa_df, class)
-sapply(rtsa_df, function(x) which(is.na(x)))
+# clean column names to snake_case like janitor::clean_names()
+df.columns = (df.columns
+                .str.strip()
+                .str.lower()
+                .str.replace(" ", "_"))
 
-an_rtsa <- RTSA(type="analysis", data =  rtsa_df , outcome = "RR", mc = 0.9, side = 2,  alpha = 0.05, beta = 0.1, es_alpha = "esOF", es_beta = "esOF", futility = "non-binding", random_adj = "D2", D2 = 0.25 )
+# quick sanity check
+df.head(18)
 ```
 
-```{r}
-plot(an_rtsa)
+Next, we'll need to get a package to do the meta-analysis. We'll use the statsmodels (statsmodels.stats.meta_analysis) package https://www.statsmodels.org/dev/examples/notebooks/generated/metaanalysis1.html
+
+Now, we'll perform a random-effects meta-analysis (Using DL variance estimator - which takes some manual preparation work).
+
+```{python}
+import numpy as np
+from statsmodels.stats.meta_analysis import (
+    effectsize_2proportions,    # log-odds-ratio + variance   
+    combine_effects             # pooling with DL            
+)
+
+# --- 2. per-study log(OR) & variance with 0.5 correction --------------------
+a = df["int_death"].to_numpy(dtype=float)
+b = df["int_alive"].to_numpy(dtype=float)
+c = df["pla_death"].to_numpy(dtype=float)
+d = df["pla_alive"].to_numpy(dtype=float)
+
+# continuity correction if any cell is zero in that study
+cc = ((a == 0) | (b == 0) | (c == 0) | (d == 0)).astype(float) * 0.5
+a += cc; b += cc; c += cc; d += cc
+
+log_or = np.log((a * d) / (b * c))
+var_or = 1 / a + 1 / b + 1 / c + 1 / d          # variance of log(OR)
+
+# --- 3. DerSimonian-Laird random-effects pooling ---------------------------
+res = combine_effects(log_or, var_or, method_re="dl")   # DL estimator
+
+print("Current statsmodels version:", importlib.metadata.version("statsmodels"))
+
+sf = res.summary_frame()          # still log-OR
+sf["eff"]    = np.exp(sf["eff"])
+sf["ci_low"] = np.exp(sf["ci_low"])
+sf["ci_upp"] = np.exp(sf["ci_upp"])
+print(sf.round(3))
+
 ```
 
-Meaning, we've passed futility (at 90% power) for a 10% relative risk reduction a few trials ago. Cool.
+Lastly, we'll need to plot the result as a Forest Plot on a log scale (always log scale with ratio variables)
 
-## Large Language Models {#sec-llm}
+```{python}
+import matplotlib.pyplot as plt
 
-'Vibe Coding' and related concepts. - GPT usage.
+# draw the default forest plot (no extra kwargs)
+fig = res.plot_forest(use_exp=True)
 
-word of caution - do not put Patient Health Information into LLM Chatbots. most the services offer to be your data-analyst... which does work, but is not appropriate for research data. This includes "publically avalilable" databases like MIMIC
+# post-process the axis with Matplotlib
+ax = fig.axes[0]          # the single Axes returned by plot_forest
+ax.set_xscale("log")
+ax.set_xlim(0.03125, 32)
+ax.set_xlabel("Odds Ratio (death)")
+ax.set_xticks([1/32, 1/16, 1/8, 1/4, 1/2, 1, 2, 4, 8, 16, 32])
+ax.set_xticklabels(
+    ["1/32", "1/16", "1/8", "1/4", "1/2",
+     "1", "2", "4", "8", "16", "32"]
+)
 
-**Large Language Models:** Options:
+plt.title("Steroids OR for Death, Random-Effects Meta-analysis (DL)")
+plt.tight_layout()
+plt.show()
+```
 
--   OpenAI Chat GPT (requires subscription for best performance; custom GPTs)
--   Github CoPilot (programming specific)
--   Microsoft CoPilot - access to GPT4 = free through University of Utah
+## Stata
 
-Copilot:
+As before, Stata does not have a native notebook-style way to execute code within this webpage, so you'll have to run the below script on your own machine to see the output.
 
--   Visit [bing.com/chat](https://bing.com/chat).
--   Select "sign in with a work or school account" under the Sign in icon in the upper right corner of the page.
--   Enter your unid\@umail.utah.edu and uNID password.
--   Complete Duo two-factor authentication.
--   The conversation is protected when a green shield appears in the upper right corner next to your username. It is critical to verify that the green shield is present for all conversations.
+Here's the steps:
 
-Prompt Engineering:
+``` stata
 
-1.  have the GPT take the persona that you want
-2.  spell out the chain of thougt that you want the GPT to take (either multiple steps in 1 prompt or several prompts building on one another works)
-3.  Give examples or specifications of what you want done. \[this is particularly useful because the documents you give it can form a context and examples\]. 
+*-----------------------------------------------------*
+* 1. Set your_dir to wherever you downloaded the doc  *
+*-----------------------------------------------------*
+cd your_dir
 
-How I used GPT4 creating this workbook:
+*-----------------------------------------------------*
+* 2. Import the Spreadsheet with Study Data           *
+*-----------------------------------------------------*
+clear
+import excel "Steroids PNa MA.xls", sheet("Sheet1") firstrow case(lower)
+list study year int_death int_alive pla_death pla_alive
+label variable study "Study"
 
-![The prompt I used to create the above example.](images/IMG_ADC8B4B4AF1D-1.jpeg){width="462"}
+*-----------------------------------------------------*
+* 3. Meta-analyze the studies using REML              *
+*-----------------------------------------------------*
+meta esize int_death int_alive pla_death pla_alive, random(reml) esize(lnor) studylabel(study year) 
 
-Next steps:
+*-----------------------------------------------------*
+* 4. Create a forest plot with the result             *
+*-----------------------------------------------------*
+meta forestplot, eform  nullrefline(lcolor(gs3)) esrefline(lcolor(gs3) lpattern(dash_dot)) title("Steroids OR for Death, Random-Effects Meta-analysis")  xsize(11) ysize(7) xscale(log range(0.01 64)) xlabel(0.03125 "1/32" 0.0625 "1/16" 0.125 "1/8" 0.25 "1/4" 0.5 "1/2" 1 "1" 2 "2" 4 "4" 8 "8" 16 "16" 32 "32")
+```
 
-How should you version control, store, and share statistical analyses? Github is an excellent resource that is relatively straightforward to use, and I strongly recommend it.
+![](images/clipboard-1219197948.png)
+:::
+
+## Large Language Models (LLMs) {#sec-llm}
+
+Randomized trials (!) show the professional coders are more productive when using LLMs to assist with code. Novices see larger relative gains because LLMs supply boiler-plate, interface syntax, and “first drafts” of code.
+
+However, LLMs can hallucinate. They can also be tricky to use. Here's some guidance that holds for any of the frontier company models (OpenAI: chatGPT, Anthropic Claude, Google Gemini)
+
+### Minimal viable set up:
+
+| Step | Why | Tool |
+|------------------------|------------------------|------------------------|
+| Use your local `r glossary("IDE")` with a plain chat tab or desktop app. | Allows you to (quality)control inputs and outputs - which is harder to do with an integrated IDE (e.g. Cursor) or agentic models. | Built-in browser tab or official desktop app |
+| Do NOT upload data to LLMs | The companies do not have Business Access Agreements with institutions, and this generally violates the consent/IRB authorization of most studies. | Keep data local, only share schemas (descriptions of the variables) or mock data. |
+| Sanity test all LLM-generated code | Hallucinations exist, and often task specifications are subtly wrong | You can writing coding tests (so called "Unit Tests", but should also visualize and consider all code (this is true when not using LLMs) |
+| Give the LLM examples of what you want | LLMs are VERY good at understanding what existing code does - and can often modify much better than create de-novo | Use things like: here's the code that generates this figure - modify it so that title is larger. |
+| Give the LLM specific instructions, often with steps | The more "context" you give the LLM for what you want, the more likely the associations it follows will be relevant | Detailed instructions in the prompt. More on prompt engineering is available here: <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview> |
+
+::: callout-important
+**Never put PHI into a commercial LLM interface**. Not even 'publicly available' data like MIMIC (which has terms of use that forbid this). Most companies market their LLMs as being able to act as data-analysts on your behalf (meaning, you give it the data and it analyzes it for you). Don't do this. [https://pmc.ncbi.nlm.nih.gov/articles/PMC10937180/](https://pmc.ncbi.nlm.nih.gov/articles/PMC10937180/?utm_source=chatgpt.com)
+
+Instead, use the LLM to help you write statistical code that you then run on your machine.
+:::
+
+| **Mistake** | **Consequence** | **Quick fix** |
+|------------------------|------------------------|------------------------|
+| Skipping LLM entirely | Slower learning curve | Use it for boiler-plate, explaining things, first drafts |
+| Blind trust | Silent bugs ≈ misleading science | Unit tests, peer-review, benchmark against known outputs |
+| Vague prompt | Generic, unusable code | Include language, package, data schema, desired output |
+| Manual debugging | Time sink | Feed the *exact* error message back to the model |
+| Pasting PHI | Compliance breach | Use synthetic or sampled data; keep true identifiers offline |
 
 ## Local (and other) resources {#sec-utah_resources}
 
 -   One Data Science Hub Workshops: <https://utah-data-science-hub.github.io/education_archived.html>  
+
 -   Request CTSI help: <https://ctsi.utah.edu/cores-and-services/triad> 
--   Intuitive Biostatistics by Harvey Motulsky - <https://a.co/d/4NCk2bS> 
 
 ## TODO List: {.unnumbered}
 
 ```{r}
-# finish examples, and advice about replicable programming. 
 # find citation on how frequently errors occur in scientific programming. 
-# find citation for data cleaning influence on 
+# find citation for data cleaning influence on stability of findings
 ```

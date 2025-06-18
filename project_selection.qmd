@@ -5,74 +5,75 @@ source("R/booktem_setup.R")
 source("R/my_setup.R")
 ```
 
-There are a variety of inter-related considerations that influence the choice of a research/academic project: choosing a topic, choosing a mentor, and choosing a particular study question. Each of these will greatly influence the the experience, requirements, and skills obtained. 
+::: callout-important
+**This section is still under construction**
+:::
+
+There are a variety of inter-related considerations that influence the choice of a research/academic project: choosing a topic, choosing a mentor, and choosing a particular study question. Each of these will greatly influence the the experience, requirements, and skills obtained.
 
 ## What Type of Project Should You Do? {#sec-type}
 
-There are types of research projects that a trainee could do, but some are better than others. My opinionated guidance is:  
+There are types of research projects that a trainee could do, but some are better than others. My opinionated guidance is:
 
-- Clinical Epidemiology or Health Services research (broadly defined as observational research on patterns of disease, medical care, and outcomes). Generally advisable because projects can be sufficiently small, short-timelne (needed for fellows/residents), and clinically relevant… and thus can be more useful in terms of understanding the application of research to clinical care, even if you end up doing a non-research job. Thus, this is the primary focus of this module. However, it is not the only option to consider. 
+-   Clinical Epidemiology or Health Services research (broadly defined as observational research on patterns of disease, medical care, and outcomes). Generally advisable because projects can be sufficiently small, short-timelne (needed for fellows/residents), and clinically relevant… and thus can be more useful in terms of understanding the application of research to clinical care, even if you end up doing a non-research job. Thus, this is the primary focus of this module. However, it is not the only option to consider.
 
 ::: {.callout-note collapse="true"}
-## Other types of research you might consider: 
+## Other types of research you might consider:
 
-- Survey research - this is the most tractable flavor of 'prospective' research for a trainee, as the regulatory requirements and data-accrual rate is amenable to trainee timelines. Often times, this can involved mixed-methods (where quantification is paired with interviews to understand qualitatively what factors influence or lead to observed outcomes)
+-   Survey research - this is the most tractable flavor of 'prospective' research for a trainee, as the regulatory requirements and data-accrual rate is amenable to trainee timelines. Often times, this can involved mixed-methods (where quantification is paired with interviews to understand qualitatively what factors influence or lead to observed outcomes)
 
-- Medical Education scholarship - undestandably, many trainees are interested in ways to improve the trainee experience. And there is lots of room for improvement. However, educational scholarship really needs rigorous assessment to generate generalizable knowledge. Thus, good educational research ends up overlapping substantially with the concepts discussed here.trainees who want to be medical educators should learn research skills because curricular evaluation is an increasingly important component of education (and still should be more important than it is)
+-   Medical Education scholarship - undestandably, many trainees are interested in ways to improve the trainee experience. And there is lots of room for improvement. However, educational scholarship really needs rigorous assessment to generate generalizable knowledge. Thus, good educational research ends up overlapping substantially with the concepts discussed here.trainees who want to be medical educators should learn research skills because curricular evaluation is an increasingly important component of education (and still should be more important than it is)
 
-- Basic science - I do not cover this much here because I'm not qualified to. My impression is that it's harder to have a successful basic science project as a trainee, but some motivated folks do manage. If you’re basic science committed or curious, fellowship is the time to try. (nothing against basic science per-se.. some of this may pertain, but I have no first hand experience on how to do that well.
+-   Basic science - I do not cover this much here because I'm not qualified to. My impression is that it's harder to have a successful basic science project as a trainee, but some motivated folks do manage. If you’re basic science committed or curious, fellowship is the time to try. (nothing against basic science per-se.. some of this may pertain, but I have no first hand experience on how to do that well.
 
-- Systematic Review and Meta-analysis - these are a suprisingly large amount of work, and require a team to complete. If pursuing, I would recommend to do as part of a structured experience (e.g. a course) or with a group who has experience with each of the roles (ie. a librarian, duplicate data assessors/extractors, etc.). The main risk of this sort of project is that it's easy to get scooped, there are many groups competing to meta-analyze new data when it comes, and it's hard to think of good research gaps that are answerable with available studies but haven't been aswered (this is, at it's core, the crux of doing a SRMA)
+-   Systematic Review and Meta-analysis - these are a suprisingly large amount of work, and require a team to complete. If pursuing, I would recommend to do as part of a structured experience (e.g. a course) or with a group who has experience with each of the roles (ie. a librarian, duplicate data assessors/extractors, etc.). The main risk of this sort of project is that it's easy to get scooped, there are many groups competing to meta-analyze new data when it comes, and it's hard to think of good research gaps that are answerable with available studies but haven't been aswered (this is, at it's core, the crux of doing a SRMA)
 
-- Other reviews - ideally, if doing this you'd want to know you have a mentor with an "in" for getting it published - whether that's an invitation or gravitas in the relevant field. 
+-   Other reviews - ideally, if doing this you'd want to know you have a mentor with an "in" for getting it published - whether that's an invitation or gravitas in the relevant field.
 
-- Secondary (retrospective) analyses of existing data-sets (e.g. from prospective cohorts or previously completed trials)
+-   Secondary (retrospective) analyses of existing data-sets (e.g. from prospective cohorts or previously completed trials)
 
-- Randomized trials are the gold standard workhorse of medical evidence, but are generally not feasible for most trainees to substantively contribute to, owing to the time required, regulatory burden, and resources required. 
-
+-   Randomized trials are the gold standard workhorse of medical evidence, but are generally not feasible for most trainees to substantively contribute to, owing to the time required, regulatory burden, and resources required. Challenges associated with prospective research: likely relevant to this: https://www.atsjournals.org/doi/full/10.34197/ats-scholar.2022-0130PS
 :::
 
 ## What Kind of Mentor(s) Do You Need? {#sec-mentor}
 
-The perfect mentor doesn't exist, and even good mentors are challenging to identify. 
+The perfect mentor doesn't exist, and even good mentors are challenging to identify.
 
-The concept of "mentoring up" has a lot of value. Essentially, the idea is to be thoughtful about what you want from a mentor, and being proactive about facilitating that. 
+The concept of "mentoring up" has a lot of value. Essentially, the idea is to be thoughtful about what you want from a mentor, and being proactive about facilitating that.
 
-I think there is a spectrum from "entirely under your mentors wing" (your mentor has a project in mind and you do it) to "free-range mentorship" (you have an idea, but enroll a mentors help). In the case where there is an available mentor that is working on something that is working on exactly what you're interested in, there's no trade-off. The classic arrangement is entirely under your mentors wing - and this has the highest chance of getting a worthwhile result for the least amount of trouble/work. 
+I think there is a spectrum from "entirely under your mentors wing" (your mentor has a project in mind and you do it) to "free-range mentorship" (you have an idea, but enroll a mentors help). In the case where there is an available mentor that is working on something that is working on exactly what you're interested in, there's no trade-off. The classic arrangement is entirely under your mentors wing - and this has the highest chance of getting a worthwhile result for the least amount of trouble/work.
 
-However, trainee-driven research has it's benefits and can work [ ]EBTapper Paper. First, the rate-limiting resource is enthusiasm, so choosing an idea you're excited about (ie. addressing a gap you feel passionate about) may ultimately be a good strategy. Furthermore, the process of identifying a gap, and finding a feasible way to address that gap really is the most interesting bit of research - so it's a shame to cede that roll to the mentor. There's something fulfilling about seeing an idea through from start to finish. If you do opt for a proposal that is more free-range, ensure your mentor is still going to be adequately supportive and can help to get the resources you may need.
+However, trainee-driven research has it's benefits and can work \[ \]EBTapper Paper. First, the rate-limiting resource is enthusiasm, so choosing an idea you're excited about (ie. addressing a gap you feel passionate about) may ultimately be a good strategy. Furthermore, the process of identifying a gap, and finding a feasible way to address that gap really is the most interesting bit of research - so it's a shame to cede that roll to the mentor. There's something fulfilling about seeing an idea through from start to finish. If you do opt for a proposal that is more free-range, ensure your mentor is still going to be adequately supportive and can help to get the resources you may need.
 
-Conversely, you should know that a trainee-initiated research project is going to be riskier and more work, so make the choice informed by how motivated you are to drive your research forward. I’d advice you to not go all the way in either direction. 
+Conversely, you should know that a trainee-initiated research project is going to be riskier and more work, so make the choice informed by how motivated you are to drive your research forward. I’d advice you to not go all the way in either direction.
 
-Food for thought - but consider taking a bit more autonomy in project creation than mentors might suggest. 
+Food for thought - but consider taking a bit more autonomy in project creation than mentors might suggest.
 
-Great summarization of early career approach: https://www.aasurg.org/blog/moving-forward-going-faster-scaling-impact-strategies-to-develop-early-career-surgeon-scientists/ 
+Great summarization of early career approach: https://www.aasurg.org/blog/moving-forward-going-faster-scaling-impact-strategies-to-develop-early-career-surgeon-scientists/
 
+Figure idea: How do you find a good study question? (unique dataset? unique analysis? - why hasn’t it been done before?) - there is always a balance between what you find interesting, what potential mentors are working on, and what will be feasible in a fellow timeline. \[ \] venn diagram.
 
-Figure idea: How do you find a good study question? (unique dataset? unique analysis? - why hasn’t it been done before?)
-- there is always a balance between what you find interesting, what potential mentors are working on, and what will be feasible in a fellow timeline.   [ ] venn diagram. 
+Matthew Effect https://x.com/jenlovechem/status/1755590367477436695?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg Yikes - Mobility, male, and institutional funding matter - https://x.com/elife/status/1755029870784954520?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg
 
 ## What makes an interesting (good) research question? {#sec-question}
 
-Say you've decided you're going to do clinical research, and you're going to work with a mentor to identify a suitable project that gets you excited and your mentor(s) can support. 
+Say you've decided you're going to do clinical research, and you're going to work with a mentor to identify a suitable project that gets you excited and your mentor(s) can support.
 
-It's worth considering a few things before delving into an investigation on a particular sutdy question: 
+It's worth considering a few things before delving into an investigation on a particular sutdy question:
 
-First, you must have a way to get the needed data in order to answer the question. Collecting 
+First, you must have a way to get the needed data in order to answer the question. Collecting
 
-Consider your research edge: do you have access to data that know one else can get? if so, you can do research that no one else can. 
+Consider your research edge: do you have access to data that know one else can get? if so, you can do research that no one else can.
 
 Do you have an idea that no-one else has had? (believe it or not, there is a large role for clearer thinking on topics.. so the fact that no-one has done it yet doesn't necessarily mean that no one could do it)
 
-Do you have a new way of looking at the same data as others? e.g. either new methodologies or hypotheses that can be re-evaluated in light of subsequent evidence. Consider 
+Do you have a new way of looking at the same data as others? e.g. either new methodologies or hypotheses that can be re-evaluated in light of subsequent evidence. Consider
 
+### What type of Question?
 
+Most research is inferential: attempting to support inferences about causes and effects. Even most research that claims to be about associations is actually about cause and effect . In some ways this makes sense - we want to understand cause and effect so that we can intervene. However, when working with observational data (ie. not running an experiment - such as a trial), it's very hard to meet all the assumptions required to identify a causal effect (see @sec-\*\*\*)
 
-### What type of Question? 
-
-Most research is inferential: attempting to support inferences about causes and effects.  Even most research that claims to be about associations is actually about cause and effect . In some ways this makes sense - we want to understand cause and effect so that we can intervene. However, when working with observational data (ie. not running an experiment - such as a trial), it's very hard to meet all the assumptions required to identify a causal effect (see @sec-***)
-
-Descriptive epidemiology: [ ] find the paper 
+Descriptive epidemiology: \[ \] find the paper
 
 However, an alternative objective is to just describe something, i.e. descriptive epidemiology. How often does something happen? What is the ultimate outcome for patients who face a particular situation? What is the base rate of occurence of a diagnosis? The assumptions required to support such a question are often much more believable than establishing cause and effect.
 
@@ -80,23 +81,23 @@ A researcher will often face a dilemma - do we attempt to use the available data
 
 ### Exploratory vs Confirmatory Research
 
-You can't propose and confirm a theory based on the same data. 
+You can't propose and confirm a theory based on the same data.
 
 One way of framing this issue is categorizing research as either exploratory or confirmatory. In exploratory research, you can look through the data and see what relationships are there. You can look at as many potential relationships as you want and see which ones are interesting. However, when you find one - you have to keep in mind that you've had many opportunities to find a relationship, and thus metrics based on controllign the false positive rate (such as p-values) aren't valid.
 
 If, however, you already have a theory and you plan to test it in your data - this is confirmatory research. For reasons we'll explain in the @intro_stat section, you should pre-specify your theory, analysis, and criteria for success before looking at the data. Pre-registration is the recommended way to commit to an analysis plan.
 
-This is a high bar that most research doesn't meet. That's OK, but you just have to be transparent about it. 
+This is a high bar that most research doesn't meet. That's OK, but you just have to be transparent about it.
 
-[ ] Exploratory research: https://www.tandfonline.com/doi/full/10.1080/02640414.2025.2486871
+\[ \] Exploratory research: https://www.tandfonline.com/doi/full/10.1080/02640414.2025.2486871
 
 ### 'Bullshit science'
 
-There is a lot of low quality medical science that gets done by trainees. By this, I mean research that cannot answer the question it seeks to investigate, either due to issues with study design, data, or analysis. This is not judgement on the trainees (I've been there), but a statement about the end-product - which either makes a compelling argument or it doesn't. 
+There is a lot of low quality medical science that gets done by trainees. By this, I mean research that cannot answer the question it seeks to investigate, either due to issues with study design, data, or analysis. This is not judgement on the trainees (I've been there), but a statement about the end-product - which either makes a compelling argument or it doesn't.
 
-Methodologists have long recognized ([ ] Bland Altman) the reason for the excess of low-quality medical research: incentives. There's much less reward for critiquing research than there is in doing it, and you're not likely to make friends in close-knit research communities by poking wholes in your colleagues work. For trainees particularly, research is correctly perceived as the only way to have a compelling application to the best training programs (whether one ultimately wants to do research or not). This leads to a commodification of research, where the number of posters, presentations, and manuscripts are tallied in an application, rather than judged on whether there was a novel and rigorous contribution. 
+Methodologists have long recognized (\[ \] Bland Altman) the reason for the excess of low-quality medical research: incentives. There's much less reward for critiquing research than there is in doing it, and you're not likely to make friends in close-knit research communities by poking wholes in your colleagues work. For trainees particularly, research is correctly perceived as the only way to have a compelling application to the best training programs (whether one ultimately wants to do research or not). This leads to a commodification of research, where the number of posters, presentations, and manuscripts are tallied in an application, rather than judged on whether there was a novel and rigorous contribution.
 
-This is, of course, a waste. Trainees doing bullshit research to check boxes both dilutes scientific norms and we'd be better off if we decoupled research from applications. Thankfully, there's plenty of real research that should be done. So, while it may take a bit more effort and activation, you can always decline to do bullshit research. If you ever think to yourself "I don't really care what this research finds", you should consider why you're going through the process at all. Life is too short to waste your time doing bullshit science. 
+This is, of course, a waste. Trainees doing bullshit research to check boxes both dilutes scientific norms and we'd be better off if we decoupled research from applications. Thankfully, there's plenty of real research that should be done. So, while it may take a bit more effort and activation, you can always decline to do bullshit research. If you ever think to yourself "I don't really care what this research finds", you should consider why you're going through the process at all. Life is too short to waste your time doing bullshit science.
 
 ## TODO List: {.unnumbered}
 
@@ -104,238 +105,4 @@ This is, of course, a waste. Trainees doing bullshit research to check boxes bot
 # Find the EB Tapper citation on fellow-driven research 
 # Set up citations and glossary
 # 
-```
-
-
-
-
-### Crossrefs {#sec-crossrefs}
-
-Section links must start with `sec-` and look like this: @sec-snippets.
-
-```{verbatim, lang = "md"}
-## Section Title {#sec-section-title}
-
-Internal links look like this: @sec-section-title
-```
-
-Figure links must start with `fig-` and look like this: @fig-poisson.
-
-```{r fig-poisson, echo = FALSE}
-#| fig-cap: "A histogram of a Poisson distribution with lambda = 3"
-hist(rpois(1000, lambda = 3))
-```
-
-Table links must start with `tbl-` and look like this: @tbl-authors.
-
-```{r tbl-authors, echo = FALSE}
-#| tbl-cap: "The authors of this book"
-
-data.frame(
-  first_name = c("Lisa", "Daniël"),
-  last_name = c("DeBruine", "Lakens")
-)
-```
-
-See the [quarto documentation](https://quarto.org/docs/books/book-crossrefs.html){target="_blank"} for more information.
-
-### References {#sec-refs}
-
-Zotero export - keep updated
-
-### Snippets {#sec-snippets}
-
-Snippets in RStudio provide shortcuts to syntax. For example, in an RMarkdown document, type "r" and shift-tab to expand a code chunk.
-
-You can add your own snippets. Under the **`Tools`** menu, choose **`Edit Code Snippets...`** and paste the following text into the end of the appropriate sections.
-
-#### Markdown
-
-```         
-snippet gls
-    r glossary("${1:term}")
-    
-snippet gls2
-    r glossary("${1:term}", "${2:display}")
-    
-snippet h1
-    # ${1:title} {#sec-${2:ref}}
-    
-snippet h2
-    ## ${1:title} {#sec-${2:ref}}
-    
-snippet h3
-    ### ${1:title} {#sec-${2:ref}}
-    
-snippet h4
-    #### ${1:title} {#sec-${2:ref}}
-    
-snippet h5
-    ##### ${1:title} {#sec-${2:ref}}
-```
-
-### Customize
-
-#### Page Footer
-
-The default footer includes license YEAR, author, and github and twitter icons, but you can customize this in the \_quarto.yml file under `page-footer:`. See the [quarto documentation](https://quarto.org/docs/reference/projects/websites.html#footer) for more options. See the available icons at <https://icons.getbootstrap.com/>.
-
-## Layout {#sec-layout}
-
-### Conventions {#sec-conventions}
-
-This book will use the following conventions:
-
--   Code: `list(number = 1, letter = "A")`
--   File paths: <path>data/sales.csv</path>
--   Menu/interface options: <if>Tools \> Global Options... \> Pane Layout</if>
--   R Packages: <pkg>tidyverse</pkg>
--   Glossary items: `r glossary("alpha")`
--   Citations: @usethis
--   Internal links: @sec-conventions
--   External links: [Mastering Shiny](https://mastering-shiny.org/){target="_blank"}
--   Mac-specific: <mac>Cmd-Shift-F10</mac>
--   Windows-specific: <pc>Ctl-Shift-F10</pc>
-
-A list of mac and windows [keyboard shortcuts](https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE).
-
-### Figures {#sec-figures}
-
-It is best practice to set a custom ggplot theme, then each subsequent plot will use that theme. You can put this code in <path>R/my_setup.R</path> after loading <pkg>ggplot2</pkg>.
-
-Start with a built-in theme and then add any tweaks with the `theme()` function.
-
-```{r}
-library(ggplot2)
-
-my_theme <- theme_minimal(base_size = 16) + 
-            theme(panel.background = element_rect(fill = "red", 
-                                                  color = "black", 
-                                                  size = 5),
-                  panel.grid = element_blank())
-theme_set(my_theme)
-```
-
-```{r fig-diamonds}
-#| fig-cap: "Demographic information of midwest counties from 2000 US census"
-#| fig-asp: 1
-ggplot(midwest, aes(popdensity, percollege)) +
-  geom_point(alpha = 0.5) +
-  labs(x = "Population Density", y = "Percent College Educated")
-```
-
-### Tables {#sec-tables}
-
-```{r tbl}
-#| tbl-cap: "Beavers"
-head(beaver1)
-```
-
-### Callout boxes {#sec-callout}
-
-See the [quarto reference](https://quarto.org/docs/authoring/callouts.html) for more options.\]{.aside}
-
-::: callout-note
-.callout-note: Informational asides.
-:::
-
-::: {.callout-note collapse="true"}
-## Click to expand
-
-colapse = "true": Expanded!
-:::
-
-::: callout-tip
-.callout-tip: Tips
-:::
-
-::: callout-warning
-.callout-warning: Notes to warn you about something.
-:::
-
-::: callout-caution
-.callout-caution: Notes about things that could cause serious errors.
-:::
-
-::: callout-important
-.callout-important: Notes about things that are important.
-:::
-
-### Code and Output {#sec-code-output}
-
-```{r}
-# code chunks
-paste("Code", "Output", 1, sep = " ")
-```
-
-```{r, filename = "Filename or header"}
-# code chunks with filename
-a <- 1
-```
-
-```{r, eval = FALSE, verbatim="r, fig.width = 2, fig.height = 2"}
-# code chunks with visible headers
-hist(rnorm(100000))
-```
-
-```{verbatim, lang = "md"}
-## Markdown Example
-
-* Inline code: `r nrow(iris)`
-* *Italics*
-* **Bold**
-* [Linked text](https://psyteachr.github.io)
-```
-
-### Fonts {#sec-fonts}
-
-## Extras {#sec-extras}
-
-### Glossary {#sec-glossary}
-
-Books are set up with lightweight glossary functions from the [glossary](https://debruine.github.io/glossary/) package.
-
-```{r}
-# code in R/my_setup.R to initialise the glossary on each page
-library(glossary)
-glossary_path("include/glossary.yml")
-glossary_popup("click") # "click", "hover" or "none"
-```
-
-Edit the file `glossary.yml` with your glossary terms like this:
-
-``` yaml
-alpha: |
-  The threshold chosen in Neyman-Pearson hypothesis testing to distinguish test results that lead to the decision to reject the null hypothesis, or not, based on the desired upper bound of the Type 1 error rate. An alpha level of 5% it most commonly used, but other alpha levels can be used as long as they are determined and preregistered by the researcher before the data is analyzed.
-p-value: |
-  The probability of the observed data, or more extreme data, if the null hypothesis is true. The lower the p-value, the higher the test statistic, and less likely it is to observe the data if the null hypothesis is true.
-```
-
-Look up a term from the glossary file with `glossary("alpha")`: `r glossary("alpha")`
-
-Display a different value for the term with `glossary("alpha", "$\\alpha$")`: `r glossary("alpha", "$\\alpha$")`
-
-Use an inline definition instead of the glossary file with `glossary("beta", def = "The second letter of the Greek alphabet")`: `r glossary("beta", def = "The second letter of the Greek alphabet")`
-
-Just show the definition with `glossary("p-value", show = "def")`: `r glossary("p-value", show = "def")`
-
-Show the table of terms defined on this page with `glossary_table()`:
-
-```{r, echo = FALSE}
-glossary_table()
-```
-
-### FontAwesome
-
-The [fontAwesome quarto extension](https://github.com/quarto-ext/fontawesome) allows you to use the [free icons](https://fontawesome.com/search?m=free) with syntax like:
-
-```         
-{{< fa dragon >}}
-{{< fa brands github size = 5x title="(github logo)" >}}
-```
-
-To install it, just run this code in the Terminal pane of RStudio (not the Console pane).
-
-``` bash
-quarto install extension quarto-ext/fontawesome
 ```
