@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>In the past, researchers had to manually code their own statistical analyses, which was tedious and error-prone. Today, statistical software simplifies this process dramatically. Researchers shift their focus from the technical complexities of computation to understanding statistical logic and applying analyses correctly.</p>
+</header><p>In the past, researchers had to manually code all the statistical formulae for their analyses, which was tedious and error-prone. Today, statistical software simplifies this process dramatically. Researchers can shift their focus from the technical complexities of computation to understanding statistical logic and applying analyses correctly.</p>
 <p>This section offers guidance on selecting appropriate statistical programming language, walks through the set-up process, and introduces the basics of conducting statistical analyses using modern tools.</p>
 <section id="sec-options" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="sec-options">
 <span class="header-section-number">2.1</span> Statistical software options:</h2>
@@ -839,6 +839,7 @@ The project page on <a href="https://pypi.org/">https://pypi.org/</a> or <a href
 <p>As mentioned before, <a class="glossary">Explainable programming<span class="def">Writing analytic code in a clear, structured, and understandable way so that readers (including reviewers, collaborators, and future researchers) can easily follow and replicate the steps of your analysis. In quantitative disciplines such as mathematics and computer science, providing such code is already standard practice. Medicine is beginning to adopt this approach, recognizing its importance for transparency and reproducibility.</span></a> is an increasingly important idea because programming errors frequently lead to erroneous research results. Understandable analytic code is important for co-authors to understand and verify what you’ve done, as well as facilitating replication and improvements.</p>
 <p>Importantly (and, as will be discussed in <a href="data.html" class="quarto-xref"><span>Chapter 3</span></a>), it’s not just the statistical design choices that can have an influence on the observed outcomes. Researchers must decide what data should be included, how the data should be cleaned, whether missing values will be imputed (and if so, how). All this occurs before talk of statistical tests, regressions, or presentation occur.</p>
 <p>By some estimates, variation in how these pre-processing tasks are done accounts for more variability in findings than the design choices most readers focus on. Accordingly, the data processing code that is shared should include the entire process, from data cleaning to figure generation.</p>
+<p>Statistical Methods and analysis: Pitfalls of research: https://journals.stfm.org/primer/2022/van-smeden-2022-0059/#.YvQyN_kxOPE.twitter How to structure the project files: https://medium.com/the-stata-guide/the-stata-workflow-guide-52418ce35006 Reproducible code info: https://twitter.com/lisadebruine/status/1504063177012695047?s=11 Citation for need to release analytic code: https://academic.oup.com/jamia/article-abstract/30/5/859/7056675</p>
 <section id="how-to-document-and-share-code" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="how-to-document-and-share-code">
 <span class="header-section-number">2.4.1</span> How to document and share code</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -1096,7 +1097,8 @@ Tip
 </section></section><section id="sec-reproducible" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="sec-reproducible">
 <span class="header-section-number">2.5</span> Reproducible Research</h2>
 <p>From a perspective of scientific rigor, sharing should also include the individual patient data to allow researchers to directly replicate or modify the reported analyses. However, despite research participant support for data sharing, privacy concerns and research ethics concerns generally do not permit the sharing of data, even if it has been pseudonomized. This is an active space where “ideal” and “actual” are far apart… but the current takeaway is that individual patient data should not ben shared unless that was explicitly part of the IRB authorization.</p>
-<p>Further reading (R focus): <a href="https://raps-with-r.dev/intro.html" class="uri">https://raps-with-r.dev/intro.html</a></p>
+<p>Further reading (R focus): <a href="https://raps-with-r.dev/intro.html" class="uri">https://raps-with-r.dev/intro.html</a> building reproducible analytical pipelines: https://rap4mads.eu/?utm_source=substack&amp;utm_medium=email Citation: reproducible computing: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745</p>
+<p>principles for reproducible and efficient computing; https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745</p>
 </section><section id="sec-steroids_cap" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="sec-steroids_cap">
 <span class="header-section-number">2.6</span> An Example: Meta-analyzing the effect of corticosteroids in CAP</h2>
 <p>Let’s use meta-analysis as a quick example of how to put this all into action.</p>
@@ -1676,9 +1678,12 @@ Important
 <ul>
 <li><p>One Data Science Hub Workshops: <a href="https://utah-data-science-hub.github.io/education_archived.html" class="uri">https://utah-data-science-hub.github.io/education_archived.html</a> &nbsp;</p></li>
 <li><p>Request CTSI help: <a href="https://ctsi.utah.edu/cores-and-services/triad" class="uri">https://ctsi.utah.edu/cores-and-services/triad</a>&nbsp;</p></li>
-</ul></section><section id="todo-list" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="todo-list">TODO List:</h2>
+<li><p>R book (very good, but in-depth): https://r4ds.had.co.nz/index.html</p></li>
+</ul>
+<p>Guide to Python for those familiar with STATA - https://github.com/aeturrell/coding-for-economists/blob/main/coming-from-stata.md Guide to Python for those familiar with R - https://www.emilyriederer.com/post/py-rgo/?utm_source=substack&amp;utm_medium=email</p>
+</section><section id="todo-list" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="todo-list">TODO List:</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># find citation on how frequently errors occur in scientific programming. </span></span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># find citation on how frequently errors occur in scientific programming.  - https://www.nature.com/collections/prbfkwmwvz </span></span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="co"># find citation for data cleaning influence on stability of findings</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 

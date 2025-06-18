@@ -559,16 +559,56 @@ Important
 </ul></section><section id="sec-formatting" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="sec-formatting">
 <span class="header-section-number">3.2</span> Formatting</h2>
 <p>Step 0: Save yourself a headache and collect your data in a processable format <a href="https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in?utm_campaign=post&amp;utm_medium=web">https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in</a>&nbsp;</p>
+<p>Data abstraction:&nbsp;</p>
+<p>Data from web tables&nbsp; <a href="https://twitter.com/asmith83/status/1549373680496656385?s=21&amp;t=4SAl-DHtn3zREP_avr6XaA" class="uri">https://twitter.com/asmith83/status/1549373680496656385?s=21&amp;t=4SAl-DHtn3zREP_avr6XaA</a></p>
+<p>Data collection with excel - <a href="https://www.youtube.com/watch?v=Ry2xjTBtNFE" class="uri">https://www.youtube.com/watch?v=Ry2xjTBtNFE</a> Also <a href="https://twitter.com/blakeaburge/status/1540666548616036353?s=11&amp;t=Dl6FGUjENZiqAT0eXQ_I6A" class="uri">https://twitter.com/blakeaburge/status/1540666548616036353?s=11&amp;t=Dl6FGUjENZiqAT0eXQ_I6A</a>&nbsp;</p>
 <p><strong>Step 1: Data Wrangling</strong></p>
+<p>naming variables: <a href="https://emilyriederer.netlify.app/post/column-name-contracts/" class="uri">https://emilyriederer.netlify.app/post/column-name-contracts/</a>&nbsp;</p>
+<p><img src="images/clipboard-1599530648.png" class="img-fluid"></p>
 <ul>
 <li>Each row is an observation (usually a patient)</li>
 <li>Each column contains only 1 type of data (more below)</li>
 <li>No free text (if you need to, categorize responses)</li>
 </ul>
 <p>Clean tabular format etc.</p>
+<p>Presentation on Cleaning - <a href="https://cghlewis.github.io/ncme-data-cleaning-workshop/slides.html" class="uri">https://cghlewis.github.io/ncme-data-cleaning-workshop/slides.html</a></p>
 <p>Use excel like a boss, if you’re going to: More excel data https://cghlewis.com/blog/excel_entry/</p>
 <p>Flat files: Flat files: https://evidence.dev/blog/what-is-a-flat-file?utm_campaign=Data_Elixir&amp;utm_source=Data_Elixir_526</p>
-</section><section id="sec-data_types" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="sec-data_types">
+<p>[ ] data checklist - find attribution for this</p>
+<p>### **Data Quality Indicator Checklist**</p>
+<p>#### **✓ Analyzable**</p>
+<p>- Dataset is in a rectangular (rows and columns), machine-readable format. Variable names are the first row only. The remaining data should be made up of values in cells.</p>
+<p>- One or more columns uniquely identify rows in the data (i.e., primary key).</p>
+<p>- All column values are explicit.</p>
+<p>&nbsp; - No values are indicated by color coding.</p>
+<p>&nbsp; - All non-missing values are explicitly defined (e.g., if a blank is assumed to be 0, it is filled with a 0).</p>
+<p>- Only one piece of information is contained in a variable.</p>
+<p>#### **✓ Complete**</p>
+<p>- Everyone in your sample (e.g., consented, included in the study, completed the instrument) is accounted for.</p>
+<p>- If you collected it, it should exist in the file.</p>
+<p>- There should be no rows with duplicate primary keys (e.g., study unique identifiers).</p>
+<p>#### **✓ Interpretable**</p>
+<p>- Variable names are machine-readable (i.e., no special characters or spaces) AND human-readable (consistently formatted and clear to humans).</p>
+<p>- Variable and value labels are added if sharing in SPSS, Stata, or SAS format.</p>
+<p>&nbsp; - Consider sharing in at least one non-proprietary format (e.g., CSV).</p>
+<p>#### **✓ Valid**</p>
+<p>- Variables conform to the constraints that you have laid out in your data dictionary.</p>
+<p>&nbsp; - Planned variable types (e.g., numeric, character, date).</p>
+<p>&nbsp; - Allowable variable values and ranges (e.g., 1-50).</p>
+<p>&nbsp; - Item-level missingness aligns with variable universe and skip patterns.</p>
+<p>#### **✓ Accurate**</p>
+<p>- There are no glaring errors in the data that you have not acknowledged.</p>
+<p>&nbsp; - Based on any implicit knowledge you have.</p>
+<p>&nbsp; - Based on a comparison of information within and across sources.</p>
+<p>#### **✓ Consistent**</p>
+<p>- Variable values are consistently measured, formatted, or categorized within a column.</p>
+<p>- Variables are consistently measured across collections of the same form.</p>
+<p>#### **✓ De-identified**</p>
+<p>- Disclosure risks have been addressed (both direct and indirect identifiers have been removed/altered as needed).</p>
+<section id="document-codebooks" class="level4" data-number="3.2.0.1"><h4 data-number="3.2.0.1" class="anchored" data-anchor-id="document-codebooks">
+<span class="header-section-number">3.2.0.1</span> Document Codebooks:</h4>
+<p><a href="https://cghlewis.com/talk/rladies_nyc/" class="uri">https://cghlewis.com/talk/rladies_nyc/</a> comparison of ways to do this in R</p>
+</section></section><section id="sec-data_types" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="sec-data_types">
 <span class="header-section-number">3.3</span> Primer on Data types</h2>
 <p><strong>Step 2: For each data element, consider the data type</strong></p>
 <ul>

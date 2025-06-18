@@ -55,6 +55,26 @@ Figure idea: How do you find a good study question? (unique dataset? unique anal
 
 Matthew Effect https://x.com/jenlovechem/status/1755590367477436695?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg Yikes - Mobility, male, and institutional funding matter - https://x.com/elife/status/1755029870784954520?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg
 
+Mentee literature: <https://hbr.org/2017/11/what-mentors-wish-their-mentees-knew>
+
+Clarify what you need in a mentor:
+
+```         
+Longitudinal research / career mentor vs 1x (negotiating a job offer, speaking at a national meeting, or finding a job at another hospital.)
+```
+
+=\>coaches, sponsors, and connectors. specific, narrower challenges such as preparing for a speaking engagement often benefit from a coach 
+
+=\> sponsor: senior physicians (such as chiefs, chairs, or deans) who have garnered substantial social and political capital over their careers. Sponsors use their cachet to help high-potential individuals join prestigious committees, study groups, or honorific societies.
+
+=\> connector, a seasoned guide who can help the mentor and mentee unite, or build a mentorship team (CMRs? APDs?)
+
+find mentors they can see themselves becoming
+
+-Ideal mentees thus learn to underpromise (“I’ll have a first draft to you in one week”) and overdeliver (“I know it’s only been three days, but I have a first draft ready to share with you”). - give your mentor enough time to review work products (for example, one week for abstracts and at least two to three weeks for grants). -Define goals for meetings ahead of time by knowing what you want to discuss and accomplish during your meeting. -Importantly, avoid long, winding emails with little in the form of an answerable question. Rather, frame questions so that they can be answered with yes-or-no answers, while reserving longer concerns for face-to-face meetings
+
+(Converse article - <https://hbr.org/2017/03/6-things-every-mentor-should-do)>
+
 ## What makes an interesting (good) research question? {#sec-question}
 
 Say you've decided you're going to do clinical research, and you're going to work with a mentor to identify a suitable project that gets you excited and your mentor(s) can support.

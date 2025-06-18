@@ -22,7 +22,7 @@ if (!py_module_available("matplotlib")) {
 
 ```
 
-In the past, researchers had to manually code their own statistical analyses, which was tedious and error-prone. Today, statistical software simplifies this process dramatically. Researchers shift their focus from the technical complexities of computation to understanding statistical logic and applying analyses correctly.
+In the past, researchers had to manually code all the statistical formulae for their analyses, which was tedious and error-prone. Today, statistical software simplifies this process dramatically. Researchers can shift their focus from the technical complexities of computation to understanding statistical logic and applying analyses correctly.
 
 This section offers guidance on selecting appropriate statistical programming language, walks through the set-up process, and introduces the basics of conducting statistical analyses using modern tools.
 
@@ -167,6 +167,13 @@ As mentioned before, `r glossary("Explainable programming")` is an increasingly 
 Importantly (and, as will be discussed in @sec-data), it's not just the statistical design choices that can have an influence on the observed outcomes. Researchers must decide what data should be included, how the data should be cleaned, whether missing values will be imputed (and if so, how). All this occurs before talk of statistical tests, regressions, or presentation occur.
 
 By some estimates, variation in how these pre-processing tasks are done accounts for more variability in findings than the design choices most readers focus on. Accordingly, the data processing code that is shared should include the entire process, from data cleaning to figure generation.
+
+Statistical Methods and analysis: 
+Pitfalls of research:  https://journals.stfm.org/primer/2022/van-smeden-2022-0059/#.YvQyN_kxOPE.twitter 
+How to structure the project files: https://medium.com/the-stata-guide/the-stata-workflow-guide-52418ce35006 
+Reproducible code info: https://twitter.com/lisadebruine/status/1504063177012695047?s=11 
+Citation for need to release analytic code: https://academic.oup.com/jamia/article-abstract/30/5/859/7056675 
+
 
 ### How to document and share code 
 
@@ -364,6 +371,10 @@ As an exercise, see if you can create your own Stata do file, and extend the ana
 From a perspective of scientific rigor, sharing should also include the individual patient data to allow researchers to directly replicate or modify the reported analyses. However, despite research participant support for data sharing, privacy concerns and research ethics concerns generally do not permit the sharing of data, even if it has been pseudonomized. This is an active space where "ideal" and "actual" are far apart... but the current takeaway is that individual patient data should not ben shared unless that was explicitly part of the IRB authorization.
 
 Further reading (R focus): <https://raps-with-r.dev/intro.html>
+building reproducible analytical pipelines: https://rap4mads.eu/?utm_source=substack&utm_medium=email 
+Citation: reproducible computing: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745 
+
+principles for reproducible and efficient computing; https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745 
 
 ## An Example: Meta-analyzing the effect of corticosteroids in CAP {#sec-steroids_cap}
 
@@ -659,9 +670,16 @@ Instead, use the LLM to help you write statistical code that you then run on you
 
 -   Request CTSI help: <https://ctsi.utah.edu/cores-and-services/triad> 
 
+- R book (very good, but in-depth): https://r4ds.had.co.nz/index.html 
+
+
+
+Guide to Python for those familiar with STATA - https://github.com/aeturrell/coding-for-economists/blob/main/coming-from-stata.md 
+Guide to Python for those familiar with R - https://www.emilyriederer.com/post/py-rgo/?utm_source=substack&utm_medium=email 
+
 ## TODO List: {.unnumbered}
 
 ```{r}
-# find citation on how frequently errors occur in scientific programming. 
+# find citation on how frequently errors occur in scientific programming.  - https://www.nature.com/collections/prbfkwmwvz 
 # find citation for data cleaning influence on stability of findings
 ```

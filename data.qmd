@@ -74,7 +74,7 @@ SicDB - <https://link.springer.com/article/10.1007/s00134-023-07046-3> Salzburg 
 —-\> comment on anonymization https://link.springer.com/article/10.1007/s00134-023-07153-1 
 
 | **Database** | **Features** | **Link** |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | MIMIC III | EHR, notes, high-frequency physiology; ICU | <https://physionet.org/content/mimiciii/1.4/> |
 | MIMIC IV | EHR, notes, high-frequency physiology, electrocardiograms, radiologic images, EEG, echocardiograms; Emergency department, hospital, ICU | <https://physionet.org/content/mimiciv/2.2/> |
 | eICU | EHR; ICU | <https://physionet.org/content/eicu-crd/2.0/> |
@@ -116,7 +116,17 @@ Data Science Services (since \~2016) - handles query with research.
 
 Step 0: Save yourself a headache and collect your data in a processable format [https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in](https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in?utm_campaign=post&utm_medium=web) 
 
+Data abstraction: 
+
+Data from web tables  <https://twitter.com/asmith83/status/1549373680496656385?s=21&t=4SAl-DHtn3zREP_avr6XaA>
+
+Data collection with excel - <https://www.youtube.com/watch?v=Ry2xjTBtNFE> Also <https://twitter.com/blakeaburge/status/1540666548616036353?s=11&t=Dl6FGUjENZiqAT0eXQ_I6A> 
+
 **Step 1: Data Wrangling**
+
+naming variables: <https://emilyriederer.netlify.app/post/column-name-contracts/> 
+
+![](images/clipboard-1599530648.png)
 
 -   Each row is an observation (usually a patient)
 -   Each column contains only 1 type of data (more below)
@@ -124,9 +134,77 @@ Step 0: Save yourself a headache and collect your data in a processable format [
 
 Clean tabular format etc.
 
+Presentation on Cleaning - <https://cghlewis.github.io/ncme-data-cleaning-workshop/slides.html>
+
 Use excel like a boss, if you're going to: More excel data https://cghlewis.com/blog/excel_entry/
 
 Flat files: Flat files: https://evidence.dev/blog/what-is-a-flat-file?utm_campaign=Data_Elixir&utm_source=Data_Elixir_526
+
+\[ \] data checklist - find attribution for this
+
+\### \*\*Data Quality Indicator Checklist\*\*
+
+\#### \*\*✓ Analyzable\*\*
+
+\- Dataset is in a rectangular (rows and columns), machine-readable format. Variable names are the first row only. The remaining data should be made up of values in cells.
+
+\- One or more columns uniquely identify rows in the data (i.e., primary key).
+
+\- All column values are explicit.
+
+  - No values are indicated by color coding.
+
+  - All non-missing values are explicitly defined (e.g., if a blank is assumed to be 0, it is filled with a 0).
+
+\- Only one piece of information is contained in a variable.
+
+\#### \*\*✓ Complete\*\*
+
+\- Everyone in your sample (e.g., consented, included in the study, completed the instrument) is accounted for.
+
+\- If you collected it, it should exist in the file.
+
+\- There should be no rows with duplicate primary keys (e.g., study unique identifiers).
+
+\#### \*\*✓ Interpretable\*\*
+
+\- Variable names are machine-readable (i.e., no special characters or spaces) AND human-readable (consistently formatted and clear to humans).
+
+\- Variable and value labels are added if sharing in SPSS, Stata, or SAS format.
+
+  - Consider sharing in at least one non-proprietary format (e.g., CSV).
+
+\#### \*\*✓ Valid\*\*
+
+\- Variables conform to the constraints that you have laid out in your data dictionary.
+
+  - Planned variable types (e.g., numeric, character, date).
+
+  - Allowable variable values and ranges (e.g., 1-50).
+
+  - Item-level missingness aligns with variable universe and skip patterns.
+
+\#### \*\*✓ Accurate\*\*
+
+\- There are no glaring errors in the data that you have not acknowledged.
+
+  - Based on any implicit knowledge you have.
+
+  - Based on a comparison of information within and across sources.
+
+\#### \*\*✓ Consistent\*\*
+
+\- Variable values are consistently measured, formatted, or categorized within a column.
+
+\- Variables are consistently measured across collections of the same form.
+
+\#### \*\*✓ De-identified\*\*
+
+\- Disclosure risks have been addressed (both direct and indirect identifiers have been removed/altered as needed).
+
+#### Document Codebooks: 
+
+<https://cghlewis.com/talk/rladies_nyc/> comparison of ways to do this in R
 
 ## Primer on Data types {#sec-data_types}
 

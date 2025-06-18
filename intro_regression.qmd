@@ -32,7 +32,7 @@ As mentioned earlier, a confounder is something that influences both the likelih
 
 For example, consider the risk of death in patients with elevated PaCO2 levels. Say that older patients are more likely to get hypercapnia. In an unadjusted analysis, PaCO2 levels might be associated with death because age is associated with likelihood of hypercapnia, and likelihood of death via a variety of mechanisms. In this case, what we'd really like to do is evaluate whether PaCO2 levels remain associated with the risk of death after controlling for age (a confounder).
 
-\[ \] DAG.
+\[ \] DAG. - DAG references: <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7124493/> 
 
 #### Mediator (M)
 
@@ -84,7 +84,7 @@ Thus the logic is: if the assumptions of the models hold in reality, then the de
 Output variable (aka the dependent variable, predicted variable) form determines the type of regression : 
 
 |  |  |  |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | **Level of measurement of outcome variable** | **Two Independent Groups without Confounding Adjustment** | **Two Independent Groups without Confounding Adjustment** |
 | Dichotomous | Chi2 Test | **logistic regression** |
 | Unordered categorical | Chi2 Test | multinomial logistic regression |
@@ -158,3 +158,5 @@ Functional forms \*\*\* dichotomization vs flexible models
 What type of questions can regression be used? - controlling for the effect of one thing on another. - prediction
 
 --- how to do in python: python resources for how to do that section of it: https://ajthurston.com/predprobs?utm_source=substack&utm_medium=email
+
+![](images/clipboard-3990776221.png)

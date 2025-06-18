@@ -136,6 +136,8 @@ Side-box: How can you collaborate effectively with a statistician? They will kno
 
 ## How to formulate your scientific question as a statistically testable hypothesis?
 
+-   [ ] Framing the question: <https://open.substack.com/pub/statsepi/p/sorry-what-was-the-question-again?r=12se9v&utm_medium=ios&utm_campaign=post> is it about description, prediction, causation, or measurement?
+
 Without a doubt, the most common error trainees make when formulating their *scientific hypothesis* as a *(statistically-)testable hypothesis* is not realizing that you must define a null hypothesis where there is no effect, then find evidence against it - so-called Null Hypotheses Significance Testing. It goes something like this:
 
 -   Scientifically, I suspect that high PaCO2 levels indicate a patient is at higher risk of 30-day readmission
@@ -157,3 +159,8 @@ How should we summarize how much evidence for a hypothesis? The idea is that we 
 Similarly, if you prespecify an analysis - stick to the statistical analysis plan, and find an effect - that's a much stronger challenge than if you have a lot of ways to slice the data or analyze the effect. Prespecification is more severe.
 
 Applied to your design - you want to balance power (see @sec-study_design) and severity. \*\*\*
+
+## Resources
+
+Visualizations: - https://sites.google.com/view/ben-prytherch-shiny-apps/shiny-apps 
+

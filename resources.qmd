@@ -48,3 +48,9 @@ Bayes factors - https://statsedge.org/shiny/LearnBF/
 ### Machine Learning
 
 todo
+
+### Getting grants: 
+
+A couple of very good tips for grants and papers at: https://sites.google.com/a/nyu.edu/ankit-parekh/ 
+
+
