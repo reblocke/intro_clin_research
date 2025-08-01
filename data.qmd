@@ -74,7 +74,7 @@ SicDB - <https://link.springer.com/article/10.1007/s00134-023-07046-3> Salzburg 
 —-\> comment on anonymization https://link.springer.com/article/10.1007/s00134-023-07153-1 
 
 | **Database** | **Features** | **Link** |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | MIMIC III | EHR, notes, high-frequency physiology; ICU | <https://physionet.org/content/mimiciii/1.4/> |
 | MIMIC IV | EHR, notes, high-frequency physiology, electrocardiograms, radiologic images, EEG, echocardiograms; Emergency department, hospital, ICU | <https://physionet.org/content/mimiciv/2.2/> |
 | eICU | EHR; ICU | <https://physionet.org/content/eicu-crd/2.0/> |
@@ -115,6 +115,10 @@ Data Science Services (since \~2016) - handles query with research.
 ## Formatting {#sec-formatting}
 
 Step 0: Save yourself a headache and collect your data in a processable format [https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in](https://open.substack.com/pub/statsepi/p/simple-tips-for-recording-data-in?utm_campaign=post&utm_medium=web) 
+
+Format article: <https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1012604&utm_source=substack&utm_medium=email>
+
+naming: <https://benharrap.com/post/2025-03-03-variable-naming-convention/>
 
 Data abstraction: 
 
@@ -202,7 +206,7 @@ Flat files: Flat files: https://evidence.dev/blog/what-is-a-flat-file?utm_campai
 
 \- Disclosure risks have been addressed (both direct and indirect identifiers have been removed/altered as needed).
 
-#### Document Codebooks: 
+#### Document Codebooks:
 
 <https://cghlewis.com/talk/rladies_nyc/> comparison of ways to do this in R
 
@@ -328,3 +332,18 @@ ggplot(darren_data_sheet, aes(x = qanadli)) +
   geom_histogram(bins = 30, fill = "blue", color = "black") +
   labs(title = "Histogram of Qanadli Scores", x = "Qanadli Score", y = "Frequency")
 ```
+
+## Exploratory Data analysis:
+
+Packages to expedite:\
+R - <https://cosimameyer.com/post/exploratory-data-analysis-in-r/?utm_source=substack&utm_medium=email>
+
+Python - <https://cosimameyer.com/post/exploratory-data-analysis-in-python/?utm_source=substack&utm_medium=email>
+
+## Additional references:
+
+<https://johnborghi.github.io/Supporting_Scientific_Data/>
+
+Youtube video from Dahly - <https://www.youtube.com/watch?v=Ry2xjTBtNFE&t=145s&utm_source=substack&utm_medium=email>
+
+Data cleaning resources: <https://www.anyamemensah.com/blog/recoding-cols-python?utm_source=substack&utm_medium=email>

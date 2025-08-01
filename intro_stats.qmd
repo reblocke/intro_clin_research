@@ -12,7 +12,7 @@ source("R/my_setup.R")
 The goal of this section is to build an intuition for what statistical tests accomplish, and what the assumptions are.
 
 ::: callout-tip
-A plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommended - <https://a.co/d/4NCk2bS> 
+A plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend: <https://a.co/d/4NCk2bS> 
 :::
 
 By the end of this page, you should have an intuitive sense of what a p-value is (and what it is not) and the role that it plays in the argument of a scientific report.
@@ -48,7 +48,7 @@ Thus, the way we'll seek evidence for causation is indirect. First, we'll show t
 
 To provide evidence for cause and effect, we need compelling arguments against confounding, bias, and chance. Arguments against confounding are best done by by study design (e.g. randomization) but can be addressed using statistical methods (see @sec-regression). Bias is best addressed by careful choice of instruments/assessments, but can also be supported by elements of study design (e.g. blinding).
 
-Whether or not chance is a plausible explanation or not is where P-values come in. Repeated for emphasis: **P-values ONLY address the plausibilit of chance explaining an apparent association.** Having a low p-value tells you nothing about whether confounding or bias could explain an association - you need other arguments for that.
+Whether or not chance is a plausible explanation or not is where P-values come in. Repeated for emphasis: **P-values ONLY address the plausibility of chance explaining an apparent association.** Having a low p-value tells you nothing about whether confounding or bias could explain an association - you need other arguments for that.
 
 ### Intuitively, what is a p-value?
 
@@ -63,6 +63,12 @@ Note: the P-value is not comparing one hypothesis to another (ie. an alternative
 This is a conditional probability: "IF nothing is going on" (or, assume nothing is going on), then, how unlikely would this be. The notation is P ( observed_data \| nothing going on).
 
 Box: note that p-values are NOT a measure of how strong evidence is. A finding with p-value 0.03 isn't necessarily less robust even than p-value 0.001 - even if there is no bias or confounding. Consider, a huge study can have a very small p-value (unlikely chance.. but could be a small amount of bias, confounding, or a trivial effect), or a smaller study could have a larger p-value. This is termed "Lindley's Paradox"
+
+### A note on significance
+
+'Statistically significant' is a bit of a tricky term, as it may seem to imply a sense of importance. However, a result that is statistically signficant does not necessarily need to be important. Consider a very large study that can very precisely estimate an effect. It might be very unlikely that finding is due to chance (signficant), but it might be so small that we don't care much (unimportant). The converse is also true: an apparently large effect might not reach statistical significance (so we can't be sure, to the usual standard, that its not chance) but be very important - as in the case where, say, ECMO may reduce 90-day mortality.
+
+Some have advocated for switching to an alternative term: compatability rather than significance https://x.com/lester_domes/status/1941165288617324828?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg to emphasize it's just about the ranges of data, not their imporance. I like this framing. If the data is compatable with the null hypothesis, it's not a strong argument against the null being true. However, if it's surpsising enough, that can be a strong argument.
 
 ### How surprising is too surprising?
 
@@ -150,6 +156,10 @@ Without a doubt, the most common error trainees make when formulating their *sci
 
 (Note, I'll need to make separate arguments that confounders or biased assessment of either PaCO2 or readmission could explain it, if I want to make a convincing argument is the PaCO2 per se - for more on that, @sec-regression)
 
+Signal vs noise:
+
+![](images/clipboard-1154642749.png)
+
 ### Severity:
 
 A last topic that I've included here - but would often usually be introduced later... but I think warrants early exposure - is statistical severity. If we zoom out - we see that we're generating exclusionary evidence against "null" hypothesis - but we're not necessarily summarizing the strength of evidence *in favor* of a hypothesis.
@@ -162,5 +172,10 @@ Applied to your design - you want to balance power (see @sec-study_design) and s
 
 ## Resources
 
-Visualizations: - https://sites.google.com/view/ben-prytherch-shiny-apps/shiny-apps 
+Visualizations: - https://sites.google.com/view/ben-prytherch-shiny-apps/shiny-apps
 
+(of compatable intervals)
+
+Bayesian Framework:
+
+Likelihoodist aka Evidential framework - https://www.atsjournals.org/doi/abs/10.1164/rccm.202504-0809TR

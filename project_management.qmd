@@ -33,8 +33,7 @@ Elements of academic style <https://twitter.com/juliencayla/status/1574628448680
 
 Good writing habits – a little bit every day vs blocking off days at a time. Try to overcome inertia. 
 
---writing routines can also help initiate the writing process. Same chair and desk, and coffee. Set mini deadlines. 
-Getting it down below the word limit: <https://twitter.com/scientistswrite/status/1636757776633307137?s=20> 
+--writing routines can also help initiate the writing process. Same chair and desk, and coffee. Set mini deadlines.  Getting it down below the word limit: <https://twitter.com/scientistswrite/status/1636757776633307137?s=20> 
 
 Writing Style: 
 
@@ -68,8 +67,7 @@ First - agree on roles and authorship order -
 
 Authorship order, corresponding author matters - <https://journals.lww.com/epidem/fulltext/2004/01000/interpreting_authorship_order_and_corresponding.22.aspx> 
 
-Second - IRB authorization -
-For IRB: 
+Second - IRB authorization - For IRB: 
 
 If you need PHI, get IRB and justify the need. Must minimize risk to patients (securely receive, store, and analyze - computing infrastructure)
 
@@ -91,6 +89,8 @@ Better diagrams advice: “<https://vexlio.com/blog/five-simple-things-that-will
 Overall figure checklist <https://x.com/scientistswrite/status/1698718678722728212?s=46&t=5eJ6uoTQrbbYTlHIOnRYRg>
 
 better options than bar charts (such as dot plot) for continuous data. <https://pubmed.ncbi.nlm.nih.gov/25901488/> <https://pubmed.ncbi.nlm.nih.gov/31657957/> 
+
+Some guidance on which type of figure to choose: <https://www.datawrapper.de/blog/chart-types-guide?utm_campaign=Data_Elixir&utm_source=Data_Elixir_539>
 
 Rules for figures: https://robjhyndman.com/hyndsight/graphics/
 
@@ -164,38 +164,65 @@ Formulating Hypothesis - specific, testable. Create a sheet synopsis with collab
 
 Start with hypothesis,
 
-Then create a background with introduction structure to justify the study
-Checklist
+Then create a background with introduction structure to justify the study Checklist
 
--   I.	WHAT IS THE GENERAL TOPIC AREA OR BROAD ISSUE YOUR RESEARCH ADDRESSES?
+-   
 
--   II.	WHAT IS THE CRITICAL GAP IN THE LITERATURE YOUR RESEARCH ADDRESSES?
+    I.  WHAT IS THE GENERAL TOPIC AREA OR BROAD ISSUE YOUR RESEARCH ADDRESSES?
 
--   III.	WHAT IS THE NEXT STEP NEEDED TO ADDRESS THE CRITICAL GAP?
+-   
 
--   IV.	WHAT IS YOUR RESEARCH QUESTION AND HYPOTHESIZED OUTCOMES (SPECIFY YOUR INDEPENDENT AND DEPENDENT VARIABLES)?
+    II. WHAT IS THE CRITICAL GAP IN THE LITERATURE YOUR RESEARCH ADDRESSES?
 
--   V.	WHAT IS THE BEST TITLE FOR THIS RESEARCH?
+-   
 
--   VI.	WHAT IMPORTANT BACKGROUND INFORMATION DOES A NAÏVE READER NEED TO KNOW (INCLUDING TERMINOLOGY, ACRONYMS) TO UNDERSTAND WHAT YOUR RESEARCH DOES, WHY IT IS IMPORTANT, AND THE CRITICAL GAP YOU WILL ADDRESS)
+    III. WHAT IS THE NEXT STEP NEEDED TO ADDRESS THE CRITICAL GAP?
+
+-   
+
+    IV. WHAT IS YOUR RESEARCH QUESTION AND HYPOTHESIZED OUTCOMES (SPECIFY YOUR INDEPENDENT AND DEPENDENT VARIABLES)?
+
+-   
+
+    V.  WHAT IS THE BEST TITLE FOR THIS RESEARCH?
+
+-   
+
+    VI. WHAT IMPORTANT BACKGROUND INFORMATION DOES A NAÏVE READER NEED TO KNOW (INCLUDING TERMINOLOGY, ACRONYMS) TO UNDERSTAND WHAT YOUR RESEARCH DOES, WHY IT IS IMPORTANT, AND THE CRITICAL GAP YOU WILL ADDRESS)
 
     **INTRODUCTION checklist:**
 
-    1.  1)	Is there a statement of theory, what is known, current state of the field (i.e. context of the study subject)?
+    1.  
 
-    2.  2)	Is there a statement of what is unknown, the problem, and the crucial missing link?
+        1)  Is there a statement of theory, what is known, current state of the field (i.e. context of the study subject)?
 
-    3.  3)	Is relevant background clearly described with all pertinent literature?
+    2.  
 
-    4.  4)	Is there a clear goal of the planned research that will address an existing gap in ability or knowledge?
+        2)  Is there a statement of what is unknown, the problem, and the crucial missing link?
 
-    5.  5)	Are there specific questions/issues to be addressed clearly identified and stated?
+    3.  
 
-    6.  6)	Is it clear what will be known at the conclusion of the proposed research?
+        3)  Is relevant background clearly described with all pertinent literature?
 
-    7.  7)	Is it clear why that knowledge is important?
+    4.  
 
-    8.  8)	Is the innovation, or unique contribution of this study or proposal clear?
+        4)  Is there a clear goal of the planned research that will address an existing gap in ability or knowledge?
+
+    5.  
+
+        5)  Are there specific questions/issues to be addressed clearly identified and stated?
+
+    6.  
+
+        6)  Is it clear what will be known at the conclusion of the proposed research?
+
+    7.  
+
+        7)  Is it clear why that knowledge is important?
+
+    8.  
+
+        8)  Is the innovation, or unique contribution of this study or proposal clear?
 
     ### **Methods:** 
 
@@ -229,27 +256,41 @@ Checklist
 
     -   Do different populations produce more information (i.e. sicker patients have more encounters)?
 
-    1)	Do the methods and analyses follow from the introduction, theoretical framework, and goals of the study?
+    1)  Do the methods and analyses follow from the introduction, theoretical framework, and goals of the study?
 
     Participants:
 
-    2)	Will the subject groups permit a test of the aims/hypotheses?
+    2)  Will the subject groups permit a test of the aims/hypotheses?
 
-    1.  3)	What is the evidence that the subjects are appropriate categorized for the study?  How are the subjects selected and identified?
+    <!-- -->
 
-    2.  	What is the evidence that the planned number of subjects is adequate?
+    1.  
+
+        3)  What is the evidence that the subjects are appropriate categorized for the study?  How are the subjects selected and identified?
+
+    2.  
+
+        ```         
+         What is the evidence that the planned number of subjects is adequate?
+        ```
 
         Procedures:
 
-    5)	Are the methods suited to the study goals/aims?
+    <!-- -->
 
-    1.  6)	Are adequate controls for bias and other confounding factors implemented?
+    5)  Are the methods suited to the study goals/aims?
 
-        7)	Are the procedures described in adequate detail that the experiment could be duplicated?
+    <!-- -->
 
-        8)	Are the independent and dependent variables clearly identified and defined?
+    1.  
 
-        9)	Do the use of figures or tables improve understanding of procedure equipment and procedures conducted?10)	Are the statistical analysis procedures justified and considered appropriate for addressing the aims/hypotheses?  11)	Are references cited to support proposed methods, particularly those with precedence in the literature
+        6)  Are adequate controls for bias and other confounding factors implemented?
+
+        7)  Are the procedures described in adequate detail that the experiment could be duplicated?
+
+        8)  Are the independent and dependent variables clearly identified and defined?
+
+        9)  Do the use of figures or tables improve understanding of procedure equipment and procedures conducted?10) Are the statistical analysis procedures justified and considered appropriate for addressing the aims/hypotheses?  11) Are references cited to support proposed methods, particularly those with precedence in the literature
 
     **RESULTS:**
 
@@ -261,17 +302,19 @@ Checklist
 
          This description begins with a detailed review of selection and retention of study subjects in comparison with the source population they are meant to represent, data collection methods, and opportunities for confounding, selection bias and measurement error
 
--   [ ] 1)	Are the results presented in a factual and logical manner (i.e. from most to least important findings or from simple to complex findings, first to last hypothesis)?
+-   [ ] 1) Are the results presented in a factual and logical manner (i.e. from most to least important findings or from simple to complex findings, first to last hypothesis)?
 
-    1.  2)	Are the results reported in a sequence that is aligned with the goals/hypotheses of the study?
+    1.  
 
-        3)	Are adequate tables and figures utilized to enable the reviewer to make independent conclusions without reading the statistical findings?
+        2)  Are the results reported in a sequence that is aligned with the goals/hypotheses of the study?
 
-        4)	Are tables and figures essential?  Or could the information provided in the tables and figures better be summarized within the text?
+        3)  Are adequate tables and figures utilized to enable the reviewer to make independent conclusions without reading the statistical findings?
 
-        5)	Are the tables and graphs easy to understand and interpret?
+        4)  Are tables and figures essential?  Or could the information provided in the tables and figures better be summarized within the text?
 
-        6)	Are the same data illustrated in graphics as in the text (i.e. unnecessary duplication of data presentation)
+        5)  Are the tables and graphs easy to understand and interpret?
+
+        6)  Are the same data illustrated in graphics as in the text (i.e. unnecessary duplication of data presentation)
 
     ### Conclusions/Discussion
 
@@ -381,25 +424,19 @@ Avoid acronyms. 
 
 **TITLE:  Does the title concisely reflect the article’s main focus?**
 
-	***Example 1***:  Effectiveness of Cloposcopic Cervical Screenings
+```         
+***Example 1***:  Effectiveness of Cloposcopic Cervical Screenings
 
-	***Example 2***:  Prevalence of thyroid disorders in obstetrics patients
+***Example 2***:  Prevalence of thyroid disorders in obstetrics patients
 
-	***Example 3***:  Chronic obstructive pulmonary disease: molecular and cellular mechanisms
+***Example 3***:  Chronic obstructive pulmonary disease: molecular and cellular mechanisms
 
-	***Example 4***:  Gastrointestinal Lymphoma:  Radiologic-Pathologic Correlation
+***Example 4***:  Gastrointestinal Lymphoma:  Radiologic-Pathologic Correlation
+```
 
 ### Abstract
 
 ### 
-
-
-
-
-
-
-
-
 
 Abstract: Do last. generally 200-300 words. 2nd most read part (to title). End with the strongest possible statement of the major findings  but don’t overstate results. Have external reviewer to look for key information that didn’t make it in to the abstract (or vice versa)
 
@@ -407,7 +444,7 @@ Knowing the magnitude and standard error of an empirical estimate is much more i
 
 ### 
 
-Submission: 
+Submission:
 
 Publishing Process:
 

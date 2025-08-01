@@ -428,12 +428,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#what-use-are-regression-models" id="toc-what-use-are-regression-models" class="nav-link active" data-scroll-target="#what-use-are-regression-models"><span class="header-section-number">6.1</span> What use are regression models?</a>
+<a href="#sec-reg_purpose" id="toc-sec-reg_purpose" class="nav-link active" data-scroll-target="#sec-reg_purpose"><span class="header-section-number">6.1</span> What can regression models do for you?</a>
   <ul class="collapse">
-<li><a href="#when-do-you-not-want-a-corrected-estimate" id="toc-when-do-you-not-want-a-corrected-estimate" class="nav-link" data-scroll-target="#when-do-you-not-want-a-corrected-estimate"><span class="header-section-number">6.1.1</span> When do you (not) want a corrected estimate?</a></li>
+<li><a href="#sec-when_adjust" id="toc-sec-when_adjust" class="nav-link" data-scroll-target="#sec-when_adjust"><span class="header-section-number">6.1.1</span> When should you adjust your estimate?</a></li>
+  <li><a href="#sec-variable_select" id="toc-sec-variable_select" class="nav-link" data-scroll-target="#sec-variable_select"><span class="header-section-number">6.1.2</span> So, what should go in your regression model?</a></li>
   </ul>
 </li>
-  <li><a href="#understand-the-logic-of-regression-analysis" id="toc-understand-the-logic-of-regression-analysis" class="nav-link" data-scroll-target="#understand-the-logic-of-regression-analysis"><span class="header-section-number">6.2</span> Understand the logic of regression analysis</a></li>
+  <li><a href="#sec-regression_logic" id="toc-sec-regression_logic" class="nav-link" data-scroll-target="#sec-regression_logic"><span class="header-section-number">6.2</span> The logic of using regression for causal inference</a></li>
+  <li><a href="#sec-reg_type" id="toc-sec-reg_type" class="nav-link" data-scroll-target="#sec-reg_type"><span class="header-section-number">6.3</span> What type of regression is needed?</a></li>
+  <li>
+<a href="#sec-reg_interp" id="toc-sec-reg_interp" class="nav-link" data-scroll-target="#sec-reg_interp"><span class="header-section-number">6.4</span> How do you interpret the regression results?</a>
+  <ul class="collapse">
+<li><a href="#functional-forms" id="toc-functional-forms" class="nav-link" data-scroll-target="#functional-forms"><span class="header-section-number">6.4.1</span> Functional Forms</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -465,50 +473,443 @@ Important
 <p><strong>This section is still under construction</strong></p>
 </div>
 </div>
-<p>Statistical modeling is a bit counter-intuitive, so it makes sense to talk a bit about what we’re trying to accomplish.</p>
-<p>Lets first start with why - what is it that regressions accomplish? Then, we’ll discuss the “model” part of regression model - which implies that (much like with statistical tests) there are decisions about how one represents the data that influence the results we’ll get. We’ll end with some practical advice, though there’s obviously a huge corpus of content we can barely scratch the surface of.</p>
-<section id="what-use-are-regression-models" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="what-use-are-regression-models">
-<span class="header-section-number">6.1</span> What use are regression models?</h2>
-<p>You can do a few things with a regression model, and it helps to be clear about what you’re aiming for.</p>
-<ol type="1">
-<li>You can use regressions to make predictions (e.g.&nbsp;using a linear regression to predict the FEV1 by age, sex, and height)</li>
-<li>You can summarize the association between two variables after “adjusting” for the effect of other variables in the model (e.g.&nbsp;the effect of changing a treatment indicator from 0 to 1, correcting for other observed covariates)</li>
-</ol>
-<section id="when-do-you-not-want-a-corrected-estimate" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="when-do-you-not-want-a-corrected-estimate">
-<span class="header-section-number">6.1.1</span> When do you (not) want a corrected estimate?</h3>
-<p>To answer this question, we need to differentiate a couple of related terms that describe the way that an Exposure (E) -&gt; Outcome (O) relationship can be distored by a third variable. To explain this, we’ll use Directed Acyclic Graphs, which can be created with tools like Dagitty.</p>
-<p>The idea is that you draw the causal connections between variables to define how you think they are related. It’s helpful for our purposes because it can define the different ways that three variables may interrelate.</p>
-<section id="confounder-c" class="level4" data-number="6.1.1.1"><h4 data-number="6.1.1.1" class="anchored" data-anchor-id="confounder-c">
-<span class="header-section-number">6.1.1.1</span> Confounder (C)</h4>
-<p>As mentioned earlier, a confounder is something that influences both the likelihood of exposure and the likelihood of the outcome via other mechanisms than through the exposure.</p>
-<p>For example, consider the risk of death in patients with elevated PaCO2 levels. Say that older patients are more likely to get hypercapnia. In an unadjusted analysis, PaCO2 levels might be associated with death because age is associated with likelihood of hypercapnia, and likelihood of death via a variety of mechanisms. In this case, what we’d really like to do is evaluate whether PaCO2 levels remain associated with the risk of death after controlling for age (a confounder).</p>
-<p>[ ] DAG. - DAG references: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7124493/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7124493/</a>&nbsp;</p>
-</section><section id="mediator-m" class="level4" data-number="6.1.1.2"><h4 data-number="6.1.1.2" class="anchored" data-anchor-id="mediator-m">
-<span class="header-section-number">6.1.1.2</span> Mediator (M)</h4>
-<p>Another way</p>
-<p>(cover this here? or elsewhere)</p>
-</section><section id="effect-modifier" class="level4" data-number="6.1.1.3"><h4 data-number="6.1.1.3" class="anchored" data-anchor-id="effect-modifier">
+<p>Statistical modeling can be counter intuitive, so let’s pause and clarify what we want to achieve before jumping into details.</p>
+<p>First, we’ll discuss why we use regression: what’s the purpose, and what does it help us understand? Next, we’ll explore the idea of a “model” in regression, emphasizing that—just as with statistical tests—your decisions about representing data influence your results. Finally, we’ll wrap up with some practical advice, though we’ll only scratch the surface of this rich topic.</p>
+<section id="sec-reg_purpose" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="sec-reg_purpose">
+<span class="header-section-number">6.1</span> What can regression models do for you?</h2>
+<p>Regression models have multiple uses; it’s helpful to clarify your goal upfront. One intuitive way to think about their purpose is by grouping them into three main types: descriptive, predictive, or causal (as described in https://onlinelibrary.wiley.com/doi/full/10.1002/sim.10244)</p>
+<p>Consider a regression model that predicts <strong>weight</strong> based on <strong>age</strong>, <strong>sex</strong>, and <strong>height</strong>. Depending on your objective, you might ask different questions:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>Purpose</th>
+<th>Example Question</th>
+<th>Goal</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Descriptive</td>
+<td>“For every extra inch of height, how much heavier is someone on average (after adjusting for age and sex)?”</td>
+<td>Summarize patterns you’ve already observed</td>
+</tr>
+<tr class="even">
+<td>Predictive</td>
+<td>“If I meet a 40-year-old man who is 5′10″, how much should I expect him to weigh?”</td>
+<td>Make reliable guesses about unseen data</td>
+</tr>
+<tr class="odd">
+<td>Causal</td>
+<td>“If I became two inches taller, how would my weight change?”</td>
+<td>Test a hypothesis about cause-and-effect</td>
+</tr>
+</tbody>
+</table>
+<p>Researchers typically specify clearly when they’re making predictions, but they often blur the lines between descriptive and causal statements. For example, you’ll frequently see euphemisms like “linked to” or “associated with,” followed by suggestions that changing a predictor could influence the outcome. This confusion between description and causation is a widespread issue(academic.oup.com/aje/article/191/12/2084/6655746). Don’t add to it. If your goal is to understand cause-and-effect relationships, communicate that.</p>
+<section id="sec-when_adjust" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-when_adjust">
+<span class="header-section-number">6.1.1</span> When should you adjust your estimate?</h3>
+<p>To understand when “adjusting” for other variables helps and when it doesn’t, it’s essential to distinguish clearly between three related concepts: confounding, effect modification (or, similarly, interactions), and mediation. All three describe ways a third variable can influence the relationship between an <strong>Exposure (E)</strong> and an <strong>Outcome (O)</strong>.</p>
+<p>We’ll use Directed Acyclic Graphs (DAGs) to illustrate these concepts. DAGs visually represent your assumptions about how variables relate to each other. These are assumptions you assume for the purpose of your analysis, rather than directly test. You can create DAGs using tools like Dagitty (www.dagitty.com), the dagitty/diagrameR packages (R), dag (STATA) or Python’s Graphviz package.)</p>
+<p>DAG reference: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7124493/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7124493/</a>&nbsp;</p>
+<section id="sec-confounder" class="level4" data-number="6.1.1.1"><h4 data-number="6.1.1.1" class="anchored" data-anchor-id="sec-confounder">
+<span class="header-section-number">6.1.1.1</span> Confounders</h4>
+<p>A confounder (abbreviated, C) is a variable that is associated with the exposure, precedes it, and also independently affects the outcome.</p>
+<p>Consider this example: you’re interested in how the severity of hypercapnia during acute hypercapnic respiratory failure influences readmission risk (a causal question).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>Role</th>
+<th>Variable</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>Exposure (E)</strong></td>
+<td>Severity of hypercapnia</td>
+<td>Higher PaCO₂ indicates more severe hypercapnia</td>
+</tr>
+<tr class="even">
+<td><strong>Outcome (O)</strong></td>
+<td>Readmission risk</td>
+<td>Whether the patient is readmitted within 28 days</td>
+</tr>
+<tr class="odd">
+<td><strong>Confounder (C)</strong></td>
+<td>Disease severity</td>
+<td>Overall illness severity (e.g., FEV₁)</td>
+</tr>
+</tbody>
+</table>
+<p>Using the python GraphViz package, this DAG can be visualized as</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>g <span class="op">=</span> gr.Digraph()</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>g.edge(<span class="st">"Disease Severity (C)"</span>, <span class="st">"Hypercapnia Severity (E)"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>g.edge(<span class="st">"Disease Severity (C)"</span>, <span class="st">"Readmission Risk (O)"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>g.edge(<span class="st">"Hypercapnia Severity (E)"</span>, <span class="st">"Readmission Risk (O)"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>svg <span class="op">=</span> g.pipe(<span class="bu">format</span><span class="op">=</span><span class="st">"svg"</span>).decode(<span class="st">"utf-8"</span>)  </span>
+<span id="cb1-8"><a href="#cb1-8"></a>HTML(svg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><!-- Generated by graphviz version 13.1.0 (0)
+ --><!-- Pages: 1 --><svg width="274pt" height="188pt" viewbox="0.00 0.00 274.00 188.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)"><polygon fill="white" stroke="none" points="-4,4 -4,-184 270.43,-184 270.43,4 -4,4"></polygon><!-- Disease Severity (C) --><g id="node1" class="node"><title>Disease Severity (C)</title>
+<ellipse fill="none" stroke="black" cx="172.6" cy="-162" rx="87.69" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="172.6" y="-156.95" font-family="Times,serif" font-size="14.00">Disease Severity (C)</text></g><!-- Hypercapnia Severity (E) --><g id="node2" class="node"><title>Hypercapnia Severity (E)</title>
+<ellipse fill="none" stroke="black" cx="105.6" cy="-90" rx="105.6" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="105.6" y="-84.95" font-family="Times,serif" font-size="14.00">Hypercapnia Severity (E)</text></g><!-- Disease Severity (C)&#45;&gt;Hypercapnia Severity (E) --><g id="edge1" class="edge"><title>Disease Severity (C)-&gt;Hypercapnia Severity (E)</title>
+<path fill="none" stroke="black" d="M156.38,-144.05C148.32,-135.63 138.41,-125.28 129.5,-115.97"></path><polygon fill="black" stroke="black" points="132.16,-113.69 122.72,-108.88 127.11,-118.53 132.16,-113.69"></polygon></g><!-- Readmission Risk (O) --><g id="node3" class="node"><title>Readmission Risk (O)</title>
+<ellipse fill="none" stroke="black" cx="172.6" cy="-18" rx="93.83" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="172.6" y="-12.95" font-family="Times,serif" font-size="14.00">Readmission Risk (O)</text></g><!-- Disease Severity (C)&#45;&gt;Readmission Risk (O) --><g id="edge2" class="edge"><title>Disease Severity (C)-&gt;Readmission Risk (O)</title>
+<path fill="none" stroke="black" d="M193.81,-144.25C204,-134.83 215.16,-122.13 220.6,-108 226.36,-93.07 226.36,-86.93 220.6,-72 216.63,-61.71 209.64,-52.17 202.19,-44.11"></path><polygon fill="black" stroke="black" points="204.68,-41.65 195.13,-37.05 199.73,-46.6 204.68,-41.65"></polygon></g><!-- Hypercapnia Severity (E)&#45;&gt;Readmission Risk (O) --><g id="edge3" class="edge"><title>Hypercapnia Severity (E)-&gt;Readmission Risk (O)</title>
+<path fill="none" stroke="black" d="M121.82,-72.05C129.89,-63.63 139.79,-53.28 148.71,-43.97"></path><polygon fill="black" stroke="black" points="151.1,-46.53 155.49,-36.88 146.04,-41.69 151.1,-46.53"></polygon></g></g></svg>
+</div>
+</div>
+<p>In this example, you can imagine an example where there appears to be an association between hypercapnia severity and risk of readmission, even if - hypothetically - there isn’t one, if patients who have more severe lung disease tend to have higher PaCO₂ levels. Thus, to isolate the effect of hypercapnia itself, you need to account for the severity of lung disease.</p>
+</section><section id="sec-mediator" class="level4" data-number="6.1.1.2"><h4 data-number="6.1.1.2" class="anchored" data-anchor-id="sec-mediator">
+<span class="header-section-number">6.1.1.2</span> Mediators</h4>
+<p>Next, consider CO₂ narcosis (altered mental status from severe hypercapnia). Should we adjust for CO₂ narcosis when estimating the impact of hypercapnia on outcomes like readmission risk?</p>
+<p>CO₂ narcosis clearly meets some criteria for adjustment: it’s associated with both hypercapnia (the exposure) and readmission risk (the outcome). But, CO₂ narcosis doesn’t cause hypercapnia; it’s a consequence of it. This makes CO₂ narcosis a mediator (abbreviated M), rather than a confounder.</p>
+<p>A mediator is a variable that is on the causal pathway between exposure and outcome. Mediators never cause the exposure, nor do they result from the outcome. Instead, they represent a step through which the exposure affects the outcome.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>Role</th>
+<th>Variable / Example</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>Exposure (E)</strong></td>
+<td>Severity of hypercapnia</td>
+<td>Baseline PaCO₂ level on admission</td>
+</tr>
+<tr class="even">
+<td><strong>Mediator (M)</strong></td>
+<td>CO₂ narcosis (altered mental status)</td>
+<td>Developed after hypercapnia; lies on path between E and O</td>
+</tr>
+<tr class="odd">
+<td><strong>Outcome (O)</strong></td>
+<td>Readmission risk</td>
+<td>Whether the patient is readmitted within 28 days</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>g <span class="op">=</span> gr.Digraph()</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>g.edge(<span class="st">"Hypercapnia Severity (E)"</span>, <span class="st">"Altered Mental Status (M)"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>g.edge(<span class="st">"Altered Mental Status (M)"</span>, <span class="st">"Readmission Risk (O)"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>g.edge(<span class="st">"Hypercapnia Severity (E)"</span>, <span class="st">"Readmission Risk (O)"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>svg <span class="op">=</span> g.pipe(<span class="bu">format</span><span class="op">=</span><span class="st">"svg"</span>).decode(<span class="st">"utf-8"</span>)  </span>
+<span id="cb2-8"><a href="#cb2-8"></a>HTML(svg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><!-- Generated by graphviz version 13.1.0 (0)
+ --><!-- Pages: 1 --><svg width="293pt" height="188pt" viewbox="0.00 0.00 293.00 188.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)"><polygon fill="white" stroke="none" points="-4,4 -4,-184 288.81,-184 288.81,4 -4,4"></polygon><!-- Hypercapnia Severity (E) --><g id="node1" class="node"><title>Hypercapnia Severity (E)</title>
+<ellipse fill="none" stroke="black" cx="179.21" cy="-162" rx="105.6" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="179.21" y="-156.95" font-family="Times,serif" font-size="14.00">Hypercapnia Severity (E)</text></g><!-- Altered Mental Status (M) --><g id="node2" class="node"><title>Altered Mental Status (M)</title>
+<ellipse fill="none" stroke="black" cx="110.21" cy="-90" rx="110.21" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="110.21" y="-84.95" font-family="Times,serif" font-size="14.00">Altered Mental Status (M)</text></g><!-- Hypercapnia Severity (E)&#45;&gt;Altered Mental Status (M) --><g id="edge1" class="edge"><title>Hypercapnia Severity (E)-&gt;Altered Mental Status (M)</title>
+<path fill="none" stroke="black" d="M162.51,-144.05C154.32,-135.75 144.3,-125.58 135.22,-116.38"></path><polygon fill="black" stroke="black" points="137.81,-114.02 128.3,-109.35 132.83,-118.93 137.81,-114.02"></polygon></g><!-- Readmission Risk (O) --><g id="node3" class="node"><title>Readmission Risk (O)</title>
+<ellipse fill="none" stroke="black" cx="179.21" cy="-18" rx="93.83" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="179.21" y="-12.95" font-family="Times,serif" font-size="14.00">Readmission Risk (O)</text></g><!-- Hypercapnia Severity (E)&#45;&gt;Readmission Risk (O) --><g id="edge3" class="edge"><title>Hypercapnia Severity (E)-&gt;Readmission Risk (O)</title>
+<path fill="none" stroke="black" d="M201.81,-143.96C212.27,-134.63 223.61,-122.11 229.21,-108 235.12,-93.13 235.12,-86.87 229.21,-72 225.02,-61.44 217.61,-51.77 209.76,-43.66"></path><polygon fill="black" stroke="black" points="212.29,-41.23 202.64,-36.85 207.45,-46.29 212.29,-41.23"></polygon></g><!-- Altered Mental Status (M)&#45;&gt;Readmission Risk (O) --><g id="edge2" class="edge"><title>Altered Mental Status (M)-&gt;Readmission Risk (O)</title>
+<path fill="none" stroke="black" d="M126.91,-72.05C135.22,-63.63 145.42,-53.28 154.6,-43.97"></path><polygon fill="black" stroke="black" points="157.07,-46.45 161.6,-36.87 152.09,-41.53 157.07,-46.45"></polygon></g></g></svg>
+</div>
+</div>
+<p>If we include CO₂ narcosis in our regression model, what happens?</p>
+<p>Think of it this way: hypercapnia may influence readmission risk in two distinct ways:</p>
+<ul>
+<li>Indirect pathway: Hypercapnia → CO₂ narcosis → readmission. This is the effect that is mediated through M)</li>
+<li>Direct pathway: Hypercapnia → readmission through other mechanisms (not involving M)</li>
+</ul>
+<p>Including CO₂ narcosis in the model removes (“controls out”) the indirect pathway. In other words, the regression result would represent only the effect of hypercapnia independent of CO₂ narcosis (the direct effect*).</p>
+<p>Typically, we’re interested in the entire impact of hypercapnia on outcomes, the total effect, which includes both direct and indirect pathways. Thus, you usually should avoid including mediators in your regression models.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Additional assumptions for valid mediation analysis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In the case where you really are interested in splitting apart the direct and indirect pathways, there are a few additional assumptions for a valid mediation analysis, collectively termed <strong>sequential ignorability</strong>. They include:</p>
+<ul>
+<li>No unmeasured confounding for the relationships:
+<ul>
+<li>E → O</li>
+<li>E → M</li>
+<li>M → O</li>
+</ul>
+</li>
+<li>No confounders of the M → O relationship are caused by E</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Similarly, there are other variables which are neither confounders nor mediators (such as variables merely correlated with the mediator or variables that result from the outcome) that will cause confusion and yield misleading or uninterpretable results if they’re included in regression models.</p>
+</section><section id="sec-effect_mod" class="level4" data-number="6.1.1.3"><h4 data-number="6.1.1.3" class="anchored" data-anchor-id="sec-effect_mod">
 <span class="header-section-number">6.1.1.3</span> Effect Modifier</h4>
-<p>Effect modifiers (and the related concept of interactions) refer to situations where a third variable influences the effect of the exposure on the outcome. As a hypothetical example, a bacterial pathogen is presumably an effect modifier for response to antibiotics on community acquired pneumonia: if bacterial CAP, antibiotics help, and if viral it probably doesn’t.</p>
-<p>This might seem like a very distinct concept from mediators and confounders - and it is. But the reason I bring it up here is that it’ll appear similar in regression analyses if not specified.</p>
-</section></section></section><section id="understand-the-logic-of-regression-analysis" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="understand-the-logic-of-regression-analysis">
-<span class="header-section-number">6.2</span> Understand the logic of regression analysis</h2>
-<p>Recall, if there is an association between an ‘exposure’ and an ‘outcome’, there are 4 possible explanations</p>
-<ol type="1">
-<li>Chance</li>
-<li>Confounding (some other factor influences the exposure and the outcome)</li>
-<li>Bias&nbsp;</li>
-<li>Or, causation (a real effect)</li>
-</ol>
-<p>Randomization = takes care of some (but not all) of the other reasons for an association = can convince a skeptic. However, observational research must make arguments (based on assumptions) and they must be explicit. Randomization addresses point 2 (essentially, converts it to point 1, in that only chance confounding can occur)</p>
-<p>For non-randomized data, you must make an argument against point 2. This is the most common use of regression.&nbsp;</p>
-<p>[the methods section of your paper is the argument against point 3; pull in RECORD/STROBE recs]</p>
-<p><strong>There are at least 3 uses of regression models:</strong>&nbsp;</p>
-<ol type="1">
-<li>Inferential Statistics: Hypothesis testing with confounding control</li>
-<li>Descriptive Statistics: Summarize the strength of association</li>
-<li>Prediction of an outcome (e.g.&nbsp;statistical machine learning)</li>
-</ol>
+<p>An effect modifier (often abbreviated Z) is a third variable that changes (modifies) the strength or direction of the relationship between an exposure (E) and an outcome (O).</p>
+<p>Returning to our example, imagine that the relationship between hypercapnia and readmission risk depends on the patient’s primary diagnosis:</p>
+<p>• In COPD, elevated PaCO₂ may cause persistent impairment of respiratory drive, increasing the likelihood of readmission despite therapy.</p>
+<p>• In Obesity Hypoventilation Syndrome (OHS), elevated PaCO₂ may respond effectively to nocturnal BPAP therapy, making readmissions less likely.</p>
+<p>Thus, the impact of hypercapnia on readmission risk differs depending on whether the patient has COPD or OHS. In other words, the primary diagnosis <em>modifies</em> the effect of hypercapnia on readmission risk, making it an effect modifier.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>Role</th>
+<th>Variable</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>Exposure (E)</strong></td>
+<td>Severity of hypercapnia</td>
+<td>PaCO₂ level at admission</td>
+</tr>
+<tr class="even">
+<td><strong>Effect modifier (Z)</strong></td>
+<td>Primary diagnosis</td>
+<td>COPD vs OHS alters how PaCO₂ influences readmission risk</td>
+</tr>
+<tr class="odd">
+<td><strong>Outcome (O)</strong></td>
+<td>Readmission Risk</td>
+<td>Whether the patient returns within 28 days</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>g <span class="op">=</span> gr.Digraph()</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>g.edge(<span class="st">"Hypercapnia Severity"</span>, <span class="st">"Altered Mental Status"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>g.edge(<span class="st">"Altered Mental Status"</span>, <span class="st">"Readmission Risk"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>g.edge(<span class="st">"Hypercapnia Severity"</span>, <span class="st">"Readmission Risk"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>svg <span class="op">=</span> g.pipe(<span class="bu">format</span><span class="op">=</span><span class="st">"svg"</span>).decode(<span class="st">"utf-8"</span>)  </span>
+<span id="cb3-8"><a href="#cb3-8"></a>HTML(svg)</span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co"># Note: there is not a uniformly agreed upon way to represent an effect modifiers in DAG, though there are proposals</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><!-- Generated by graphviz version 13.1.0 (0)
+ --><!-- Pages: 1 --><svg width="252pt" height="188pt" viewbox="0.00 0.00 252.00 188.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)"><polygon fill="white" stroke="none" points="-4,4 -4,-184 248.08,-184 248.08,4 -4,4"></polygon><!-- Hypercapnia Severity --><g id="node1" class="node"><title>Hypercapnia Severity</title>
+<ellipse fill="none" stroke="black" cx="152.81" cy="-162" rx="91.27" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="152.81" y="-156.95" font-family="Times,serif" font-size="14.00">Hypercapnia Severity</text></g><!-- Altered Mental Status --><g id="node2" class="node"><title>Altered Mental Status</title>
+<ellipse fill="none" stroke="black" cx="92.81" cy="-90" rx="92.81" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="92.81" y="-84.95" font-family="Times,serif" font-size="14.00">Altered Mental Status</text></g><!-- Hypercapnia Severity&#45;&gt;Altered Mental Status --><g id="edge1" class="edge"><title>Hypercapnia Severity-&gt;Altered Mental Status</title>
+<path fill="none" stroke="black" d="M138.28,-144.05C131.13,-135.71 122.37,-125.49 114.45,-116.25"></path><polygon fill="black" stroke="black" points="117.35,-114.25 108.18,-108.94 112.03,-118.81 117.35,-114.25"></polygon></g><!-- Readmission Risk --><g id="node3" class="node"><title>Readmission Risk</title>
+<ellipse fill="none" stroke="black" cx="152.81" cy="-18" rx="78.48" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="152.81" y="-12.95" font-family="Times,serif" font-size="14.00">Readmission Risk</text></g><!-- Hypercapnia Severity&#45;&gt;Readmission Risk --><g id="edge3" class="edge"><title>Hypercapnia Severity-&gt;Readmission Risk</title>
+<path fill="none" stroke="black" d="M170.97,-144.22C180.02,-134.61 190.02,-121.75 194.81,-108 200.07,-92.89 200.07,-87.11 194.81,-72 191.33,-62.01 185.1,-52.49 178.48,-44.34"></path><polygon fill="black" stroke="black" points="181.19,-42.13 171.97,-36.91 175.93,-46.74 181.19,-42.13"></polygon></g><!-- Altered Mental Status&#45;&gt;Readmission Risk --><g id="edge2" class="edge"><title>Altered Mental Status-&gt;Readmission Risk</title>
+<path fill="none" stroke="black" d="M107.33,-72.05C114.48,-63.71 123.24,-53.49 131.16,-44.25"></path><polygon fill="black" stroke="black" points="133.58,-46.81 137.43,-36.94 128.27,-42.25 133.58,-46.81"></polygon></g></g></svg>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Scale matters in effect modification
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Whether there’s effect modification depends on <strong>scale</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>Scale</th>
+<th>Question answered</th>
+<th>Possible outcome</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>
+<strong>Relative</strong> (e.g., risk ratio, odds ratio)</td>
+<td>“Does the <em>proportional</em> effect differ by subgroup?”</td>
+<td>Subgroups may differ on the RR scale but not on the additive scale.</td>
+</tr>
+<tr class="even">
+<td>
+<strong>Additive</strong> (e.g., risk difference)</td>
+<td>“Does the <em>absolute</em> effect differ by subgroup?”</td>
+<td>Effect modifiers can disappear (or appear) when you switch scales.</td>
+</tr>
+</tbody>
+</table>
+<p>There is not consensus about which is preferred. Generalizing, relative effect modification better captures biologic interactions while absolute effect modification better captures the implications for decision-making. Always state the scale (relative effect modification vs.&nbsp;absolute effect modification) and remember that a modifier on one scale may vanish on another.</p>
+</div>
+</div>
+</div>
+<p>What happens if you include an effect modifier as a regular predictor in your regression model?</p>
+<p>Unfortunately, you don’t capture the relationship you’re interested in, as the model would provide:</p>
+<p>• An estimate of how diagnosis (COPD vs OHS) influences readmission risk, after adjusting for PaCO₂. • A single, averaged estimate of how PaCO₂ influences readmission risk, after adjusting for the primary diagnosis.</p>
+<p>What you really want is to represent how the effect of PaCO₂ differs depending on the diagnosis: two distinct estimates rather than a single averaged effect. To accomplish that, you must explicitly include an interaction term (e.g., PaCO2 × diagnosis) in your regression model.</p>
+<p>Because regression models represent effect modification through interaction terms, the terms effect modification and interaction are often used semi-interchangeably.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interactions need more power
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Expect to need <strong>much larger sample sizes</strong> (4-16 ×) to detect interactions with the same confidence you’d expect for main effects:</p>
+<ul>
+<li>
+<strong>Interactions are usually smaller</strong> than main effects.<br>
+</li>
+<li>You’re separating the signal from <strong>two variables at once</strong> (exposure × modifier), so standard errors inflate.</li>
+</ul>
+<p>Even so, you should include the interaction term in your plan if biological or clinical reasoning suggests effect modification… just remember that it’s not very strong evidence against effect modification if the interaction term is not statistically significant.</p>
+</div>
+</div>
+</div>
+</section></section><section id="sec-variable_select" class="level3" data-number="6.1.2"><h3 data-number="6.1.2" class="anchored" data-anchor-id="sec-variable_select">
+<span class="header-section-number">6.1.2</span> So, what should go in your regression model?</h3>
+<p>We’ve discussed three ways that a third variable can influence the relationship between an exposure and an outcome:</p>
+<pre><code>•   Confounding (C)
+•   Mediation (M)
+•   Effect Modification (Z)</code></pre>
+<p>Each scenario changes the meaning of your regression results. Whether and how you include these variables depends entirely on what you’re trying to measure—your estimand—and your assumptions about how each variable fits into the causal structure.</p>
+<p>Here’s the critical takeaway: <strong>You can’t determine the role of variables just by looking at the data.</strong>*</p>
+<p>Confounders, mediators, and modifiers can all appear very similar in raw data. Instead, you must carefully reason through the role each variable plays in your scenario, clearly define your estimand, and then build a model that matches these assumptions. Directed Acyclic Graphs (DAGs) help you explicitly lay out and communicate these assumptions, clarifying your model-building decisions.</p>
+<p>The need to explicitly define assumptions has important implications for how you should build regression models. Most importantly:</p>
+<p>Do NOT simply include all available variables in your model and hope for the best.</p>
+<p>Even with large datasets, including too many predictors without careful thought can obscure what your results actually mean, or worse, mislead you entirel. To emphasize the point clearly:</p>
+<p><strong><em>Do NOT just throw everything into your regression model.</em></strong></p>
+<p>To drive this home, the next section (optional) introduces a fourth type of variable, called a collider, illustrating even more clearly why careful selection of variables matters.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why do tall NBA players appear to be bad at free throws?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This surprising observation illustrates <strong>collider(-stratification) bias</strong>. A <strong>collider</strong> is a variable influenced by two (or more) other variables. Adjusting for (or restricting your analysis to a certain value of) a collider can create artificial associations that don’t exist in reality.</p>
+<p><strong>Example: NBA Player Selection</strong></p>
+<ul>
+<li>Being tall → more likely to become an NBA player<br>
+</li>
+<li>Having excellent free-throw accuracy → more likely to become an NBA player</li>
+</ul>
+<p>Thus, “NBA player” is a <strong>collider</strong>—it results from both height and shooting accuracy:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>g <span class="op">=</span> gr.Digraph()</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>g.edge(<span class="st">"Being very tall"</span>, <span class="st">"Drafted into NBA"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>g.edge(<span class="st">"Excellent free-throw accuracy"</span>, <span class="st">"Drafted into NBA"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a>svg <span class="op">=</span> g.pipe(<span class="bu">format</span><span class="op">=</span><span class="st">"svg"</span>).decode(<span class="st">"utf-8"</span>)  </span>
+<span id="cb5-7"><a href="#cb5-7"></a>HTML(svg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><!-- Generated by graphviz version 13.1.0 (0)
+ --><!-- Pages: 1 --><svg width="404pt" height="116pt" viewbox="0.00 0.00 404.00 116.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)"><polygon fill="white" stroke="none" points="-4,4 -4,-112 399.69,-112 399.69,4 -4,4"></polygon><!-- Being very tall --><g id="node1" class="node"><title>Being very tall</title>
+<ellipse fill="none" stroke="black" cx="66.19" cy="-90" rx="66.19" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="66.19" y="-84.95" font-family="Times,serif" font-size="14.00">Being very tall</text></g><!-- Drafted into NBA --><g id="node2" class="node"><title>Drafted into NBA</title>
+<ellipse fill="none" stroke="black" cx="169.19" cy="-18" rx="77.97" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="169.19" y="-12.95" font-family="Times,serif" font-size="14.00">Drafted into NBA</text></g><!-- Being very tall&#45;&gt;Drafted into NBA --><g id="edge1" class="edge"><title>Being very tall-&gt;Drafted into NBA</title>
+<path fill="none" stroke="black" d="M90.08,-72.76C103.64,-63.55 120.81,-51.88 135.69,-41.77"></path><polygon fill="black" stroke="black" points="137.52,-44.76 143.83,-36.24 133.59,-38.97 137.52,-44.76"></polygon></g><!-- Excellent free&#45;throw accuracy --><g id="node3" class="node"><title>Excellent free-throw accuracy</title>
+<ellipse fill="none" stroke="black" cx="273.19" cy="-90" rx="122.49" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="273.19" y="-84.95" font-family="Times,serif" font-size="14.00">Excellent free-throw accuracy</text></g><!-- Excellent free&#45;throw accuracy&#45;&gt;Drafted into NBA --><g id="edge2" class="edge"><title>Excellent free-throw accuracy-&gt;Drafted into NBA</title>
+<path fill="none" stroke="black" d="M248.02,-72.05C234.51,-62.96 217.67,-51.63 203.03,-41.77"></path><polygon fill="black" stroke="black" points="205.28,-39.07 195.03,-36.39 201.38,-44.88 205.28,-39.07"></polygon></g></g></svg>
+</div>
+</div>
+<p>When you look <em>only</em> at NBA players (essentially, ‘adjusting for’ the collider), you create an artificial, inverse relationship: it looks like taller players are poorer free-throw shooters, even if no real-world correlation exists. In reality, what you’re finding is: “there’s two ways to get into the NBA. So, folks who got in because they’re good shooters are probably less tall and people who got in because they’re tall are likely worse shooter.”</p>
+<p><strong>Takeaway</strong>: Conditioning on a collider distorts reality. Carefully identify colliders in your DAG, and <strong>avoid adjusting for them</strong>.</p>
+<p>This may seem niche, but collider-stratification is everywhere, once you look for it. The “obesity paradox” is one medical example. Consider ARDS.</p>
+<p>You must be very hypoxemic to have ARDS. There are two reasons you might be hypoxemic:</p>
+<ul>
+<li>obesity, leading to atelectasis and shunting</li>
+<li>severe lung injury</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>g <span class="op">=</span> gr.Digraph()</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>g.edge(<span class="st">"Obesity"</span>, <span class="st">"Hypoxemia"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4"></a>g.edge(<span class="st">"Lung Injury"</span>, <span class="st">"Hypoxemia"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>svg <span class="op">=</span> g.pipe(<span class="bu">format</span><span class="op">=</span><span class="st">"svg"</span>).decode(<span class="st">"utf-8"</span>)  </span>
+<span id="cb6-7"><a href="#cb6-7"></a>HTML(svg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><!-- Generated by graphviz version 13.1.0 (0)
+ --><!-- Pages: 1 --><svg width="216pt" height="116pt" viewbox="0.00 0.00 216.00 116.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)"><polygon fill="white" stroke="none" points="-4,4 -4,-112 212.03,-112 212.03,4 -4,4"></polygon><!-- Obesity --><g id="node1" class="node"><title>Obesity</title>
+<ellipse fill="none" stroke="black" cx="39.58" cy="-90" rx="39.58" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="39.58" y="-84.95" font-family="Times,serif" font-size="14.00">Obesity</text></g><!-- Hypoxemia --><g id="node2" class="node"><title>Hypoxemia</title>
+<ellipse fill="none" stroke="black" cx="95.58" cy="-18" rx="54.42" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="95.58" y="-12.95" font-family="Times,serif" font-size="14.00">Hypoxemia</text></g><!-- Obesity&#45;&gt;Hypoxemia --><g id="edge1" class="edge"><title>Obesity-&gt;Hypoxemia</title>
+<path fill="none" stroke="black" d="M52.57,-72.76C59.26,-64.4 67.57,-54.02 75.1,-44.61"></path><polygon fill="black" stroke="black" points="77.81,-46.81 81.33,-36.82 72.35,-42.44 77.81,-46.81"></polygon></g><!-- Lung Injury --><g id="node3" class="node"><title>Lung Injury</title>
+<ellipse fill="none" stroke="black" cx="152.58" cy="-90" rx="55.45" ry="18"></ellipse><text space="preserve" text-anchor="middle" x="152.58" y="-84.95" font-family="Times,serif" font-size="14.00">Lung Injury</text></g><!-- Lung Injury&#45;&gt;Hypoxemia --><g id="edge2" class="edge"><title>Lung Injury-&gt;Hypoxemia</title>
+<path fill="none" stroke="black" d="M139.07,-72.41C132.26,-64.04 123.84,-53.71 116.24,-44.37"></path><polygon fill="black" stroke="black" points="118.98,-42.19 109.95,-36.64 113.55,-46.61 118.98,-42.19"></polygon></g></g></svg>
+</div>
+</div>
+<p>So, if you look at people with ARDS (essentially, conditioning on hypoxemia), you expect a negative relationship between BMI and the degree of lung injury. When people unfamiliar with collider-stratification find that relationship, they look for explanations about “the protective effect of obesity”. Doubtful there is such a thing.</p>
+</div>
+</div>
+</div>
+<p>What you should do instead (as endorsed by the editors of all the main PCCM journals) is before you even look at your data, sit down and think through the relationship between your exposure of interest and your outcome of interest and start creating a DAG.</p>
+<ul>
+<li>What things are confounders (even if you can’t measure them, including them in the diagram because it’ll help clarify what residual confounders will be left after you’ve constructed your best model, which will undoubtedly be imperfect)?</li>
+<li>Consider what the thing you’re interested in estiamting is (is it the total effect?), and what things are mediators?</li>
+<li>What things might modify the effect of interest?</li>
+</ul>
+<p>Once your diagram is done, it implies what your ideal regression model might be. Include only the variables that seem important in your DAG. Then, you have to further consider the limitations of the data (ie. size, how well each can be measured), and decide which confounders can be adjusted for under the actual constraints in your project.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How does sample size limit what can be in a regression?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Think of regression as trying to pull signal (the actual underlying relationships) out of noise (randomness from comes from only having a few, imperfectly measured data points).</p>
+<p>Consider the case where there’s one predictor, two points. With just two data points you can always draw a line (fit a model) that fits perfectly… but the “fit” is meaningless. Same thing occurs if there’s two predictors, three points. In three-dimensional space you can always fit a plane exactly through three points—for the same reason. In both cases, the perfect fit just reflects that if you give yourself enough degrees of freedom, you can perfectly fit your data, but it may not reflect the underlying trends. The model memorizes random noise instead of learning the underlying relationship.</p>
+<p>Many rules of thumb (and more rigorous appraoches) exist to determine how many predictors is too many.</p>
+<p>It’s better to err on the side of including less.</p>
+</div>
+</div>
+</div>
+<p>Then, finally, you can run your regression.</p>
+</section></section><section id="sec-regression_logic" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="sec-regression_logic">
+<span class="header-section-number">6.2</span> The logic of using regression for causal inference</h2>
+<p>Recall that when we observe an association between an exposure and an outcome, there are four possible explanations:</p>
+<pre><code>1.  Chance
+2.  Confounding (another factor influencing both exposure and outcome)
+3.  Bias (systematic error resulting from measurement or design)
+4.  Causation (a true effect)</code></pre>
+<p>When we use regression for causal inference, we’re typically making an argument by exclusion (the disjunctive syllogism):</p>
+<blockquote class="blockquote">
+<p>If chance, confounding, and bias can’t explain the association, it must be causal.</p>
+</blockquote>
+<p>The probability of chance alone explaining an observed observation is the p-value. The plausibility that bias could explain it is addressed by the methods of the paper (how the study was designed and how the effects were measured).</p>
+<p>In randomized studies, random assignment makes confounding improbable (if the sample is big enough). However, in observational (non-randomized) research, statistical adjustments to address the possibility of confounding are required. This is the most common use of regression.</p>
+<p>However, for regression to adequately adjust for confounders (ie. confounders are )</p>
 <p>Regression comes with additional assumptions:&nbsp;</p>
 <ul>
 <li>Independent observations (special “mixed models” can relax this)</li>
@@ -517,13 +918,15 @@ Important
 <li>The relationship between the predictors are properly specified.**</li>
 <li>Additional constraints (e.g.&nbsp;constant variance)</li>
 </ul>
+<p>Lastly, all potential confounders must be in the model (an assumption called ‘conditional exchangeability’)</p>
 <p>Thus the logic is: if the assumptions of the models hold in reality, then the described relationships are valid</p>
 <blockquote class="blockquote">
 <p>No model is perfect, but some models are useful</p>
 </blockquote>
 <ul>
 <li>Morris moment(TM)</li>
-</ul>
+</ul></section><section id="sec-reg_type" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="sec-reg_type">
+<span class="header-section-number">6.3</span> What type of regression is needed?</h2>
 <p>Output variable (aka the dependent variable, predicted variable) form determines the type of regression :&nbsp;</p>
 <table class="caption-top table">
 <colgroup>
@@ -565,7 +968,8 @@ Important
 </tbody>
 </table>
 <p>From: From: Stoddard GJ. Biostatistics and Epidemiology Using Stata: A Course Manual. Salt Lake City, UT: University of Utah School of Medicine.</p>
-<p><strong>Interpretation:</strong></p>
+</section><section id="sec-reg_interp" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="sec-reg_interp">
+<span class="header-section-number">6.4</span> How do you interpret the regression results?</h2>
 <p>Regression coefficient = What change in the outcome do you expected if you change the predictor by 1 unit, holding all other variables constant</p>
 <ul>
 <li>For linear regression: additive change in outcome</li>
@@ -575,16 +979,16 @@ Important
 <p>Example:</p>
 <p>Consider, if we want to test whether ‘splenectomy’ and ‘got_cteph?’ are associated, we could use a chi2 test:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#chi2_test_result &lt;- chisq.test(darren_data_sheet$splenectomy, darren_data_sheet$`got_cteph?`)</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#print(chi2_test_result)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#chi2_test_result &lt;- chisq.test(darren_data_sheet$splenectomy, darren_data_sheet$`got_cteph?`)</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#print(chi2_test_result)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively you could specify a logistic regression</p>
 <p>(“GLM” standards for ‘general linear model’. Logistic regression is a type of glm where the family is binomial)</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#logistic_model &lt;- glm(`got_cteph?` ~ splenectomy, data = darren_data_sheet, family = binomial())</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Output the summary of the model to see coefficients and statistics</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#summary(logistic_model)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#logistic_model &lt;- glm(`got_cteph?` ~ splenectomy, data = darren_data_sheet, family = binomial())</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co"># Output the summary of the model to see coefficients and statistics</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#summary(logistic_model)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/Screenshot 2024-04-30 at 9.11.26 PM.png" class="img-fluid figure-img"></p>
@@ -592,8 +996,8 @@ Important
 </div>
 <p>(<a href="https://www.dagitty.net/dags.html" class="uri">https://www.dagitty.net/dags.html</a> Daggity is a tool to specify such diagrams)</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#logistic_model_updated &lt;- glm(`got_cteph?` ~ splenectomy + prox_v_dist, data = darren_data_sheet, family = binomial())</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#summary(logistic_model_updated)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">#logistic_model_updated &lt;- glm(`got_cteph?` ~ splenectomy + prox_v_dist, data = darren_data_sheet, family = binomial())</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co">#summary(logistic_model_updated)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/Screenshot 2024-04-30 at 9.11.20 PM.png" class="img-fluid figure-img"></p>
@@ -609,13 +1013,20 @@ Important
 <p>Models - you choose a way to distill the relationships that are contingent on certain assumptions - and if those assumptions hold, your conclusions follow.</p>
 <p>DAGs What does it mean to control? https://idlhy0218.github.io/page%20building/blog.html#control</p>
 <p>Conceptually - you are modeling something… all models are wrong, some models are useful. You just need to know the assumptions you are implying by your choice, so that you can make an argument about whether the assumptions are warranted or not .</p>
+<section id="functional-forms" class="level3" data-number="6.4.1"><h3 data-number="6.4.1" class="anchored" data-anchor-id="functional-forms">
+<span class="header-section-number">6.4.1</span> Functional Forms</h3>
 <p>Functional forms *** dichotomization vs flexible models</p>
 <p>What type of questions can regression be used? - controlling for the effect of one thing on another. - prediction</p>
 <p>— how to do in python: python resources for how to do that section of it: https://ajthurston.com/predprobs?utm_source=substack&amp;utm_medium=email</p>
 <p><img src="images/clipboard-3990776221.png" class="img-fluid"></p>
+<p>TODO:</p>
+<ul>
+<li>pull in definition code.</li>
+<li>make links automatically.</li>
+</ul>
 
 
-</section></main><!-- /main --><script>
+</section></section></main><!-- /main --><script>
 
 /* update total correct if #webex-total_correct exists */
 update_total_correct = function() {

@@ -104,7 +104,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script><script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 <link rel="stylesheet" href="include/booktem.css">
 <link rel="stylesheet" href="include/webex.css">
 <link rel="stylesheet" href="include/glossary.css">
@@ -447,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#how-to-document-and-share-code" id="toc-how-to-document-and-share-code" class="nav-link" data-scroll-target="#how-to-document-and-share-code"><span class="header-section-number">2.4.1</span> How to document and share code</a></li>
   </ul>
 </li>
-  <li><a href="#sec-reproducible" id="toc-sec-reproducible" class="nav-link" data-scroll-target="#sec-reproducible"><span class="header-section-number">2.5</span> Reproducible Research</a></li>
+  <li><a href="#reproducible-research" id="toc-reproducible-research" class="nav-link" data-scroll-target="#reproducible-research"><span class="header-section-number">2.5</span> Reproducible Research</a></li>
   <li>
 <a href="#sec-steroids_cap" id="toc-sec-steroids_cap" class="nav-link" data-scroll-target="#sec-steroids_cap"><span class="header-section-number">2.6</span> An Example: Meta-analyzing the effect of corticosteroids in CAP</a>
   <ul class="collapse">
@@ -584,12 +609,12 @@ Writing analytic code in a clear, structured, and understandable way so that rea
 </tbody></table>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<table style="width:94%;">
+<table style="width:92%;">
 <colgroup>
-<col style="width: 3%">
 <col style="width: 17%">
-<col style="width: 42%">
-<col style="width: 30%">
+<col style="width: 17%">
+<col style="width: 34%">
+<col style="width: 22%">
 </colgroup>
 <tbody>
 <tr>
@@ -630,15 +655,24 @@ Create an environment
 Execute the following commands in a terminal:
 </p>
 <p>
-<code>mamba create -n stats python=3.12 numpy pandas scipy statsmodels scikit-learn lifelines pingouinmatplotlib seaborn plotnine pyreadstatjupyterlab ipykernel jupytext –channel conda-forge</code>
+<code>bash Miniforge3-MacOSX-&lt;arch&gt;.sh</code>
 </p>
 <p>
-<code>conda activate stats</code>
+<code>conda init “<span class="math inline">\((basename "\)</span>SHELL”)“</code>
+</p>
+<p>
+<code>exec “$SHELL”</code>
+</p>
+<p>
+<code>which mamba || conda install -n base -c conda-forge mamba</code>
+</p>
+<p>
+conda activate stats &amp;&amp; python -m ipykernel install –user –name stats –display-name Python (stats)
 </p>
 </td>
 <td>
 <p>
-This sets up an environment (controls the versions and packages that are used).
+This sets up an environment stats with all needed packages, then activates a Kernel (controls the versions and packages that are used).
 </p>
 </td>
 </tr>
@@ -655,7 +689,10 @@ Install Visual Code
 </td>
 <td>
 <p>
-<a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a>
+<a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a> then add Python and Jupyter extensions.
+</p>
+<p>
+In VS&nbsp;Code: Command Palette → Shell Command: Install ‘code’ command in PATH
 </p>
 </td>
 <td>
@@ -757,10 +794,10 @@ A curated collection of functions designed to accomplish related tasks. Programm
 </tbody></table>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<table style="width:78%;">
+<table style="width:77%;">
 <colgroup>
 <col style="width: 24%">
-<col style="width: 53%">
+<col style="width: 52%">
 </colgroup>
 <tbody>
 <tr>
@@ -1094,7 +1131,7 @@ Tip
 </div>
 </div>
 </div>
-</section></section><section id="sec-reproducible" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="sec-reproducible">
+</section></section><section id="reproducible-research" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="reproducible-research">
 <span class="header-section-number">2.5</span> Reproducible Research</h2>
 <p>From a perspective of scientific rigor, sharing should also include the individual patient data to allow researchers to directly replicate or modify the reported analyses. However, despite research participant support for data sharing, privacy concerns and research ethics concerns generally do not permit the sharing of data, even if it has been pseudonomized. This is an active space where “ideal” and “actual” are far apart… but the current takeaway is that individual patient data should not ben shared unless that was explicitly part of the IRB authorization.</p>
 <p>Further reading (R focus): <a href="https://raps-with-r.dev/intro.html" class="uri">https://raps-with-r.dev/intro.html</a> building reproducible analytical pipelines: https://rap4mads.eu/?utm_source=substack&amp;utm_medium=email Citation: reproducible computing: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745</p>
@@ -1492,7 +1529,7 @@ Type 'help(meta)' for a brief overview.</code></pre>
 <span id="cb22-28"><a href="#cb22-28"></a>sf[<span class="st">"ci_upp"</span>] <span class="op">=</span> np.exp(sf[<span class="st">"ci_upp"</span>])</span>
 <span id="cb22-29"><a href="#cb22-29"></a><span class="bu">print</span>(sf.<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Current statsmodels version: 0.14.4
+<pre><code>Current statsmodels version: None
                      eff  sd_eff  ci_low  ci_upp   w_fe   w_re
 0                  1.176   1.427   0.072  19.285  0.005  0.010
 1                  0.694   0.696   0.177   2.714  0.020  0.036
@@ -1680,7 +1717,10 @@ Important
 <li><p>Request CTSI help: <a href="https://ctsi.utah.edu/cores-and-services/triad" class="uri">https://ctsi.utah.edu/cores-and-services/triad</a>&nbsp;</p></li>
 <li><p>R book (very good, but in-depth): https://r4ds.had.co.nz/index.html</p></li>
 </ul>
-<p>Guide to Python for those familiar with STATA - https://github.com/aeturrell/coding-for-economists/blob/main/coming-from-stata.md Guide to Python for those familiar with R - https://www.emilyriederer.com/post/py-rgo/?utm_source=substack&amp;utm_medium=email</p>
+<p>Rules for statistical computing: https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1005510</p>
+<p>Helpful R resources: tbl_summary: https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html tbl_regression: https://www.danieldsjoberg.com/gtsummary/articles/tbl_regression.html</p>
+<p>Helpful Python Resources: Guide to Python for those familiar with STATA - https://github.com/aeturrell/coding-for-economists/blob/main/coming-from-stata.md Guide to Python for those familiar with R - https://www.emilyriederer.com/post/py-rgo/?utm_source=substack&amp;utm_medium=email</p>
+<p>Helpful STATA resources:</p>
 </section><section id="todo-list" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="todo-list">TODO List:</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># find citation on how frequently errors occur in scientific programming.  - https://www.nature.com/collections/prbfkwmwvz </span></span>

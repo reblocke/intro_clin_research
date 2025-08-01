@@ -5,20 +5,22 @@ source("R/booktem_setup.R")
 source("R/my_setup.R")
 
 library(reticulate)
-ENV <- "r-reticulate"                         # change if py_config() says otherwise
 
-# point reticulate at the env *before* Python spins up
-use_condaenv(ENV, required = TRUE)
+# 1 – point to the env that already contains all wheels
+use_condaenv("r-reticulate", required = TRUE)
 
-if (!py_module_available("matplotlib")) {
-  message("Installing matplotlib (and numpy) into '", ENV, "' …")
-  conda_install(envname = ENV,
-                packages = c("matplotlib", "numpy"),
-                pip      = FALSE)
+# 2 – optional sanity check (warn, don’t install)
+missing <- c("pandas", "numpy", "scipy",
+             "matplotlib", "seaborn",
+             "statsmodels", "graphviz", "linearmodels")[!
+           vapply(c("pandas","numpy","scipy","matplotlib",
+                     "seaborn","statsmodels","graphviz","linearmodels"),
+                   py_module_available, logical(1))]
 
-  message("Restarting embedded Python …")
-  py_restart_session()                        # <- works in v1.42+
-}
+if (length(missing))
+  warning("Python modules missing: ",
+          paste(missing, collapse = ", "),
+          ". Install them once into the 'r-reticulate' env and re-render.")
 
 ```
 
@@ -36,7 +38,7 @@ R, Python, and Stata are the 3 most commonly used languages.
 | **Cost** | Free | Free | Requires License |
 | **IDE** | RStudio/Posit | Many, Visual Code is good | Built in editor |
 | **Strengths** | Best libraries for epidemiology, trial statistics. | Best libraries for text processing, machine learning, AI integration | Simple syntax; powerful quasi-experimental/meta-analysis packages. Used by U of U MSCI. |
-| **Weakness** | Clunky syntax; many 'dialects' | Overkill for many, complex development environment | Clunkiest machine learning, explainable programing, cost. |
+| **Weakness** | Clunky syntax; many 'dialects' | Overkill for many, complex development environment | Clunkiest machine learning, no native explainable programing, cost. |
 | `r glossary("Explainable programming")` | Quarto | Jupyter, Quarto | Not native (though can use Jupyter) |
 
 There are a few other language options (SPSS, SAS, Julia, etc.), but they are omitted for brevity (generally, not the best modern options)
@@ -60,12 +62,12 @@ Choose the tab for the language(s) you plan to use:
 
 ## Python
 
-<table style="width:94%;">
+<table style="width:92%;">
 <colgroup>
-<col style="width: 3%" />
 <col style="width: 17%" />
-<col style="width: 42%" />
-<col style="width: 30%" />
+<col style="width: 17%" />
+<col style="width: 34%" />
+<col style="width: 22%" />
 </colgroup>
 <tbody>
 <tr>
@@ -77,15 +79,19 @@ Choose the tab for the language(s) you plan to use:
 <tr>
 <td><p>2:</p></td>
 <td><p>Create an environment</p></td>
-<td><p>Execute the following commands in a terminal:</p>
-<p><code>mamba create -n stats python=3.12 numpy pandas scipy statsmodels scikit-learn lifelines pingouinmatplotlib seaborn plotnine pyreadstatjupyterlab ipykernel jupytext --channel conda-forge</code></p>
-<p><code>conda activate stats</code></p></td>
-<td><p>This sets up an environment (controls the versions and packages that are used).</p></td>
+<td><p>Execute the following commands in a <strong>terminal</strong>:</p>
+<p><code>bash Miniforge3-MacOSX-&lt;arch&gt;.sh</code></p>
+<p><code>conda init "$(basename "$SHELL")"</code></p>
+<p><code>exec "$SHELL"</code></p>
+<p><code>which mamba || conda install -n base -c conda-forge mamba</code></p>
+<p>conda activate stats &amp;&amp; python -m ipykernel install --user --name stats --display-name Python (stats)</p></td>
+<td><p>This sets up an environment stats with all needed packages, then activates a Kernel (controls the versions and packages that are used).</p></td>
 </tr>
 <tr>
 <td><p>3:</p></td>
 <td><p>Install Visual Code</p></td>
-<td><p><a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a></p></td>
+<td><p><a href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a> then add Python and Jupyter extensions. </p>
+<p>In VS Code: Command Palette → Shell Command: Install ‘code’ command in PATH</p></td>
 <td><p>Visual Code is an IDE (integrated development environment) that allows you to write, execute, and debug code from within a single program.</p></td>
 </tr>
 </tbody>
@@ -119,17 +125,17 @@ First, a few terms: `r glossary("function")`, `r glossary("arguments")`, `r glos
 ## R
 
 |  |  |
-|---------------------------|------------------------------|
+|----------------------------------|--------------------------------------|
 | Where to find packages? | <https://cran.r-project.org/web/views/> |
 | Command to install packages | `install.packages(`\``package_name`\``)` |
 | How to access documentation file? | `?package_name` or `?command_name` |
 
 ## Python
 
-<table style="width:78%;">
+<table style="width:77%;">
 <colgroup>
 <col style="width: 24%" />
-<col style="width: 53%" />
+<col style="width: 52%" />
 </colgroup>
 <tbody>
 <tr>
@@ -168,14 +174,9 @@ Importantly (and, as will be discussed in @sec-data), it's not just the statisti
 
 By some estimates, variation in how these pre-processing tasks are done accounts for more variability in findings than the design choices most readers focus on. Accordingly, the data processing code that is shared should include the entire process, from data cleaning to figure generation.
 
-Statistical Methods and analysis: 
-Pitfalls of research:  https://journals.stfm.org/primer/2022/van-smeden-2022-0059/#.YvQyN_kxOPE.twitter 
-How to structure the project files: https://medium.com/the-stata-guide/the-stata-workflow-guide-52418ce35006 
-Reproducible code info: https://twitter.com/lisadebruine/status/1504063177012695047?s=11 
-Citation for need to release analytic code: https://academic.oup.com/jamia/article-abstract/30/5/859/7056675 
+Statistical Methods and analysis: Pitfalls of research: https://journals.stfm.org/primer/2022/van-smeden-2022-0059/#.YvQyN_kxOPE.twitter How to structure the project files: https://medium.com/the-stata-guide/the-stata-workflow-guide-52418ce35006 Reproducible code info: https://twitter.com/lisadebruine/status/1504063177012695047?s=11 Citation for need to release analytic code: https://academic.oup.com/jamia/article-abstract/30/5/859/7056675
 
-
-### How to document and share code 
+### How to document and share code
 
 ::::::::: panel-tabset
 ## R
@@ -366,15 +367,13 @@ As an exercise, see if you can create your own Stata do file, and extend the ana
 :::
 :::::::::
 
-## Reproducible Research {#sec-reproducible}
+## Reproducible Research
 
 From a perspective of scientific rigor, sharing should also include the individual patient data to allow researchers to directly replicate or modify the reported analyses. However, despite research participant support for data sharing, privacy concerns and research ethics concerns generally do not permit the sharing of data, even if it has been pseudonomized. This is an active space where "ideal" and "actual" are far apart... but the current takeaway is that individual patient data should not ben shared unless that was explicitly part of the IRB authorization.
 
-Further reading (R focus): <https://raps-with-r.dev/intro.html>
-building reproducible analytical pipelines: https://rap4mads.eu/?utm_source=substack&utm_medium=email 
-Citation: reproducible computing: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745 
+Further reading (R focus): <https://raps-with-r.dev/intro.html> building reproducible analytical pipelines: https://rap4mads.eu/?utm_source=substack&utm_medium=email Citation: reproducible computing: https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 
-principles for reproducible and efficient computing; https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745 
+principles for reproducible and efficient computing; https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
 
 ## An Example: Meta-analyzing the effect of corticosteroids in CAP {#sec-steroids_cap}
 
@@ -670,12 +669,15 @@ Instead, use the LLM to help you write statistical code that you then run on you
 
 -   Request CTSI help: <https://ctsi.utah.edu/cores-and-services/triad> 
 
-- R book (very good, but in-depth): https://r4ds.had.co.nz/index.html 
+-   R book (very good, but in-depth): https://r4ds.had.co.nz/index.html
 
+Rules for statistical computing: https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1005510
 
+Helpful R resources: tbl_summary: https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html tbl_regression: https://www.danieldsjoberg.com/gtsummary/articles/tbl_regression.html
 
-Guide to Python for those familiar with STATA - https://github.com/aeturrell/coding-for-economists/blob/main/coming-from-stata.md 
-Guide to Python for those familiar with R - https://www.emilyriederer.com/post/py-rgo/?utm_source=substack&utm_medium=email 
+Helpful Python Resources: Guide to Python for those familiar with STATA - https://github.com/aeturrell/coding-for-economists/blob/main/coming-from-stata.md Guide to Python for those familiar with R - https://www.emilyriederer.com/post/py-rgo/?utm_source=substack&utm_medium=email
+
+Helpful STATA resources:
 
 ## TODO List: {.unnumbered}
 

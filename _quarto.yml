@@ -97,3 +97,5 @@ format:
     include-after-body:
     - include/webex.js
     - include/script.js
+reticulate:
+  python: "r-reticulate"

@@ -397,7 +397,8 @@ ul.task-list li input[type="checkbox"] {
 <a href="#whats-a-p-value-good-for" id="toc-whats-a-p-value-good-for" class="nav-link" data-scroll-target="#whats-a-p-value-good-for"><span class="header-section-number">5.2</span> What’s a P-value good for?</a>
   <ul class="collapse">
 <li><a href="#intuitively-what-is-a-p-value" id="toc-intuitively-what-is-a-p-value" class="nav-link" data-scroll-target="#intuitively-what-is-a-p-value"><span class="header-section-number">5.2.1</span> Intuitively, what is a p-value?</a></li>
-  <li><a href="#how-surprising-is-too-surprising" id="toc-how-surprising-is-too-surprising" class="nav-link" data-scroll-target="#how-surprising-is-too-surprising"><span class="header-section-number">5.2.2</span> How surprising is too surprising?</a></li>
+  <li><a href="#a-note-on-significance" id="toc-a-note-on-significance" class="nav-link" data-scroll-target="#a-note-on-significance"><span class="header-section-number">5.2.2</span> A note on significance</a></li>
+  <li><a href="#how-surprising-is-too-surprising" id="toc-how-surprising-is-too-surprising" class="nav-link" data-scroll-target="#how-surprising-is-too-surprising"><span class="header-section-number">5.2.3</span> How surprising is too surprising?</a></li>
   </ul>
 </li>
   <li>
@@ -449,7 +450,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommended - <a href="https://a.co/d/4NCk2bS" class="uri">https://a.co/d/4NCk2bS</a>&nbsp;</p>
+<p>A plug for a book called Intuitive Biostatistics by Harvey Motulsky - it is excellent. Highly recommend: <a href="https://a.co/d/4NCk2bS" class="uri">https://a.co/d/4NCk2bS</a>&nbsp;</p>
 </div>
 </div>
 <p>By the end of this page, you should have an intuitive sense of what a p-value is (and what it is not) and the role that it plays in the argument of a scientific report.</p>
@@ -479,7 +480,7 @@ Tip
 </section><section id="whats-a-p-value-good-for" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="whats-a-p-value-good-for">
 <span class="header-section-number">5.2</span> What’s a P-value good for?</h2>
 <p>To provide evidence for cause and effect, we need compelling arguments against confounding, bias, and chance. Arguments against confounding are best done by by study design (e.g.&nbsp;randomization) but can be addressed using statistical methods (see <a href="intro_regression.html" class="quarto-xref"><span>Chapter 6</span></a>). Bias is best addressed by careful choice of instruments/assessments, but can also be supported by elements of study design (e.g.&nbsp;blinding).</p>
-<p>Whether or not chance is a plausible explanation or not is where P-values come in. Repeated for emphasis: <strong>P-values ONLY address the plausibilit of chance explaining an apparent association.</strong> Having a low p-value tells you nothing about whether confounding or bias could explain an association - you need other arguments for that.</p>
+<p>Whether or not chance is a plausible explanation or not is where P-values come in. Repeated for emphasis: <strong>P-values ONLY address the plausibility of chance explaining an apparent association.</strong> Having a low p-value tells you nothing about whether confounding or bias could explain an association - you need other arguments for that.</p>
 <section id="intuitively-what-is-a-p-value" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="intuitively-what-is-a-p-value">
 <span class="header-section-number">5.2.1</span> Intuitively, what is a p-value?</h3>
 <p>If there was no association, how surprising would it be to see the observed data?</p>
@@ -490,8 +491,12 @@ Tip
 <p>Note: the P-value is not comparing one hypothesis to another (ie. an alternative hypothesis). Nor is it saying how likely it would be to find an effect if there is something going on - it’s just saying: “if there’s actually nothing going on here (ie. no causal effect, no confounding, no bias), how unlikely would this finding be?</p>
 <p>This is a conditional probability: “IF nothing is going on” (or, assume nothing is going on), then, how unlikely would this be. The notation is P ( observed_data | nothing going on).</p>
 <p>Box: note that p-values are NOT a measure of how strong evidence is. A finding with p-value 0.03 isn’t necessarily less robust even than p-value 0.001 - even if there is no bias or confounding. Consider, a huge study can have a very small p-value (unlikely chance.. but could be a small amount of bias, confounding, or a trivial effect), or a smaller study could have a larger p-value. This is termed “Lindley’s Paradox”</p>
-</section><section id="how-surprising-is-too-surprising" class="level3" data-number="5.2.2"><h3 data-number="5.2.2" class="anchored" data-anchor-id="how-surprising-is-too-surprising">
-<span class="header-section-number">5.2.2</span> How surprising is too surprising?</h3>
+</section><section id="a-note-on-significance" class="level3" data-number="5.2.2"><h3 data-number="5.2.2" class="anchored" data-anchor-id="a-note-on-significance">
+<span class="header-section-number">5.2.2</span> A note on significance</h3>
+<p>‘Statistically significant’ is a bit of a tricky term, as it may seem to imply a sense of importance. However, a result that is statistically signficant does not necessarily need to be important. Consider a very large study that can very precisely estimate an effect. It might be very unlikely that finding is due to chance (signficant), but it might be so small that we don’t care much (unimportant). The converse is also true: an apparently large effect might not reach statistical significance (so we can’t be sure, to the usual standard, that its not chance) but be very important - as in the case where, say, ECMO may reduce 90-day mortality.</p>
+<p>Some have advocated for switching to an alternative term: compatability rather than significance https://x.com/lester_domes/status/1941165288617324828?s=46&amp;t=5eJ6uoTQrbbYTlHIOnRYRg to emphasize it’s just about the ranges of data, not their imporance. I like this framing. If the data is compatable with the null hypothesis, it’s not a strong argument against the null being true. However, if it’s surpsising enough, that can be a strong argument.</p>
+</section><section id="how-surprising-is-too-surprising" class="level3" data-number="5.2.3"><h3 data-number="5.2.3" class="anchored" data-anchor-id="how-surprising-is-too-surprising">
+<span class="header-section-number">5.2.3</span> How surprising is too surprising?</h3>
 <p>Arguing by coincidence begs the question: how surprising does something have to be before you say “there must be something going on here!”.</p>
 <p>Luckily, you can convert P-values to coin flips to get an intuitive sense (look inside the box for the actual conversion, but feel free to skip of logarithms make you queasy). &nbsp;</p>
 <p>Box: “Shannon Transform: S-value”</p>
@@ -639,6 +644,8 @@ Tip
 <li><p>if it’s more suspicious than getting heads 4.32 times in a row, we say that chance alone can’t explain it.</p></li>
 </ul>
 <p>(Note, I’ll need to make separate arguments that confounders or biased assessment of either PaCO2 or readmission could explain it, if I want to make a convincing argument is the PaCO2 per se - for more on that, <a href="intro_regression.html" class="quarto-xref"><span>Chapter 6</span></a>)</p>
+<p>Signal vs noise:</p>
+<p><img src="images/clipboard-1154642749.png" class="img-fluid"></p>
 <section id="severity" class="level3" data-number="5.3.1"><h3 data-number="5.3.1" class="anchored" data-anchor-id="severity">
 <span class="header-section-number">5.3.1</span> Severity:</h3>
 <p>A last topic that I’ve included here - but would often usually be introduced later… but I think warrants early exposure - is statistical severity. If we zoom out - we see that we’re generating exclusionary evidence against “null” hypothesis - but we’re not necessarily summarizing the strength of evidence <em>in favor</em> of a hypothesis.</p>
@@ -648,6 +655,9 @@ Tip
 </section></section><section id="resources" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="resources">
 <span class="header-section-number">5.4</span> Resources</h2>
 <p>Visualizations: - https://sites.google.com/view/ben-prytherch-shiny-apps/shiny-apps</p>
+<p>(of compatable intervals)</p>
+<p>Bayesian Framework:</p>
+<p>Likelihoodist aka Evidential framework - https://www.atsjournals.org/doi/abs/10.1164/rccm.202504-0809TR</p>
 
 
 </section></main><!-- /main --><script>
