@@ -1,0 +1,390 @@
+# Multivariable Analysis
+
+Note: Regression analysis = fancy ways of finding averages; fancy ways of drawing lines.
+
+Multivariable = more than 1 predictor aka independent variable in the model. Often abbreviated just multiple (eg multiple linear regression) to contrast with simple regression (1 predictor)
+Multivariate = more than 1 OUTCOME variable (this is often incorrectly stated in the literature)
+
+Variance =  average of squared deviations from the mean. Standard error = sqrt(variance) 
+
+Deterministic (exact relationship, no prediction error) vs Stochastic (Deterministic + Random Error) 
+
+Simple linear regression: 1 predictor, 1 outcome. (Same for 'simple logistic regression', etc.)
+
+Multiple linear regression: many predictors
+
+A person's risk of experiencing a health outcome depends on multiple characteristics. 
+
+Outcome = f (Subject characteristics)
+
+Subject characteristics are termed: predictors, explanatory variables, or covariates
+
+f () could be any function, but generalized linear models are tractable, flexible, and convenient and follow this form: 
+
+g(y-hat j) = Bo + B1*x1j + B2*x2j + .... = Bo + sum 1 to k (Bi*xij)
+
+- Right side of equation = linear predictor
+- g = link function (see below)
+- y = response variable - an indicator of a dichotomous outcome, a case count, or a health outcome. When accompanied by a hat, it is a 'predicted' value based on the model.
+- Bo....k = beta coefficients - chosen to maximize agreement between observed data and predictions e.g. by maximum likelihood estimation. These represent the association between the corresponding x-variable (1 unit) and the outcome after accounting for contributions from all other x-variables.
+- x = predictor variables. Must be in numerical form (e.g. 0 and 1 if binary; coded as multiple variables if categorical w 3+ categories; may apply a transformation prior to )
+
+In general, "hat" means predicted.
+
+Parameters = descriptors of the population that you are interested in. 
+
+## Purpose
+
+Generally used to control for confounding (several confounders) 
+
+The multivariable model allows for determination of the slope of each variable when adjusted for all other variables (equivalently, holding all other variables constant - 'the adjusted mean difference') 
+
+Unadjusted mean difference = the difference in the means of two variables without any adjustment (ie. If everyone is younger is 1 group, it's ignored). e.g. during a t-test
+
+Adjusted mean difference = the difference in the means at the ages shared in the model. aka 'least mean squares difference' if from linear model using sum of squares 
+
+B coefficients in the model => adjusted mean difference for a change in 1 unit
+
+## Link Functions: 
+
+Goal: transform the output into a range that is interpretable. 
+
+![alt](https://photos.collectednotes.com/photos/5187/ed4222e7-d14c-44d2-b4aa-d5a849685ec9)
+
+### Linear Regression
+
+see separate article
+
+### Logistic Regression 
+
+see separate article
+
+
+### Survival Analysis, Cox-regression, Proportional-hazards regression
+
+See Separate Article
+
+## Independent Variable 
+
+Aka predictors
+
+### Dichotomous variables
+
+For (most) types of regression, it is assumed that all independent variables have at least an interval scale. 
+
+In additional to dichotomous variables being a special case of nominal variables (where n=2 categories), it's also a special subtype of interval scale (has an order and an equal interval between). This can be verified with the following facts:
+
+- the bournulli formula (mean = p; variance = p(1-p) when p = number of 1s) holds
+- chi2 test is algebraically identical to equal var t test (and thus, 1 way ANOVA)
+
+A better way to name these for actual analyses is as an 'indicator variable' - where 0 means the factor is not present, 1 means it is (ie. 'Male' = 0 means female)
+
+
+#### Lowess Regression (=not linear regression)
+
+Nonparametric approach  (local weighted scatterplot smoothing) - avoids needing to assume a line. 
+
+Look at points within the bandwidth (analogous to window). Doesn't have to assume normality, etc. 
+
+Draw back - not easy to calculate/summarize the estimate. 
+
+Use: often to check if linear assumption holds (is the lowess line similar to the linear line?)
+
+### Adjusted means and interaction terms
+
+Note: in general, it is common to test for interactions first, then assess main effects (and always include main effect of both terms if interaction is 
+
+When you generate "adjusted means" using these methods / linear regression, generally (unless otherwise specified) the adjusted variables are held constant at their means. Meaning, the slope relating two variables (with others held constant) does NOT vary by any third variables: unless interaction coefficients are specified, the slopes of the regression lines will be taken to be identical (and any difference will just be shifted - group just leads to moving up and down the same slope). 
+
+--- these interaction terms are generated by multiplying the dummy variables representing the groups, and the confounding variable. (If these are signficant, it suggests that the interaction is important) 
+
+If in reality the slopes should have different values for different groups - that means the terms interact. The strength of the interaction is how much the slopes differ. 
+
+--- if you use interaction terms, you can no longer do adjusted means unless you do mean centering (because the interaction terms can't be held at the overall means - they need to be held at the mean of the two things they are interacting on)
+
+Consider: the 'mean difference' is no longer constant (because the slopes are different). In order to get interpretable main effect estimates (e.g. difference between two groups), mean centering is performed. -> choose a number to hold that 'third variable' at, by default usually at the mean and see what the difference between the groups are there.
+
+Mean centering: create a deviation score (how much each value of the independent variable differs from the mean (raw score - the mean). This transforms the data such that the relationships are unchanged, but the mean is 0. See http://www.creative-wisdom.com/computer/sas/s_regression.html
+
+'Centering' can be performed at any value that is clinical relevant - and makes it so that the comparison of "a change in x of 1 unit leads to a change in y" is taken with the value of z - the third variable - at the 'centered' value (must be specified because the slopes differ).
+
+If you add interaction terms, you have to keep them ALL in the model (even if they don't seem to be significant or impactful by the usual 10% criteria) - meaning, if a two way interaction is in the model, all of the primary effects must be in. If there is a three way interaction, then all of the two ways and all of the primary effects must be in. Etc. 
+
+???In sum, linear regression with >1 input variables is an 'adjusted mean difference' model 
+
+Linear models: interaction terms allow for separate 'slope' variation between two variables for different values of a third - the term represents how much the slope is added when accounting for the interaction - ie, how much 'synergy' must be added beyond what would be predicted based on the two independent variable values alone.
+
+Multiplicative models (e.g. logistic, Cox) - how much more the slope is multiplied in order to make the lines parallel. how much 'synergy' must be multipolied beyond what would be predicted based on the two independent variable values alone.
+
+In epidemiologic terms: this means that there is effect measure modification (ie. Synergism between how two variables interact in predicting a response/outcome/dependent variable). In multiplicative models, the default is 'multiplicative' interaction (ie. Ratio changes) where in linear models, the default is looking for additive interaction (ie. Difference changes)
+
+#### Margin estimation, Stata Margins command
+
+Marginal effects = adjusted means after controlling for the other variables (in some way) = derivative (aka slope) of the coefficient
+
+Conditional effect (or group contrast) = analogous term for a dichotomous or categorical variable: the change in the dependent variable after changing the value of the independent variable of interest, hold all others constant at some level. 
+
+'Marginal' = the change in the dependent variable / effect by adjusting a predictor variable. (note: this gets semi-conflated ie. They're actually basically the same with the calculous notion of derivative, and the economic use of marginal as a synonym for slope - https://www.andrewheiss.com/blog/2022/05/20/marginalia/)
+
+Note: If your model is completely linear (no polynomials, logs, interaction terms, and not logistic/beta, etc) - then individual coefficients are marginal effects (ie. The slope DOESN'T change)
+
+Linear regression: for categorical variable = mean of outcome variable for each category after controlling for other independent variables by 1 of the following ways: 
+
+- Marginal effects at the means (MEMs) = all other variables are at their means
+- Marginal effects at representative values (MERs) = held at some value that is helpful for the question under consideration (MEMs is a special case of MERs)
+- Average marginal effects (AMEs) = compute marginal effect for each observed value of the other variables, then average them.
+
+Predict command -> plugs the independent variables into the model for each observation, then generates the dependent variable.
+
+Margins command -> calculates predict command while changing 1 independent variable (ie. Calculating smoker and nonsmoker). If done with 'atmeans' flag, calculates MEMs which corresponds to regression coefficients.
+
+If margins is done on a continuous variable, must specify what values you want the command to predict on. (If categorical, will do for each category). 
+
+If the regression lines are parallel (no interaction terms), then exactly where you hold the other variables constant won't matter. However, when you add interaction terms, the slopes of lines will diverge and THEN it will matter where you hold the other independent variables constant. 
+
+-> meaning, in a model with interaction terms, the main effects cannot be interpreted. "dydx" notation in margins command allows for estimation of these. (This accomplishes the same thing as "mean centering")
+
+MERS: when getting marginal effects when interaction terms are present, this allows testing at representative values (e.g. at male, with all other things constant, and female). Instead of 'atmans' use at(male=(0 1)). 
+
+To compare if marginal effect is different between the two values (ie. After interaction w sex, is male effect different from female) - Wald's post-test can be used. 
+
+Sidebar: if an interaction term is added to the model, the "significance" of the interaction in the main effect answers the question "is there multiplicative effect modification?", while the comparison of marginal effects answers the question "is there additive effect modificaiton?".
+
+Lastly, AMEs: basically, you are going through the whole dataset and predicting each with the variable in question as 0, or 1 (or whatever), finding the predicted value for all of them, average, then subtract them.  For linear regression, this is the same as MEMs (linear models - thus, it's often not even mentioned in the methods). However, in multiplicative models they are different and so it needs to be specified.
+
+Average marginal effects is directly analogous to counterfactuals in other statistical modeling (e.g. average treatment effects). In this framework, what we are holding constant is the entire distribution of covariates in the model. 
+
+This is particularly useful if you need to estimate the modeled risk-difference between two groups. 
+
+### P-values
+
+Compares the performance of the whole model vs just guessing on the mean of the dependent variable. 
+
+How it (Multiple R) works: 
+
+- calculate the predicted values of the dependent variable 
+- do the Pearson correlation coefficient between the predicted value and the observed value (pwcorr)
+- calculate the P-value on the basis of the Pearson Correlation Coefficient: ??? The comparison model is called the "mean model" Yi = Y_bar + ei (ie, what is the residuals of just taking the mean value and no predictors)
+
+Alternatively: if you convert each data point to Z-scores (zx = x-xbar/sd; zy = y-ybar/sd), then fit a regression model to the z-scores, then the regression coefficient (slope of change in z-scores per SD unit) = Pearson correlation coefficient.
+
+#### B weights and Beta weights
+
+In the multivariable regression model, each variables regression coefficient (in the normal units) = B-weight: these are the slopes from the regression equation (the amount of change in the dependent variable caused by one unit of change in the independent model, both in their native units, after controlling for everything else in the model)
+
+If the independent and dependent variables are converted to Z-scores (zx = x-xbar/sd.. etc.), then they are called BETA-weights. Can be added automatically in stata by the regress ", beta" option
+
+Beta weights are useful to summarize the relative importance of each predictor (independent of the unit of measurement)
+
+#### Overfitting
+
+Intuitively, the closer you get to fitting a straight line through two points (perfect correlation, even if both random) - or it's analog in higher dimensions (plane through 4 points, etc.). 
+
+From this -> sample size of 10 for each predictor in the model. 
+
+More in depth rule, by dependent variable type: 
+
+Continuous variables: total sample size of 10 per predictor
+Binary variables: min (events or non-events) / 10 per predictor (Interestingly, exact logistic regression is not subject to overfitting, can be used)
+Ordinal variables with k categories: sample size - (1-sample size^2) * sum for all categories(n^3) all divided by 10
+Survival time: number of deaths / 5  (if just trying to control for confounders, 10 if making a prediction model)
+
+This is the Variance:Bias tradeoff -  https://mlu-explain.github.io/bias-variance/
+
+## Data reduction approaches
+
+If your number of outcome events is not more than 5-10x greater than the number of covariates in your model, beta-coefficient estimation becomes very inaccurate (esp in logistic regression and proportion-hazards regression). To get around this data reduction methods can be used: 
+
+1. Propensity scores (the probability of an exposure, conditional on a set of covariate values) 
+2. Disease risk scores (the probability of an outcome condition on being unexposed and having a given set of covariate values)
+
+see confounding and its control for more info
+
+## Variable Selection 
+
+Need to determine whether you are trying to:
+
+- Prediction - prioritize performance (minimizing prediction error) over causal interpretation. Included variables should improve prediction, but be excluded when diminishing returns of adding them kick in. Often, the 10% change in estimate with inclusion rule is used for this (10% difference in beta coefficient or OR with adjusted and unadjusted model wrt to a given confounder).
+
+- Evaluating a predictor of an outcome while controlling for confounding (ie all the other independent variables). Thus, include variables that are thought to be confounders - things readers will expect (even if they are not confounders) to ensure model is complete. 
+
+- Identifying the important independent predictors of an outcome - both statistical inference and causal interpretation are important. Include variables that are statistically significant (generally p<0.2 used as threshold, not 0.05 which is too stringent and leads to exclusion of important confounders) and ones that in prior research have been shown to be predictors (and thus have a lower chance in being spurious patterns in your data).  This type of research always has a problem with inflation of the false discovery rate (meaning, P 0.05 cannot be taken at face value), because by definition the factors cannot have been prespecified, which is assumed for a valid p-value computation (instead, it's an exploratory analyses that would need to be confirmed in future studies (or you can reference prior studies as pseudo-pre specification)).
+
+Note: Wald test and likelihood ratio are two ways of calculating the p-value of a regression coefficient. They are the same with large datasets. 
+
+Methods of doing this: 
+
+- Backward elimination (preferred)- put all potential independent variables in, and then eliminate 1 by 1. Negatively confounded sets (=confounding occurs when 2 variables both occur together, but not individual) are less likely to be omitted because the entire set is present at the beginning. 
+
+- Forward  selection- add independent variables one by one. Conversely, this does not handle sets of confounders as well because it will appear not-associated if the rest of the set is not present. 
+
+- Automated selection procedures; generally not recommended because they don't handle decisions about collinearity, competing confounders. 
+
+Recall: to avoid overfitting, you generally want to not include excess independent variables (events / 10 is often used, though doesn't necessarily work perfectly)
+
+## Collinearity
+
+Looks like confounding but is not (because it's actually 2 things representing the same information)
+
+Multicollinearity = linear relationship among the (2 or more) predictor variables as a set.   
+
+If the variables are linearly related, there is less information for prediction. This will often lead to larger standard errors when a variable is added.  Also may lead to unexpected changes in coefficient magnitudes or signs, or nonsignificant coefficients despite high R^2.
+
+Best way to assess for multicollinearity is to regress on each predictor variable (as outcome) using the other independent variables to see how much variability (R^2) is explained by the others. 1-R^2 = 1/VIF = the unexplained variance = the useful information added by that variable.
+
+VIF = variance inflation factor: summarizes collinearity. Higher = worse 
+
+Multicollinearity is a problem for the predictor variable if VIF > 10; it is a problem for the model if the mean VIF is over 1.
+
+What to do if you have collinearity? Perhaps nothing - it just reduces the efficiency of the model. Collinearity is less a problem when the sample is larger (because the reduced efficiency can be made up by more observations)
+
+## Practical uses
+
+Data must be cleaned and understood (generally, visualized and descriptive statistics) before regression run. 
+
+The extent of confounding can be estimated by comparing the exposure-outcome association with and without the suspected confounder in the model.
+
+Beta coefficients near 0 do not add much to the model. This can be formalized using a measure of goodness of fit (to the data) and comparing with and without. 
+
+- Deviance: -2log [likelihood]
+- Akaike Information Criterion (AIC): 2m + deviance. Essentially, adding a penalty for the number of parameters. 
+
+
+### Imputation
+
+By creating a multiple variable model for missing data, you can impute the missing data (called multiple imputation)
+
+## Regression Diagnostics
+
+Residual vs Predictor Plot: 'rvplot' - plots the residual (vertical distance from regression line to data point). 
+
+### Overly influential observation: 
+
+concerning, because it suggests that model isn't stable. Analogous to an outlier (suggests the data comes from a different population). 
+
+Postestimation
+
+Predict d, cooksd in stata gives Cook's D - a popular one. 4 / n is a common threshold for being "too influential"
+
+Generally, just being influential is not grounds for exclusion (same types of considerations as excluding outliers should apply)
+
+### Lack of fit
+
+## Monte Carlo Simulation and Bootstrapping CIs
+
+Monte Carlo: best used to when you want to [ model?] data but you don't know the underlying distributions. 
+
+Bootstrapping general approach: repeatedly created resamples (ie n=50 out of a sample of 1000), with replacement. Then, you calculate the distribution of some statistic on the resamples. Key hypothesis is that the distribution of the resamples approximates the sample statistic.
+
+Probability mass function: P(a) = P{X=a}; e.g. for coin flip head=.5, tails=.5
+Probability density function: probability that X falls within some range 
+Empirical density distribution (EDF): 	the predicted PMF/PDF based on a sample. In practice, essentially the distribution described by a histogram of a sample (when, if that's the only info, is taken to be the best estimates of what the histogram of an entire population would be)
+
+"EDF is a nonparametric maximum likelihood estimator of Probability density/mass function = the population PDF/PMF described by boot strapping has the greatest chance of creating the EDF observed.
+
+Sampling with replacement is used to ensure that each value has the same chance of being drawn into the resample (can either be done with a functionally infinite sample size - which we know is not the case; or replacement) - this assumption is called IID: every data point is independent and identically distributed.
+
+Uses: 
+
+1. central limit theorem = sampling distribution (ie random samples) of means is normally distributed. (Even if the underlying distribution is skewed). Therefore, if you don't know the distribution of the population means - it doesn't matter because it can be assumed normal if enough samples are taken. Thus, bootstrapping is more useful for other statistics where you don't have this property (large sample -> normal distrubution): such as confidence intervals (or ratio of two statistics).
+
+Bootstrapping: 1000 is enough resamples for confidence intervals. 
+
+Eg Coefficient of variation: std dev / mean
+
+2. Another use: assess stability of a multivariable model: using BIF (bootstrapping inflation factor) to see how often a predictor ends up in the model with a given parameter selection process. 
+
+3. Or, validating the performance (discriminatory ability) of a diagnostic test or decision-support system.
+
+
+## Repeated Measures
+
+Aka panel data, longitudinal data, cross-section time series data
+
+Stata: xt prefix commands
+
+Fixed effects: change in the intercept of each subject, but that effect is measurable for the group.  assumption that each subject has the same slope. AKA random intercept regression (or, less correctly - termed mixed-effect regression). Properly allows for inferences about the sample
+
+Random effects: change in the intercept of each subject, but that effect is not directly measurable. Also assumes fixed slope for each (as above). Properly allows for inferences about the population that the sample comes from.
+
+### GEE
+
+Generalized estimating equations: GEE, regression line is the average of each individual regression line. Creates a nuisance variable (no sensible interpretation) representing the inter-observation correlation as a covariate (then doesn't display at the end). 
+
+Example correlational structures: independent(none - this is the equivalent to glm where each is assumed independent... the advantage of gee is to take advantage of the structure, thus this is never actually used), exchangeable (same between each variable; this is default), Stationary/m-dependent (depends on m-observations before and after), autoregressive (depends to some amount based on how many measures apart). 
+
+Looking at the correlations between each (ie. Pwcorr) is a good way to suss out which structure fits best. 
+
+How it works: “In order to enhance insight in the GEE analysis, the estimation process can be seen as follows.  First a ‘naive’ linear regression analysis is carried out, assuming the observations within subjects are independent.  Then, based on the residuals of this analysis, the parameters of the working correlation matrix are calculated.  The last step is to re-estimate the regression coefficients, correcting for the dependency of the observations.  Although the whole procedure is slightly more complicated (i.e., the estimation process alternates between steps two and three, until the estimates of the regression coefficients and standard errors stabalize), it basically consists of the three above-mentioned steps (see Burton et al., 1998).” -Twisk
+
+GEE can: 
+
+- allow for fixed and time-dependent/varying covariates
+- unequally spaced time intervals
+- missing data
+- assumes linear change over time (unless a second term or indicator variable added)
+
+However, it does assume that all the slopes are the same (it is a random intercept model, not a random coefficient model)
+
+### Mixed Effects Models
+
+Summarized here: (for stata) https://errickson.net/stata-mixed/index.html
+
+Aka 
+mixed effects model (also called a multi-level model) to account for the lack of independence introduced by nesting, or data clustering. 
+
+Heirarchical linear models (HLM) = Linear mixed models (LMM) = above: linear specification of random and fixed-effects. 	Also an example of 'variance component' models
+
+Unlike GEE, multi-level models can be set to either a random-effect intercept for each person, OR a random effect intercept & random effect slope (random coefficient model). Multilevel models provide 'shrunken estimates' - more conservative and likely to be replicated than GEE. 
+
+Another advantage of mixed effects models is that you can include many levels: (e.g. hospital, physician, patient ID  
+
+Add error term (ie. intercept) per patient to each – these aren’t measured but assumed on aggregate to not contribute. (mean 0). We do estimate the variance.
+The beta terms = fixed terms
+The k error terms = random terms (representing the common error from all the individuals the ’group’/2nd level)
+
+Big picture idea is that you add intercepts for each group (ie. Person, if repeat observations is data structure), but don'e estimate it (this is akin to each group being it's own fixed effect). 
+
+Graphically: if you imagine a mean for each level, then you can describe the OVERALL deviation from the sample mean in terms of a component deviating from the level 1 mean, a component deviating from the level 2 mean... etc.). As a repeated measures example: the residual is split into a "how far this observation is from the mean of this individual" and "how far this persons observations are from the sample average"). Multilevel models are sometimes called 'variance component' models. As above - you don't estimate the actual 'intercept'/point estimate of each of these - just the variance, which describes how much of the variation comes from that component but does not cause overfitting. 
+
+Note, you can also estimate the slopes of the groups (ie. The random effect slope), which is akin to modeling the interaction term with the grouping variable. Usually, the purpose of the model is to control for the grouping variable, but if the actual interest is in the average difference between the groups, then the random slopes can be helpful.  Video 2 here explains: https://campusguides.lib.utah.edu/c.php?g=160853&p=1052006
+
+Coefficients table of the fixed effects is interpreted just as in linear regression, but each coefficient is also controlling for the structure introduced by the random effects.
+
+Random effects portion of the output: is there variation in the random variable beyond what would be expected by the fixed effects? If var(_cons) is 0 or close, it means that the random effects are not necessary. 
+
+Margins: estimates ignoring the random effects (the equivalent of "for the average person")
+
+Assumptions: 
+
+- linear additivity: relationship of the predictor to the outcome is linear
+- UNLIKE linear regression - does NOT assume independence (though you need to model all the relevant dependence through the levels) OR homogeneity of residuals.
+
+Terminology: 
+
+- When data is the same at each time point in follow-up = time-invariant
+- Time-variant = if has a different value at each follow-up point
+
+Similar to how linear models -> generalized linear models (logistic, poisson, etc.), you can do the same with linear mixed models. 
+
+#### ICC
+
+intraclass correlation coefficient (ICC), also called the intracluster correlation coefficient (ICC).  Also identically called reliability index or rho or r - in the context of inter-rater agreement of a continuous variable.
+
+rho = subject variability / (subject variability + measurement error)
+
+Represents that amount of variation explained by a factor.
+
+The correlational structure in a mixed effect model is modeled by this
+
+ICC: the within-cluster variance / total variance; also interpretable as the correlation among observations in the same cluster.
+
+
+## Regression to the mean: 
+
+3 Ways to address:
+- Control group
+- Multiple baseline measurements
+- Use ANCOVA (aka linear regression) with baseline value as a predictor
+
+Note: the amount of regression of the mean can be predicted by how strongly correlated the dependent  and independent variables are
