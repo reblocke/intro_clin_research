@@ -1,0 +1,45 @@
+# intro_clin_research
+
+Repository: https://github.com/reblocke/intro_clin_research
+Purpose: Guide for students residents and fellows doing clinical research
+Status: No manuscript version is expected. Teaching text is repository-authored unless otherwise noted.
+
+## Human-Readable Entry Points
+- `README.md` is the primary human-facing overview.
+- `llms.txt` is a compact machine-readable index and should not replace the README.
+
+## Repository Layout
+- `.DS_Store`
+- `.Rbuildignore`
+- `.Rhistory`
+- `.Rprofile`
+- `LICENSE`
+- `LICENSE.md`
+- `R/booktem_setup.R`
+- `R/dt_tables.R`
+- `R/my_setup.R`
+- `README.md`
+- `_quarto.yml`
+- `archive/.DS_Store`
+- `data.qmd`
+- `docs/.DS_Store`
+
+## Data and Reuse Boundaries
+Teaching materials only
+
+## Workflow
+Site build workflow
+
+## Dependencies
+Repo README and lockfiles
+
+## Citation
+No publication DOI is assigned to this repository. Cite the GitHub repository URL and the commit or release used.
+
+## License
+MIT License for repository code; see `LICENSE`. Third-party and publisher materials remain under their original terms.
+
+## Agent Cautions
+- Do not re-add a README appendix aimed primarily at LLMs; integrate user-facing details into normal README sections.
+- Keep restricted clinical data, private drafts, publisher PDFs, local paths, and generated outputs out of public documentation unless explicitly reviewed.
+- Prefer concise summaries plus links to citable records over copied manuscript or publisher text.
