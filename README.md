@@ -6,6 +6,10 @@ Page available at https://reblocke.github.io/intro_clin_research/
 
 ## Repository Notes
 
+### Description
+
+Guide for students residents and fellows doing clinical research
+
 ### Project Status
 
 No manuscript version is expected. Teaching text is repository-authored unless otherwise noted.
