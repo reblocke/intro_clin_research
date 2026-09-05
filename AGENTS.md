@@ -14,13 +14,7 @@ Guide for students residents and fellows doing clinical research
 - Inspect scripts/notebooks before running them; do not assume generated outputs are current.
 
 ## Workflow
-From the repository root, use this as the initial run guidance:
-
-```bash
-Site build workflow
-```
-
-If the command is a placeholder, refine it after reading the local scripts and existing README.
+The Quarto book is configured by `_quarto.yml` and starts at `index.qmd`; rendered output goes to `docs/`. Use `quarto render` for book configuration/navigation changes, or render the affected `.qmd` chapter for local content/layout verification after checking its executable chunks and dependencies. Documentation-only instruction edits need reference and whitespace checks.
 
 ## Verification Before Publishing Changes
 - Run `git diff --check`.
